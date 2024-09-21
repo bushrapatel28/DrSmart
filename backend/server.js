@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 const app = express();
-const port = 5000;
+const port = 6000;
 
 app.use(morgan('dev'));
 app.use(express.json());
