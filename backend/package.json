@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "reset": "psql -U development -d drsmart < ./src/db/schema/create.sql && psql -U development -d drsmart < ./src/db/schema/development.sql"
   },
   "author": "",
   "license": "ISC",
