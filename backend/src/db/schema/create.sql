@@ -77,3 +77,11 @@ CREATE TABLE availabilities (
   time_slot_id INTEGER REFERENCES time_slots(id) ON DELETE CASCADE,
   doctor_id INTEGER REFERENCES doctors(id) ON DELETE CASCADE
 );
+
+CREATE TABLE notifications (
+  id SERIAL PRIMARY KEY NOT NULL,
+  patient_id INTEGER REFERENCES patients(id) ON DELETE CASCADE,
+  doctor_id INTEGER REFERENCES doctors(id) ON DELETE CASCADE,
+  appointment_id INTEGER REFERENCES appointments(id) ON DELETE CASCADE,
+  message VARCHAR(255)
+);
