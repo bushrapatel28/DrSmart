@@ -14,22 +14,6 @@ VALUES
   ('Virginia Apgar', 'apgar.virginia@medicine.com', 'S1gN_4_Lif3', 'https://picsum.photos/200/300', '456 Care Rd, R3M 4B5, Winnipeg, MB', 'Anesthesiology'),
   ('Atul Gawande', 'gawande.atul@medicine.com', 'Ch3ckl1st_Sav3', 'https://picsum.photos/200/300', '321 Healthway, V5K 1A1, Calgary, AB', 'General Surgery');
 
-INSERT INTO prescriptions (medicine, note, patient_id, doctor_id, record_id)
-VALUES
-  ('Amoxicillin', 'Take 500 mg every 8 hours for 7 days. Complete the full course, even if you feel better, to prevent antibiotic resistance.', 1, 2, 3),
-  ('Lisinopril', 'Take 10 mg once daily. Monitor your blood pressure regularly, and do not stop taking it without consulting your doctor.', 2, 1, 4),
-  ('Metformin', 'Start with 500 mg twice daily with meals. Gradually increase as directed. Maintain a balanced diet and regular exercise to manage your blood sugar.', 3, 4, 1),
-  ('Simvastatin', 'Take 20 mg at bedtime. Combine with lifestyle changes such as a low-fat diet and exercise for best results.', 4, 5, 2),
-  ('Sertraline', 'Take 50 mg once daily. Continue for at least 6 months for maximum benefit. Report any side effects to your doctor promptly.', 5, 3, 5);
-
-INSERT INTO notifications (patient_id, doctor_id, appointment_id, message)
-VALUES 
-  (1, 2, 1, 'Your appointment for October 15th at 1:30 PM has been scheduled.'),
-  (2, 3, 2, 'Your appointment for October 16th at 10:00 AM has been canceled.'),
-  (3, 4, 3, 'Your appointment for October 17th at 3:15 PM has been canceled.'),
-  (4, 1, 4, 'Your appointment for October 18th at 11:45 AM has been scheduled.'),
-  (5, 5, 5, 'Your appointment for October 19th at 2:00 PM has been scheduled.');
-
 INSERT INTO appointments (appointment_date, appointment_time, appointment_type, status, patient_id, doctor_id) 
 VALUES 
     ('2024-09-25', '09:00:00', 'Checkup', 'Scheduled', 1, 1),
@@ -38,7 +22,6 @@ VALUES
     ('2024-09-28', '11:15:00', 'Immunization', 'Scheduled', 4, 3),
     ('2024-09-29', '16:00:00', 'Physical Therapy', 'Pending', 5, 2);
 
-
 INSERT INTO records (diagnosis, patient_id, doctor_id, appointment_id) 
 VALUES 
     ('Flu', 1, 1, 1),
@@ -46,6 +29,15 @@ VALUES
     ('Diabetes', 3, 2, 3),
     ('High Blood Pressure', 4, 3, 4),
     ('Allergies', 5, 2, 5);
+
+INSERT INTO prescriptions (medicine, note, patient_id, doctor_id, record_id)
+VALUES
+  ('Amoxicillin', 'Take 500 mg every 8 hours for 7 days. Complete the full course, even if you feel better, to prevent antibiotic resistance.', 1, 2, 3),
+  ('Lisinopril', 'Take 10 mg once daily. Monitor your blood pressure regularly, and do not stop taking it without consulting your doctor.', 2, 1, 4),
+  ('Metformin', 'Start with 500 mg twice daily with meals. Gradually increase as directed. Maintain a balanced diet and regular exercise to manage your blood sugar.', 3, 4, 1),
+  ('Simvastatin', 'Take 20 mg at bedtime. Combine with lifestyle changes such as a low-fat diet and exercise for best results.', 4, 5, 2),
+  ('Sertraline', 'Take 50 mg once daily. Continue for at least 6 months for maximum benefit. Report any side effects to your doctor promptly.', 5, 3, 5);
+
 
 INSERT INTO tests (name, result_url, patient_id, doctor_id, appointment_id, record_id) 
 VALUES 
@@ -89,3 +81,11 @@ INSERT INTO availabilities (date, vacant, time_slot_id, doctor_id) VALUES
   ('2024-09-26', FALSE, 8, 3),
   ('2024-09-26', TRUE, 9, 4),
   ('2024-09-26', TRUE, 10, 5);
+
+INSERT INTO notifications (patient_id, doctor_id, appointment_id, message)
+VALUES 
+  (1, 2, 1, 'Your appointment for October 15th at 1:30 PM has been scheduled.'),
+  (2, 3, 2, 'Your appointment for October 16th at 10:00 AM has been canceled.'),
+  (3, 4, 3, 'Your appointment for October 17th at 3:15 PM has been canceled.'),
+  (4, 1, 4, 'Your appointment for October 18th at 11:45 AM has been scheduled.'),
+  (5, 5, 5, 'Your appointment for October 19th at 2:00 PM has been scheduled.');
