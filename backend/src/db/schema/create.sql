@@ -67,13 +67,14 @@ CREATE TABLE tests (
 
 CREATE TABLE time_slots (
   id SERIAL PRIMARY KEY NOT NULL,
-  time_in_mins INTERVAL
+  start_time TIME,
+  end_time TIME
 );
 
 CREATE TABLE availabilities (
   id SERIAL PRIMARY KEY NOT NULL,
-  vacant BOOLEAN,
   date DATE,
+  vacant BOOLEAN,
   time_slot_id INTEGER REFERENCES time_slots(id) ON DELETE CASCADE,
   doctor_id INTEGER REFERENCES doctors(id) ON DELETE CASCADE
 );
