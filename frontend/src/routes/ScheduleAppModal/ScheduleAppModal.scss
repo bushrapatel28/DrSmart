@@ -1,0 +1,31 @@
+@import '../../colors.scss';
+
+.function-block {
+  width: 150px;
+  height: 150px;
+  background-color: $color-block-bg; // Use variable for block background
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+  box-shadow: $box-shadow; // Use variable for shadow
+
+  &:hover {
+    background-color: $color-block-hover; // Use variable for hover color
+    box-shadow: 0 6px 10px $color-shadow-hover; // Slightly stronger shadow on hover
+  }
+}
+
+.icon {
+  font-size: 2.5rem;
+}
+
+.label {
+  margin-top: 10px;
+  font-size: 1rem;
+  text-align: center;
+}
