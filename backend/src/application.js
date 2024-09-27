@@ -11,7 +11,7 @@ const app = express();
 
 const db = require("./db")
 
-const appointment = require("./routes/appointment");
+const appointment = require("./routes/appointments");
 
 
 module.exports = function application(ENV) {
@@ -26,18 +26,33 @@ module.exports = function application(ENV) {
 
   app.use("/patient", appointment(db));
 
+  function read(file) {
+    return new Promise((resolve, reject) => {
+      fs.readFile(
+        file,
+        {
+          encoding: "utf-8"
+        },
+        (error, data) => {
+          if (error) return reject(error);
+          resolve(data);
+        }
+      );
+    });
+  }
+
   if (ENV === "development" || ENV === "test") {
     Promise.all([
       read(path.resolve(__dirname, `db/schema/create.sql`)),
       read(path.resolve(__dirname, `db/schema/${ENV}.sql`))
     ])
       .then(([create, seed]) => {
-        app.get("/debug/reset", (request, response) => {
+        app.get("/debug/reset", (req, res) => {
           db.query(create)
             .then(() => db.query(seed))
             .then(() => {
               console.log("Database Reset");
-              response.status(200).send("Database Reset");
+              res.status(200).send("Database Reset");
             });
         });
       })
