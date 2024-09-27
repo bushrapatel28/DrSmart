@@ -1,0 +1,65 @@
+// /* .profile-menu {
+//   position: absolute;
+//   top: 20px;
+//   right: 20px;
+// } */
+@import '../../colors.scss';
+
+// .profile-menu {
+  
+//   .hamburger {
+//     font-size: 2rem;
+//     cursor: pointer;
+//   }
+
+//   .menu-options {
+//     background-color: white;
+//     color: $color-text;
+//     padding: 10px;
+//     position: absolute;
+//     right: 0;
+//     top: 40px;
+//     border-radius: 5px;
+//     box-shadow: 0 2px 5px $color-shadow;
+//   }
+
+//   .menu-options p {
+//     margin: 10px 0;
+//     cursor: pointer;
+
+//     &:hover {
+//       color: $color-block-hover;
+//     }
+//   }
+// }
+
+.profile-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  .hamburger {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .menu-options {
+    background-color: white;
+    color: $color-text;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px $color-shadow;
+  }
+
+  .menu-options p {
+    margin: 10px 0;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-block-hover;
+    }
+  }
+}

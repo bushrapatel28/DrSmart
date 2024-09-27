@@ -86,3 +86,18 @@ CREATE TABLE notifications (
   appointment_id INTEGER REFERENCES appointments(id) ON DELETE CASCADE,
   message VARCHAR(255)
 );
+
+CREATE TABLE medical_histories (
+  id SERIAL PRIMARY KEY NOT NULL,
+  patient_id INTEGER REFERENCES patients(id) ON DELETE CASCADE,
+  birth_date DATE,
+  weight INTEGER,
+  height INTEGER,
+  smoker BOOLEAN NOT NULL,
+  diabetic VARCHAR(60) NOT NULL,
+  allergies BOOLEAN NOT NULL,
+  allergies_description VARCHAR(255),
+  ongoing_medication BOOLEAN NOT NULL,
+  ongoing_medication_description VARCHAR(255)
+  message VARCHAR(255)
+);
