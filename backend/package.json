@@ -10,9 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-datepicker": "^7.4.0"
   },
-  "devDependencies": {},
   "keywords": [],
   "description": ""
 }
