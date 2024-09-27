@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Appointment from './Appointment/Appointment'
+import Appointment from './components/Appointment/Appointment'
 import HomePage from './routes/HomePage/HomePage'
 import RegistrationForm from './Registration/RegistrationForm'
 
@@ -15,7 +15,6 @@ function App() {
       <Appointment />
       <HomePage />
       <RegistrationForm />
-
     </>
   )
 }
