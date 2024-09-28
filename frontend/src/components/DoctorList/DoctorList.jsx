@@ -1,10 +1,20 @@
 import React from "react";
-import { useState } from 'react';
 
 const DoctorList = (props) => {
-  const [doctor, setDoctor] = useState("");
-  
-  
+  console.log(props);
+
+  let i = 0;
+
+  return (
+    <div>
+      <ul className="doctors-list">
+        {props.doctorData.map((doc) => {
+          return ( <li key={i++}>{doc.name}</li> )
+        })}
+      </ul>
+    </div>
+  )
+
 }
 
 export default DoctorList;
