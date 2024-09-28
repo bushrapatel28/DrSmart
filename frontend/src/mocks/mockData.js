@@ -315,6 +315,45 @@ const prescription11 = {
   "record_id": "15"
 }
 
+const msg1 = {
+  "id": "1",
+  "patient_id": "1",
+  "doctor_id": "2",
+  "appointment_id": "1",
+  "msg": "Your appointment for October 15th at 1:30 PM has been scheduled."
+}
+
+const msg2 = {
+  "id": "2",
+  "patient_id": "2",
+  "doctor_id": "3",
+  "appointment_id": "2",
+  "msg": "Your appointment for October 16th at 10:00 AM has been canceled."
+}
+
+const msg3 = {
+  "id": "3",
+  "patient_id": "3",
+  "doctor_id": "4",
+  "appointment_id": "3",
+  "msg": "Your appointment for October 17th at 3:15 PM has been canceled."
+}
+
+const msg4 = {
+  "id": "4",
+  "patient_id": "4",
+  "doctor_id": "1",
+  "appointment_id": "4",
+  "msg": "Your appointment for October 17th at 3:15 PM has been canceled."
+}
+
+const msg5 = {
+  "id": "5",
+  "patient_id": "5",
+  "doctor_id": "5",
+  "appointment_id": "5",
+  "msg": "Your appointment for October 17th at 3:15 PM has been canceled."
+}
 
 export const patients = [
   patient1,
@@ -364,3 +403,10 @@ export const prescriptions = [
   prescription11
 ]
 
+export const msgs = [
+  msg1,
+  msg2,
+  msg3,
+  msg4,
+  msg5
+]
