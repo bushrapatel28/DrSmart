@@ -1,18 +1,30 @@
-import './MsgsModal.scss'
+import './MsgsModal.scss';
 
-const MsgsModal = ({patientMsgs, closeMsgsModal}) => {
-
+const MsgsModal = ({ patientMsgs, closeMsgsModal }) => {
   return (
     <>
-    <button className="photo-details-modal__close-button" onClick={() => closeMsgsModal()}>
-      <p>Close</p>
-    </button>
+      <div className="modal">
+        <div className="modal__content">
+          <button className="modal__close-button" onClick={() => closeMsgsModal()}>
+            <span>&times;</span>
+          </button>
+          <h3 className="modal__heading">Your Messages</h3>
 
-    <h3>This is MSGS modal</h3>
-    <p>This is patients record: {patientMsgs} </p>
-    
+          {patientMsgs && patientMsgs.length > 0 ? (
+            <ul className="modal__msg-list">
+              {patientMsgs.map((msgObj, index) => (
+                <li key={index} className="modal__msg-item">
+                  {msgObj.msg}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No messages available.</p>
+          )}
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default MsgsModal;

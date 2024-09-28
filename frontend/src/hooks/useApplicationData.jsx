@@ -1,5 +1,5 @@
 import {useReducer, useState, useEffect} from 'react';
-import  {patients, doctors, records, prescriptions} from '../mocks/mockData';
+import  {patients, doctors, records, prescriptions, msgs} from '../mocks/mockData';
 
 const OPEN_RECORD         = 'OPEN_RECORD';
 const CLOSE_RECORD        = 'CLOSE_RECORD';
@@ -28,7 +28,7 @@ const reducer = (state, action) => {
       }
     case OPEN_MSGS:
       console.log("openMsgsModal function is DISPATCHED");
-      const allMsgs= ["Your booking i sconfirmed", "Your appointment has been canceled"];
+      const allMsgs= msgs.filter(msg => msg.patient_id === action.payload.toString());
       return {
         ...state,
         isMsgsOpen: true,
@@ -83,3 +83,4 @@ const useApplicationData = () => {
 };
 
 export default useApplicationData;
+// git commit -m "Add modal for patient's msgs history with mock data"
