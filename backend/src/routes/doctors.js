@@ -16,6 +16,7 @@ module.exports = db => {
             SELECT
               json_agg(
                 json_build_object(
+                  'availability_id', availabilities.id,
                   'date', availabilities.date,
                   'vacant', availabilities.vacant,
                   'time', (
