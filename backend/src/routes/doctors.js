@@ -12,24 +12,31 @@ module.exports = db => {
           'email', doctors.email,
           'profile_img', doctors.profile_image,
           'specialization', doctors.specialization,
-          'date', availabilities.date,
-          'vacant', availabilities.vacant,
           'availability', (
             SELECT
               json_agg(
                 json_build_object(
-                  'start_time', time_slots.start_time,
-                  'end_time', time_slots.end_time
+                  'date', availabilities.date,
+                  'vacant', availabilities.vacant,
+                  'time', (
+                    SELECT
+                      json_agg(
+                        json_build_object(
+                          'start_time', time_slots.start_time,
+                          'end_time', time_slots.end_time
+                        )
+                      )
+                    FROM time_slots
+                    WHERE time_slots.id = availabilities.time_slot_id
+                  )
                 )
               )
-            FROM doctors
-            JOIN availabilities ON doctors.id = availabilities.doctor_id
-            JOIN time_slots ON availabilities.time_slot_id = time_slots.id
+            FROM availabilities
+            WHERE doctors.id = availabilities.doctor_id
           )
         )
       ) as doctor_data
       FROM doctors
-      JOIN availabilities ON doctors.id = availabilities.doctor_id;
     `).then(({ rows }) => {
       res.json(rows[0].doctor_data);
     });
