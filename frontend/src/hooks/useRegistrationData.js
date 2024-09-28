@@ -104,7 +104,7 @@ const useRegistrationData = () => {
       medicationDescription: ''
     });
 
-    fetch('http://localhost:6000/patient/history/:id', {
+    fetch('http://localhost:8001/patient/history/:id', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

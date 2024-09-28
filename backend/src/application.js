@@ -17,6 +17,7 @@ const appointment = require("./routes/appointment");
 module.exports = function application(ENV) {
 
   app.use(cors());
+
   app.use(helmet());
   app.use(bodyparser.json());
   app.use(morgan('dev'));
@@ -53,7 +54,7 @@ module.exports = function application(ENV) {
   app.post('/patient/history/:id', (req, res) => {
     const { dateOfBirth, height, weight, smoker, diabetesStatus, allergies, allergyDescription, medication, medicationDescription } = req.body;
 
-    pool.query(
+    db.query(
       `INSERT INTO medical_histories (date_of_birth, height, weight, smoker, diabetes_status, allergies, allergy_description, medication, medication_description)
      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
       [dateOfBirth, height, weight, smoker, diabetesStatus, allergies, allergyDescription, medication, medicationDescription]
@@ -64,6 +65,17 @@ module.exports = function application(ENV) {
       .catch(error => {
         console.error('Error inserting record:', error);
         res.status(500).json({ message: 'Error creating record' });
+      });
+  });
+
+  app.get('/patients', (req, res) => {
+    db.query('SELECT * FROM patients')
+      .then(results => {
+        return res.status(200).json(results.rows);
+      })
+      .catch(error => {
+        console.error('Error fetching patients:', error);
+        res.status(500).json({ error: 'Database query failed' });
       });
   });
 
