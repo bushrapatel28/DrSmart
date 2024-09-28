@@ -1,10 +1,13 @@
 // import "./Registration.scss"
 import React, { useState } from 'react';
 import useRegistrationData from '../hooks/useRegistrationData';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const RegistrationForm = () => {
   const {
     formData,
+    handleDateChange,
     handleChange,
     handleAllergyChange,
     handleMedicationChange,
@@ -17,6 +20,17 @@ const RegistrationForm = () => {
     <div className='patient_medical_record'>
       <h2>Personal and Medical Record</h2>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Date of Birth:
+            <DatePicker
+              selected={formData.dateOfBirth}
+              onChange={handleDateChange}
+              dateFormat="dd/MM/yyyy" // Specify the desired date format
+              placeholderText="DD/MM/YYYY" // Placeholder text
+            />
+          </label>
+        </div>
         <div>
           <label>
             Height:
