@@ -98,6 +98,6 @@ CREATE TABLE medical_histories (
   allergies BOOLEAN NOT NULL,
   allergies_description VARCHAR(255),
   ongoing_medication BOOLEAN NOT NULL,
-  ongoing_medication_description VARCHAR(255)
+  ongoing_medication_description VARCHAR(255),
   message VARCHAR(255)
 );
