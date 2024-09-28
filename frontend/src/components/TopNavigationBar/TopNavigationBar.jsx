@@ -11,7 +11,9 @@ const TopNavigationBar = () => {
       <div className="welcome-section">
         <h1>Welcome, {username}</h1>
       </div>
-      <span><ProfileMenu /></span>
+      <div>
+        <ProfileMenu />
+      </div>
     </div>
   )
 }
