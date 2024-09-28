@@ -79,5 +79,30 @@ module.exports = function application(ENV) {
       });
   });
 
+  app.get('/patient/:id/data', (req, res) => {
+    const patientId = req.params.id;
+
+    const recordsQuery = 'SELECT * FROM records WHERE patient_id = $1';
+    const prescriptionsQuery = 'SELECT * FROM prescriptions WHERE patient_id = $1';
+    const testsQuery = 'SELECT * FROM tests WHERE patient_id = $1';
+
+    Promise.all([
+      db.query(recordsQuery, [patientId]),
+      db.query(prescriptionsQuery, [patientId]),
+      db.query(testsQuery, [patientId]),
+    ])
+      .then(([recordsResult, prescriptionsResult, testsResult]) => {
+        res.status(200).json({
+          records: recordsResult.rows,
+          prescriptions: prescriptionsResult.rows,
+          tests: testsResult.rows,
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching patient data:', error);
+        res.status(500).json({ error: 'Failed to fetch patient data' });
+      });
+  });
+
   return app;
 };
