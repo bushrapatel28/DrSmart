@@ -10,7 +10,7 @@ module.exports = db => {
     db.query(`
       
     `).then(({ rows }) => {
-      response.json(rows[0]);
+      res.json(rows[0]);
     });
   });
 

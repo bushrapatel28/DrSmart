@@ -11,8 +11,23 @@ const app = express();
 
 const db = require("./db")
 
-const appointment = require("./routes/appointments");
+const appointments = require("./routes/appointments");
+const doctors = require("./routes/doctors");
 
+function read(file) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(
+      file,
+      {
+        encoding: "utf-8"
+      },
+      (error, data) => {
+        if (error) return reject(error);
+        resolve(data);
+      }
+    );
+  });
+}
 
 module.exports = function application(ENV) {
 
@@ -24,22 +39,9 @@ module.exports = function application(ENV) {
   app.use(express.static('public'));
   app.use(express.static(path.join(__dirname, 'public')));
 
-  app.use("/patient", appointment(db));
+  app.use("/patient", appointments(db));
+  app.use("/api", doctors(db));
 
-  function read(file) {
-    return new Promise((resolve, reject) => {
-      fs.readFile(
-        file,
-        {
-          encoding: "utf-8"
-        },
-        (error, data) => {
-          if (error) return reject(error);
-          resolve(data);
-        }
-      );
-    });
-  }
 
   if (ENV === "development" || ENV === "test") {
     Promise.all([
