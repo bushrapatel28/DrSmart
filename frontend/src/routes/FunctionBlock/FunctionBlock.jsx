@@ -1,10 +1,10 @@
-import './ScheduleAppModal.scss';
+import './FunctionBlock.scss';
 
-const ScheduleAppModal = ({icon, label, openRecordModal}) => {
+const FunctionBlock = ({icon, label, openModal}) => {
   // const icon = "📅"
   // const label = "Book an Appointment"
   return (
-    <div className="function-block" onClick={() => openRecordModal(5)}>
+    <div className="function-block" onClick={() => openModal(5)}>
       {/* <div className="icon">{icon}</div> */}
       <img src={icon} />
       <div className="label">{label}</div>
@@ -12,4 +12,4 @@ const ScheduleAppModal = ({icon, label, openRecordModal}) => {
   );
 };
 
-export default ScheduleAppModal;
+export default FunctionBlock;
