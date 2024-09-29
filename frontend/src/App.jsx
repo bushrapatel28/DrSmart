@@ -3,7 +3,6 @@ import './App.css'
 import Appointment from './components/Appointment/Appointment'
 import HomePage from './routes/HomePage/HomePage'
 import RegistrationForm from './Registration/RegistrationForm'
-import DoctorList from './components/DoctorList/DoctorList'
 import useDoctorsData from './hooks/useDoctorsData'
 import useApplicationData from './hooks/useApplicationData';
 
@@ -18,8 +17,7 @@ function App() {
   }
   return (
     <>
-      <Appointment />
-      <DoctorList doctorData={doctor}/>      
+      <Appointment doctorData={doctor}/>  
       <HomePage 
         isRecordOpen={isRecordOpen} 
         patientRecord={patientRecord} 

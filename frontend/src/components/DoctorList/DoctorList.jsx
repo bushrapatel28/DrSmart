@@ -1,26 +1,34 @@
 import React from "react";
+import { useState } from "react";
 import DoctorListItem from "../DoctorListItem/DoctorListItem";
 
 const DoctorList = (props) => {
-  console.log(props);
+  const [doctorInfo, setDoctorInfo] = useState("");
 
-  let i = 0;
+  function onClick(doc) {
+    setDoctorInfo(doc);
+  }
 
   return (
-    <div>
+    <div className="doctors">
       <ul className="doctors-list">
         {props.doctorData.map((doctor) => {
-          return ( 
-            <DoctorListItem 
+          return (
+            <DoctorListItem
+              key={doctor.id}
               id={doctor.id}
               doctorName={doctor.name}
               profile={doctor.profile_img}
               specialization={doctor.specialization}
               availability={doctor.availability}
+              appointmentDate={props.appointmentDate}
+              appointmentTime={props.appointmentTime}
+              onClick={onClick}
             />
           )
         })}
       </ul>
+      <button className="book-btn" onClick={() => console.log(doctorInfo)}>Book</button>
     </div>
   )
 

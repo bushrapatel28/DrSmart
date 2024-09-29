@@ -3,19 +3,22 @@ import { useState } from 'react';
 import DatePicker from "react-datepicker";
 import { setHours, setMinutes } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css";
+import DoctorList from "../DoctorList/DoctorList";
 
-const Appointment = () => {
+const Appointment = (props) => {
+  
   //Initializing the date object instance
-  const currentDate = new Date();
-  const currentTime = currentDate.toLocaleTimeString();     //Converting time to show local time in string format
+  // const currentDate = new Date();
+  // const currentTime = currentDate;
 
-  const [startDate, setStartDate] = useState(currentDate);
-  const [startTime, setStartTime] = useState(currentTime);
+  const [startDate, setStartDate] = useState(new Date());
+  const [startTime, setStartTime] = useState(startDate);
+
+  const [showDoc, setShowDoc] = useState(false);
 
   function selectDateTime(date) {
-    const time = date.toLocaleTimeString();
     setStartDate(date);
-    setStartTime(time);
+    setStartTime(date);
   }
   
   // Exclude specific times based on the selected date
@@ -27,12 +30,14 @@ const Appointment = () => {
   ];
 
   function save() {
-    console.log(`Book ${startDate} ${startTime}`);
+    console.log(`Save ${startDate} ${startTime}`);
+    setShowDoc(true);
   }
   
   function cancel() {
-    console.log("Cancel")
-    setStartTime("")
+    console.log("Cancel");
+    setStartTime("");
+    setShowDoc(false);
   }
 
   return (
@@ -64,12 +69,19 @@ const Appointment = () => {
           className="appointment-time"
           readOnly
           name="time"
-          value={startTime}
+          value={startTime.toLocaleTimeString()}     //Converting time to show local time in string format
         />
         <button className="book-appointment" onClick={save}>Next</button>
         <button className="cancel-appointment" onClick={cancel}>Cancel</button>
       </form>
       
+      {showDoc 
+      && <DoctorList 
+            doctorData={props.doctorData} 
+            appointmentDate={startDate}
+            appointmentTime={startTime}
+        />
+      }
     </div>
   );
 }
