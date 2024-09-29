@@ -1,4 +1,5 @@
 import React from "react";
+import DoctorListItem from "../DoctorListItem/DoctorListItem";
 
 const DoctorList = (props) => {
   console.log(props);
@@ -8,8 +9,16 @@ const DoctorList = (props) => {
   return (
     <div>
       <ul className="doctors-list">
-        {props.doctorData.map((doc) => {
-          return ( <li key={i++}>{doc.name}</li> )
+        {props.doctorData.map((doctor) => {
+          return ( 
+            <DoctorListItem 
+              id={doctor.id}
+              doctorName={doctor.name}
+              profile={doctor.profile_img}
+              specialization={doctor.specialization}
+              availability={doctor.availability}
+            />
+          )
         })}
       </ul>
     </div>
