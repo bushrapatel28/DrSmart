@@ -55,6 +55,12 @@ module.exports = db => {
       doctor_id
     } = req.body;
 
+    // Validate required fields (optional step, but recommended)
+    if (!appointment_date || !appointment_time || !appointment_type || !status || !patient_id || !doctor_id) {
+      return res.status(400).json({ error: "All fields are required." });
+    }
+
+    // Insert new appointment into the database
     db.query(`
       INSERT INTO appointments (appointment_date, appointment_time, appointment_type, status, patient_id, doctor_id) 
       VALUES ($1, $2, $3, $4, $5, $6)
