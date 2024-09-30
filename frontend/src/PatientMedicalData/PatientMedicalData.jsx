@@ -5,7 +5,7 @@ const PatientMedicalData = ({ patientId }) => {
   const [record, setRecord] = useState({});
 
   useEffect(() => {
-    fetch('/patients/4')
+    fetch('/patient/4')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
