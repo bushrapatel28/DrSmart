@@ -13,7 +13,7 @@ const Appointment = (props) => {
 
   const [startDate, setStartDate] = useState(new Date());
   const [startTime, setStartTime] = useState(startDate);
-
+  const [isVirtual, setIsVirtual] = useState(true);
   const [showDoc, setShowDoc] = useState(false);
 
   function selectDateTime(date) {
@@ -21,6 +21,14 @@ const Appointment = (props) => {
     setStartTime(date);
   }
   
+  function toggleAppointment() {
+    if (isVirtual) {
+      setIsVirtual(false)
+    } else {
+      setIsVirtual(true)
+    }
+  }
+
   // Exclude specific times based on the selected date
   const excludedTimes = [
     setHours(setMinutes(startDate, 0), 17),  // 5:00 PM
@@ -73,6 +81,31 @@ const Appointment = (props) => {
         />
         <button className="book-appointment" onClick={save}>Next</button>
         <button className="cancel-appointment" onClick={cancel}>Cancel</button>
+
+        <div className="appointment-type">
+          <label>
+            <input 
+              className="in-person"
+              type="radio"
+              name="in-person"
+              value="In-person"
+              checked={!isVirtual}
+              onChange={() => toggleAppointment()}
+            />
+            In-person
+          </label>
+          <label>
+            <input 
+              className="virtual"
+              type="radio"
+              name="virtual"
+              value="Virtual"
+              checked={isVirtual}
+              onChange={() => toggleAppointment()}
+            />
+            Virtual
+          </label>
+        </div>
       </form>
       
       {showDoc 
