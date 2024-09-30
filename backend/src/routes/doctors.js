@@ -12,6 +12,7 @@ module.exports = db => {
           'email', doctors.email,
           'profile_img', doctors.profile_image,
           'specialization', doctors.specialization,
+          'address', doctors.address,
           'availability', (
             SELECT
               json_agg(

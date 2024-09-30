@@ -74,13 +74,19 @@ INSERT INTO availabilities (date, vacant, time_slot_id, doctor_id) VALUES
   ('2024-09-26', TRUE, 1, 1),
   ('2024-09-26', TRUE, 2, 2),
   ('2024-09-26', TRUE, 3, 3),
-  ('2024-09-26', FALSE, 4, 4),
+  ('2024-09-30', FALSE, 4, 4),
   ('2024-09-26', TRUE, 5, 5),
   ('2024-09-26', TRUE, 6, 1),
-  ('2024-09-26', TRUE, 7, 2),
-  ('2024-09-26', FALSE, 8, 3),
-  ('2024-09-26', TRUE, 9, 4),
-  ('2024-09-26', TRUE, 10, 5);
+  ('2024-09-30', TRUE, 7, 2),
+  ('2024-09-30', FALSE, 8, 3),
+  ('2024-09-30', TRUE, 9, 4),
+  ('2024-09-30', FALSE, 10, 5),
+
+  ('2024-09-30', TRUE, 7, 1),
+  ('2024-09-30', FALSE, 8, 2),
+  ('2024-09-30', TRUE, 9, 3),
+  ('2024-09-30', TRUE, 10, 3),
+  ('2024-09-30', TRUE, 10, 4);
 
 INSERT INTO notifications (patient_id, doctor_id, appointment_id, message)
 VALUES 

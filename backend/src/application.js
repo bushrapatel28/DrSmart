@@ -42,7 +42,7 @@ module.exports = function application(ENV) {
   app.use(express.static('public'));
   app.use(express.static(path.join(__dirname, 'public')));
 
-  app.use("/patient", appointments(db));
+  app.use("/api", appointments(db));
   app.use("/api", doctors(db));
   app.use("/api", patients(db));
   app.use("/patients", patient_history(db));
