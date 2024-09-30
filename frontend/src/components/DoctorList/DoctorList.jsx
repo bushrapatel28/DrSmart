@@ -1,13 +1,7 @@
 import React from "react";
-import { useState } from "react";
 import DoctorListItem from "../DoctorListItem/DoctorListItem";
 
 const DoctorList = (props) => {
-  const [doctorInfo, setDoctorInfo] = useState("");
-
-  function onClick(doc) {
-    setDoctorInfo(doc);
-  }
 
   return (
     <div className="doctors">
@@ -23,12 +17,13 @@ const DoctorList = (props) => {
               availability={doctor.availability}
               appointmentDate={props.appointmentDate}
               appointmentTime={props.appointmentTime}
-              onClick={onClick}
+              onClick={props.saveDoctorInfo}
             />
           )
         })}
       </ul>
-      <button className="book-btn" onClick={() => console.log(doctorInfo)}>Book</button>
+      <button className="book-appointment-btn" onClick={() => props.save()}>Book</button>
+      <button className="cancel-appointment-btn" onClick={() => props.cancel()}>Cancel</button>
     </div>
   )
 

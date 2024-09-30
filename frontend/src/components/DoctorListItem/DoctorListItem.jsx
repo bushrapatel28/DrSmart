@@ -22,7 +22,7 @@ const DoctorListItem = (props) => {
 
           if( startTime <= apptTime && endTime > apptTime) {
             return (
-              <div key={props.id} className="available-doctor" onClick={() => props.onClick(props.doctorName)}>
+              <div key={props.id} className="available-doctor" onClick={() => props.onClick(props.id)}>
                 <div className="doctor-profile-image">
                   <img 
                     src={props.profile} 
