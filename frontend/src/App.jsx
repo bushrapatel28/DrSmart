@@ -5,12 +5,25 @@ import HomePage from './routes/HomePage/HomePage'
 import RegistrationForm from './Registration/RegistrationForm'
 import DoctorList from './components/DoctorList/DoctorList'
 import useDoctorsData from './hooks/useDoctorsData'
-import useApplicationData from './hooks/useApplicationData';
+import usePatientData from './hooks/usePatientData';
 
 function App() {
   const { doctor } = useDoctorsData();
 
-  const { isRecordOpen, patientRecord, openRecordModal, closeRecordModal, isMsgsOpen, patientMsgs, openMsgsModal, closeMsgsModal } = useApplicationData();
+  const { 
+    isRecordOpen, 
+    patientRecord, 
+    openRecordModal, 
+    closeRecordModal, 
+    isMsgsOpen, 
+    patientMsgs, 
+    openMsgsModal, 
+    closeMsgsModal,
+    isMedicationOpen,
+    patientMedications,
+    openMedicationsModal,
+    closeMedicationsModal
+ } = usePatientData();
   const [currentComponent, setCurrentComponent] = useState('home');
 
   const setMainWindow = (component) => {
@@ -29,6 +42,10 @@ function App() {
         patientMsgs={patientMsgs} 
         openMsgsModal={openMsgsModal} 
         closeMsgsModal={closeMsgsModal}
+        isMedicationOpen={isMedicationOpen}
+        patientMedications={patientMedications}
+        openMedicationsModal={openMedicationsModal}
+        closeMedicationsModal={closeMedicationsModal}
       />
 
       <RegistrationForm />

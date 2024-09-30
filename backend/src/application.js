@@ -13,6 +13,9 @@ const db = require("./db")
 
 const appointments = require("./routes/appointments");
 const doctors = require("./routes/doctors");
+const visits = require('./routes/visits');
+const messages = require('./routes/messages');
+const medications = require('./routes/medications');
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -41,7 +44,9 @@ module.exports = function application(ENV) {
 
   app.use("/patient", appointments(db));
   app.use("/api", doctors(db));
-
+  app.use('/patient', visits(db));
+  app.use('/patient', messages(db));  
+  app.use('/patient', medications(db));  
 
   if (ENV === "development" || ENV === "test") {
     Promise.all([
