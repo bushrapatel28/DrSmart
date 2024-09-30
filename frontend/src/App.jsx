@@ -6,6 +6,7 @@ import RegistrationForm from './Registration/RegistrationForm'
 import DoctorList from './components/DoctorList/DoctorList'
 import useDoctorsData from './hooks/useDoctorsData'
 import useApplicationData from './hooks/useApplicationData';
+import Schedule from './components/Schedule/Schedule'
 
 function App() {
   const { doctor } = useDoctorsData();
@@ -18,8 +19,8 @@ function App() {
   }
   return (
     <>
-      <Appointment />
-      <DoctorList doctorData={doctor}/>      
+      {/* <Appointment /> */}
+      {/* <DoctorList doctorData={doctor}/>       */}
       <HomePage 
         isRecordOpen={isRecordOpen} 
         patientRecord={patientRecord} 
@@ -31,9 +32,11 @@ function App() {
         closeMsgsModal={closeMsgsModal}
       />
 
+      <Schedule />
+      
       <RegistrationForm />
     </>
   )
 }
 
-export default App
+export default App;
