@@ -34,7 +34,7 @@ const PatientsList = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/patients', { method: 'GET' })
+    fetch('/api/patients')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
