@@ -61,9 +61,25 @@ module.exports = db => {
       RETURNING *
     `, 
     [appointment_date, appointment_time, appointment_type, status, patient_id, doctor_id]
-    ).then(({ rows }) => {
-      res.json(rows[0].appointment_data);
+    )
+    .then(({ rows }) => {
+      // Return the created appointment as a response
+      res.status(201).json({
+        message: "Appointment created successfully",
+        appointment: rows[0],
+      });
+    })
+    .catch((err) => {
+      console.error("Error creating appointment:", err);
+      res.status(500).json({ error: "Internal server error" });
     });
+    
+    // then(data => {
+    //   return data.rows[0];
+    // }).then(newAppt => {
+    //   const newApptId = newAppt.id;
+    //   res.redirect(`/`);          
+    // });
   });
 
   return router;
