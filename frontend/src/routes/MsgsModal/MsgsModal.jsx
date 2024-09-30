@@ -1,6 +1,7 @@
 import './MsgsModal.scss';
 
 const MsgsModal = ({ patientMsgs, closeMsgsModal }) => {
+  console.log("PATIENT MSG WITHIN MODAL: ", patientMsgs);
   return (
     <>
       <div className="modal">
@@ -14,7 +15,7 @@ const MsgsModal = ({ patientMsgs, closeMsgsModal }) => {
             <ul className="modal__msg-list">
               {patientMsgs.map((msgObj, index) => (
                 <li key={index} className="modal__msg-item">
-                  {msgObj.msg}
+                  `{msgObj.message} with {msgObj.doctor_name}`
                 </li>
               ))}
             </ul>
