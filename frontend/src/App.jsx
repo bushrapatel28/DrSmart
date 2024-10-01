@@ -24,7 +24,9 @@ function App() {
     docEndTime,
     setDocEndTime,
     docOnChange,
-    setAvailability
+    setAvailability,
+    timeSlots,
+    add
    } = useScheduleData();
 
   const { doctor } = useDoctorsData();
@@ -119,6 +121,8 @@ function App() {
         setDocEndTime={setDocEndTime}
         docOnChange={docOnChange}
         setAvailability={setAvailability}
+        timeSlots={timeSlots}
+        add={add}
       />
       
 

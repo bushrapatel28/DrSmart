@@ -5,6 +5,8 @@ import { addDays } from 'date-fns';
 
 const Schedule = (props) => {
 
+  // const mappedData = props.timeSlots.map((time) => console.log(time));
+
   return (
     <div>
       <div>
@@ -51,6 +53,7 @@ const Schedule = (props) => {
       </div>
 
       <button onClick={props.setAvailability}>Add</button>
+      <button onClick={props.add}>SAVE</button>
     </div>
   );
 }
