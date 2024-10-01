@@ -15,6 +15,7 @@ const appointments = require("./routes/appointments");
 const doctors = require("./routes/doctors");
 const patients = require("./routes/patients");
 const patient_history = require("./routes/patientHistory");
+const patient_medical_history = require("./routes/patientMedicalHistory");
 const visits = require('./routes/visits');
 const messages = require('./routes/messages');
 const medications = require('./routes/medications');
@@ -52,10 +53,11 @@ module.exports = function application(ENV) {
   app.use("/api", patients(db));
 
   app.use("/patient", patient_history(db));
+  app.use("/patient", patient_medical_history(db));
   app.use('/patient', visits(db));
-  app.use('/patient', messages(db));  
-  app.use('/patient', medications(db));  
-  app.use('/patient', labresults(db));  
+  app.use('/patient', messages(db));
+  app.use('/patient', medications(db));
+  app.use('/patient', labresults(db));
 
   app.use('/doctor', schedule(db));
 
@@ -97,42 +99,6 @@ module.exports = function application(ENV) {
   //     .catch(error => {
   //       console.error('Error inserting record:', error);
   //       res.status(500).json({ message: 'Error creating record' });
-  //     });
-  // });
-
-  // app.get('/patients', (req, res) => {
-  //   db.query('SELECT * FROM patients')
-  //     .then(results => {
-  //       res.status(200).json(results.rows);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching patients:', error);
-  //       res.status(500).json({ error: 'Database query failed' });
-  //     });
-  // });
-
-  // app.get('/patient/:id/data', (req, res) => {
-  //   const patientId = req.params.id;
-
-  //   const recordsQuery = 'SELECT * FROM records WHERE patient_id = $1';
-  //   const prescriptionsQuery = 'SELECT * FROM prescriptions WHERE patient_id = $1';
-  //   const testsQuery = 'SELECT * FROM tests WHERE patient_id = $1';
-
-  //   Promise.all([
-  //     db.query(recordsQuery, [patientId]),
-  //     db.query(prescriptionsQuery, [patientId]),
-  //     db.query(testsQuery, [patientId]),
-  //   ])
-  //     .then(([recordsResult, prescriptionsResult, testsResult]) => {
-  //       res.status(200).json({
-  //         records: recordsResult.rows,
-  //         prescriptions: prescriptionsResult.rows,
-  //         tests: testsResult.rows,
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.error('Error fetching patient data:', error);
-  //       res.status(500).json({ error: 'Failed to fetch patient data' });
   //     });
   // });
 
