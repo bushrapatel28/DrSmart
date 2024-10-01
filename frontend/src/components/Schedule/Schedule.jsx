@@ -1,43 +1,18 @@
 import DatePicker from "react-datepicker";
 import { setHours, setMinutes } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css";
-import { useState, useEffect } from 'react';
 import { addDays } from 'date-fns';
 
-const Schedule = () => {
-
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-
-  const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
-
-  const [timeRange, setTimeRange] = useState([{}]);
-
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
-
-  
-  function setAvailability() {
-    setTimeRange((prev) => [...prev, {"start_time": startTime, "end_time": endTime}]);
-  }
-
-  // Use useEffect to log the updated timeRange after it changes
-  useEffect(() => {
-    console.log(timeRange);
-  }, [timeRange]);
+const Schedule = (props) => {
 
   return (
     <div>
       <div>
         <DatePicker
-          selected={startDate}
-          onChange={onChange}
-          startDate={startDate}
-          endDate={endDate}
+          selected={props.docStartDate}
+          onChange={props.docOnChange}
+          startDate={props.docStartDate}
+          endDate={props.docEndDate}
           selectsRange
           minDate={new Date()}
           maxDate={addDays(new Date(), 7)}
@@ -48,8 +23,8 @@ const Schedule = () => {
       <div>
         Start Time: 
         <DatePicker
-          selected={startTime}
-          onChange={(time) => setStartTime(time)}
+          selected={props.docStartTime}
+          onChange={(time) => props.setDocStartTime(time)}
           showTimeSelect
           showTimeSelectOnly
           timeIntervals={60}
@@ -63,19 +38,19 @@ const Schedule = () => {
       <div>
         End Time: 
         <DatePicker
-          selected={endTime}
-          onChange={(time) => setEndTime(time)}
+          selected={props.docEndTime}
+          onChange={(time) => props.setDocEndTime(time)}
           showTimeSelect
           showTimeSelectOnly
           timeIntervals={60}
-          minTime={setMinutes(startTime, 60)}                      //End Time range begins 1 hour after Start Time
+          minTime={setMinutes(props.docStartTime, 60)}                      //End Time range begins 1 hour after Start Time
           maxTime={setHours(setMinutes(new Date(), 30), 20)}      //Only allow times until 8:30 PM
           timeCaption="End Time"
           dateFormat="hh:mm aa"
         />
       </div>
 
-      <button onClick={setAvailability}>Add</button>
+      <button onClick={props.setAvailability}>Add</button>
     </div>
   );
 }

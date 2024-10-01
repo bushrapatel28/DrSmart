@@ -11,8 +11,22 @@ import useDoctorsData from './hooks/useDoctorsData'
 import Schedule from './components/Schedule/Schedule'
 import useAppointmentData from './hooks/useAppointmentData'
 import usePatientData from './hooks/usePatientData';
+import useScheduleData from './hooks/useScheduleData'
 
 function App() {
+  const {
+    docStartDate,
+    setDocStartDate,
+    docEndDate,
+    setDocEndDate,
+    docStartTime,
+    setDocStartTime,
+    docEndTime,
+    setDocEndTime,
+    docOnChange,
+    setAvailability
+   } = useScheduleData();
+
   const { doctor } = useDoctorsData();
   const { 
     startDate,
@@ -94,7 +108,18 @@ function App() {
         closeLabResultsModal={closeLabResultsModal}
       />
 
-      <Schedule />
+      <Schedule 
+        docStartDate={docStartDate}
+        setDocStartDate={setDocStartDate}
+        docEndDate={docEndDate}
+        setDocEndDate={setDocEndDate}
+        docStartTime={docStartTime}
+        setDocStartTime={setDocStartTime}
+        docEndTime={docEndTime}
+        setDocEndTime={setDocEndTime}
+        docOnChange={docOnChange}
+        setAvailability={setAvailability}
+      />
       
 
     </>
