@@ -1,4 +1,4 @@
-import './HomePage.scss';
+import './DoctorDash.scss';
 import TopNavigationBar from '../../components/TopNavigationBar/TopNavigationBar';
 import FunctionBlock from '../FunctionBlock/FunctionBlock';
 
@@ -15,7 +15,7 @@ import MedicineIcon from '../../assets/medicine-icon.png';
 import MsgsIcon from '../../assets/messages-icon.png';
 import VisitsIcon from '../../assets/visits-icon.png';
 
-const HomePage = ({
+const DoctorDash = ({
   isRecordOpen, 
   patientRecord, 
   openRecordModal, 
@@ -33,17 +33,15 @@ const HomePage = ({
   openLabResultsModal,
   closeLabResultsModal
 }) => {
-
-  console.log("PATIENT LAB RESULTS FROM HomePage.jsx: ", patientLabResults);
   return (
-    <div className="homepage">
-      <TopNavigationBar role="patient" username="Frank Navasky" />
+    <div className="doctordash">
+      <TopNavigationBar role="doctor" username="Marie Curie" />
       <div className="functions-section">
-        <FunctionBlock icon={scheduleIcon} label="Schedule an Appointment"  openRecordModal={openRecordModal} />
-        {isLabResultsOpen ? (<LabResultsModal patientLabResults={patientLabResults} closeLabResultsModal={closeLabResultsModal} />) : (<FunctionBlock icon={ResultIcon} label="Test Results"  openModal={openLabResultsModal} />)}
+        <FunctionBlock icon={scheduleIcon} label="My Schedule"  openRecordModal={openRecordModal} />
+        {/* {isLabResultsOpen ? (<LabResultsModal patientLabResults={patientLabResults} closeLabResultsModal={closeLabResultsModal} />) : (<FunctionBlock icon={ResultIcon} label="Test Results"  openModal={openLabResultsModal} />)}
         {isMedicationOpen ? (<MedicationModal patientMedications={patientMedications} closeMedicationsModal={closeMedicationsModal} />) : (<FunctionBlock icon={MedicineIcon} label="Medications"  openModal={openMedicationsModal}  />)}
         {isMsgsOpen ? (<MsgsModal patientMsgs={patientMsgs} closeMsgsModal={closeMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openMsgsModal} />)}
-        {isRecordOpen ? (<RecordDetailsModal patientRecord={patientRecord} closeRecordModal={closeRecordModal} />) : (<FunctionBlock icon={VisitsIcon} label="Visits" openModal={openRecordModal} />)}
+        {isRecordOpen ? (<RecordDetailsModal patientRecord={patientRecord} closeRecordModal={closeRecordModal} />) : (<FunctionBlock icon={VisitsIcon} label="Visits" openModal={openRecordModal} />)} */}
 
       </div>
 
@@ -51,4 +49,4 @@ const HomePage = ({
   );
 };
 
-export default HomePage;
+export default DoctorDash;

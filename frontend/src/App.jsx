@@ -9,6 +9,7 @@ import PatientMedicalData from './PatientMedicalData/PatientMedicalData'
 import useDoctorsData from './hooks/useDoctorsData'
 import useAppointmentData from './hooks/useAppointmentData'
 import usePatientData from './hooks/usePatientData';
+import DoctorDash from './routes/DoctorDash/DoctorDash'
 
 function App() {
   const { doctor } = useDoctorsData();
@@ -52,10 +53,6 @@ function App() {
   }
   return (
     <>
-      <RegistrationForm />
-      <PatientsList />
-      <PatientMedicalData />
-      
       <HomePage 
         isRecordOpen={isRecordOpen} 
         patientRecord={patientRecord} 
@@ -74,7 +71,10 @@ function App() {
         openLabResultsModal={openLabResultsModal}
         closeLabResultsModal={closeLabResultsModal}
       />
-
+      <DoctorDash />
+      <RegistrationForm />
+      <PatientsList />
+      <PatientMedicalData />
       <Appointment 
         doctorData={doctor} 
         startDate={startDate}

@@ -1,11 +1,11 @@
 @import '../../colors.scss';
 
-.homepage {
+.doctordash {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 100vh;
+  height: 80vh;
   width: 100%; // Ensures full width
   background-color: white; // Set background to white
   color: $color-main-bg; // Use variable for text color
