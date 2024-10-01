@@ -7,7 +7,7 @@ import PatientsList from './PatientsList/PatientsList'
 import PatientMedicalData from './PatientMedicalData/PatientMedicalData'
 // import DoctorList from './components/DoctorList/DoctorList'
 import useDoctorsData from './hooks/useDoctorsData'
-import useApplicationData from './hooks/useApplicationData';
+// import useApplicationData from './hooks/useApplicationData';
 import Schedule from './components/Schedule/Schedule'
 import useAppointmentData from './hooks/useAppointmentData'
 import usePatientData from './hooks/usePatientData';
@@ -59,6 +59,21 @@ function App() {
       <RegistrationForm />
       <PatientsList />
       <PatientMedicalData />
+
+      <Appointment 
+        doctorData={doctor} 
+        startDate={startDate}
+        startTime={startTime}
+        isVirtual={isVirtual}
+        showDoc={showDoc}
+        saveDoctorInfo={saveDoctorInfo}
+        selectDateTime={selectDateTime}
+        toggleAppointment={toggleAppointment}
+        next={next}
+        back={back}
+        save={save}
+        cancel={cancel}
+      />
       
       <HomePage 
         isRecordOpen={isRecordOpen} 
@@ -81,20 +96,7 @@ function App() {
 
       <Schedule />
       
-      <Appointment 
-        doctorData={doctor} 
-        startDate={startDate}
-        startTime={startTime}
-        isVirtual={isVirtual}
-        showDoc={showDoc}
-        saveDoctorInfo={saveDoctorInfo}
-        selectDateTime={selectDateTime}
-        toggleAppointment={toggleAppointment}
-        next={next}
-        back={back}
-        save={save}
-        cancel={cancel}
-      />
+
     </>
   )
 }
