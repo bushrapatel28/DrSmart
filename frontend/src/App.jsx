@@ -61,7 +61,10 @@ function App() {
     isLabResultsOpen,
     patientLabResults,
     openLabResultsModal,
-    closeLabResultsModal
+    closeLabResultsModal,
+    isAppointmentOpen,
+    openAppointmentModal,
+    closeAppointmentModal
  } = usePatientData();
  
   const [currentComponent, setCurrentComponent] = useState('home');
@@ -92,6 +95,21 @@ function App() {
         patientLabResults={patientLabResults}
         openLabResultsModal={openLabResultsModal}
         closeLabResultsModal={closeLabResultsModal}
+        isAppointmentOpen={isAppointmentOpen}
+        openAppointmentModal={openAppointmentModal}
+        closeAppointmentModal={closeAppointmentModal}
+        doctorData={doctor} 
+        startDate={startDate}
+        startTime={startTime}
+        isVirtual={isVirtual}
+        showDoc={showDoc}
+        saveDoctorInfo={saveDoctorInfo}
+        selectDateTime={selectDateTime}
+        toggleAppointment={toggleAppointment}
+        next={next}
+        back={back}
+        save={save}
+        cancel={cancel}
       />
       <DoctorDash />
       <RegistrationForm />

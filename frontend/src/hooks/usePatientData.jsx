@@ -9,6 +9,8 @@ const OPEN_MEDICATIONS    = 'OPEN_MEDICATIONS';
 const CLOSE_MEDICATIONS   = 'CLOSE_MEDICATIONS';
 const OPEN_LABRESULTS    = 'OPEN_LABRESULTS';
 const CLOSE_LABRESULTS   = 'CLOSE_LABRESULTS';
+const OPEN_APPOINTMENT   = 'OPEN_APPOINTMENT';
+const CLOSE_APPOINTMENT  = 'CLOSE_APPOINTMENT';
 
 // const SET_PATIENT_RECORD    = 'SET_PATIENT_RECORD';
 
@@ -65,7 +67,18 @@ const reducer = (state, action) => {
             ...state,
             isLabResultsOpen: false,
             patientLabResults: null
-          }
+          };
+        case OPEN_APPOINTMENT:
+          console.log("Appointment Calender i sshowing");
+          return {
+            ...state,
+            isAppointmentOpen: true,
+          };
+        case CLOSE_APPOINTMENT:
+          return {
+            ...state,
+            isAppointmentOpen: false,
+            }
   }
 }
 
@@ -77,7 +90,8 @@ const initialState = {
   isMedicationOpen: false,
   patientMedications: null,
   isLabResultsOpen: false,
-  patientLabResults: null
+  patientLabResults: null,
+  isAppointmentOpen: false
 }
 
 
@@ -174,6 +188,16 @@ const usePatientData = () => {
   const closeLabResultsModal = () => {
     dispatch({type: CLOSE_LABRESULTS, payload: null});
   }
+
+  const openAppointmentModal = (user_id) => {
+    console.log("Adding Appointment for user: ", user_id);
+    dispatch({type: OPEN_APPOINTMENT});
+  }
+
+  const closeAppointmentModal = () => {
+    dispatch({type: CLOSE_APPOINTMENT});
+
+  }
   console.log("******* Lab results alive: ", state.patientLabResults);
   return {
     isRecordOpen: state.isRecordOpen,
@@ -191,7 +215,10 @@ const usePatientData = () => {
     isLabResultsOpen: state.isLabResultsOpen,
     patientLabResults: state.patientLabResults,
     openLabResultsModal,
-    closeLabResultsModal
+    closeLabResultsModal,
+    isAppointmentOpen: state.isAppointmentOpen,
+    openAppointmentModal,
+    closeAppointmentModal
   }
 
 };
