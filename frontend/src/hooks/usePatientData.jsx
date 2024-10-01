@@ -54,7 +54,7 @@ const reducer = (state, action) => {
           patientMedications: null
         }
         case OPEN_LABRESULTS:
-          console.log("PATIENT LAB RESULTS FROM DISPATCH: ", action.payload);
+          console.log(" ======= PATIENT LAB RESULTS FROM DISPATCH: ", action.payload);
           return {
             ...state,
             isLabResultsOpen: true,
@@ -155,7 +155,7 @@ const usePatientData = () => {
   const openLabResultsModal = (user_id) => {
     console.log("openLabResultsModal function is dispatching");
   
-    fetch(`/patient/${user_id}/labresults`) 
+    fetch(`/patient/${user_id}/lab-results`) 
       .then(res => {
         if (!res.ok) {
           throw new Error(`Error: ${res.status} - ${res.statusText}`);
@@ -167,13 +167,14 @@ const usePatientData = () => {
         dispatch({ type: OPEN_LABRESULTS, payload: data }); 
       })
       .catch(error => {
-        console.error("Error fetching Medications: ", error);
+        console.error("Error fetching Lab Results: ", error);
       });
   }
   
   const closeLabResultsModal = () => {
     dispatch({type: CLOSE_LABRESULTS, payload: null});
   }
+  console.log("******* Lab results alive: ", state.patientLabResults);
   return {
     isRecordOpen: state.isRecordOpen,
     patientRecord: state.patientRecord,
