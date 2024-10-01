@@ -16,6 +16,11 @@ export default defineConfig({
         target: "http://127.0.0.1:8001",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/patient/, "/patient"),
+      },
+      "/doctor": {
+        target: "http://127.0.0.1:8001",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/doctor/, "/doctor"),
       }
     },
   },

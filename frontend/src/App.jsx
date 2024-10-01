@@ -7,11 +7,29 @@ import PatientsList from './PatientsList/PatientsList'
 import PatientMedicalData from './PatientMedicalData/PatientMedicalData'
 // import DoctorList from './components/DoctorList/DoctorList'
 import useDoctorsData from './hooks/useDoctorsData'
+// import useApplicationData from './hooks/useApplicationData';
+import Schedule from './components/Schedule/Schedule'
 import useAppointmentData from './hooks/useAppointmentData'
 import usePatientData from './hooks/usePatientData';
 import DoctorDash from './routes/DoctorDash/DoctorDash'
+import useScheduleData from './hooks/useScheduleData'
 
 function App() {
+  const {
+    docStartDate,
+    setDocStartDate,
+    docEndDate,
+    setDocEndDate,
+    docStartTime,
+    setDocStartTime,
+    docEndTime,
+    setDocEndTime,
+    docOnChange,
+    setAvailability,
+    timeSlots,
+    add
+   } = useScheduleData();
+
   const { doctor } = useDoctorsData();
   const { 
     startDate,
@@ -53,6 +71,10 @@ function App() {
   }
   return (
     <>
+      {/* <Appointment /> */}
+      {/* <DoctorList doctorData={doctor}/>       */}
+
+      
       <HomePage 
         isRecordOpen={isRecordOpen} 
         patientRecord={patientRecord} 
@@ -75,6 +97,7 @@ function App() {
       <RegistrationForm />
       <PatientsList />
       <PatientMedicalData />
+      
       <Appointment 
         doctorData={doctor} 
         startDate={startDate}
@@ -89,9 +112,24 @@ function App() {
         save={save}
         cancel={cancel}
       />
-      <RegistrationForm />
+      <Schedule 
+        docStartDate={docStartDate}
+        setDocStartDate={setDocStartDate}
+        docEndDate={docEndDate}
+        setDocEndDate={setDocEndDate}
+        docStartTime={docStartTime}
+        setDocStartTime={setDocStartTime}
+        docEndTime={docEndTime}
+        setDocEndTime={setDocEndTime}
+        docOnChange={docOnChange}
+        setAvailability={setAvailability}
+        timeSlots={timeSlots}
+        add={add}
+      />
+      
+
     </>
   )
 }
 
-export default App
+export default App;
