@@ -7,13 +7,10 @@ import PatientsList from './PatientsList/PatientsList'
 import PatientMedicalData from './PatientMedicalData/PatientMedicalData'
 // import DoctorList from './components/DoctorList/DoctorList'
 import useDoctorsData from './hooks/useDoctorsData'
-<<<<<<< HEAD
 import useApplicationData from './hooks/useApplicationData';
 import Schedule from './components/Schedule/Schedule'
-=======
 import useAppointmentData from './hooks/useAppointmentData'
 import usePatientData from './hooks/usePatientData';
->>>>>>> main
 
 function App() {
   const { doctor } = useDoctorsData();
