@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const useRegistrationData = () => {
   const [formData, setFormData] = useState({
+    dateOfBirth: null,
     height: '',
     weight: '',
     unitHeigth: 'cm', // Default unit is centimeters
@@ -19,6 +20,13 @@ const useRegistrationData = () => {
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const handleDateChange = (date) => {
+    setFormData({
+      ...formData,
+      dateOfBirth: date,
     });
   };
 
@@ -96,11 +104,11 @@ const useRegistrationData = () => {
       medicationDescription: ''
     });
 
-    /*
-    e.preventDefault();
-
-    fetch('http://localhost:6000/patient/history/:id', {
+    fetch('http://localhost:8001/patient/history/:id', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(formData),
     })
       .then((response) => {
@@ -109,30 +117,19 @@ const useRegistrationData = () => {
         }
         return response.json();
       })
-      .then((result) => {
-        console.log(result.message); 
-        setCurrentComponent('appointments')
+      .then((data) => {
+        console.log('Record created:', data);
+        // Optionally reset form or show success message
       })
       .catch((error) => {
-        console.error('Error:', error);
-      })
-      .finally(() => {
-        // Reset the form data after submission
-        setFormData({
-          name: '',
-          email: '',
-          height: '',
-          unit: 'cm',
-          diabetesStatus: 'No',
-          allergies: '',
-          allergyDescription: '',
-        });
+        console.error('Error creating record:', error);
+        // Optionally show error message to user
       });
-    */
   };
 
   return {
     formData,
+    handleDateChange,
     handleChange,
     handleAllergyChange,
     handleMedicationChange,
