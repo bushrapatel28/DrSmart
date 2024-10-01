@@ -38,11 +38,15 @@ function App() {
     isMedicationOpen,
     patientMedications,
     openMedicationsModal,
-    closeMedicationsModal
+    closeMedicationsModal,
+    isLabResultsOpen,
+    patientLabResults,
+    openLabResultsModal,
+    closeLabResultsModal
  } = usePatientData();
  
   const [currentComponent, setCurrentComponent] = useState('home');
-
+  console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
   const setMainWindow = (component) => {
     setCurrentComponent(component);
   }
@@ -65,6 +69,10 @@ function App() {
         patientMedications={patientMedications}
         openMedicationsModal={openMedicationsModal}
         closeMedicationsModal={closeMedicationsModal}
+        isLabResultsOpen={isLabResultsOpen}
+        patientLabResults={patientLabResults}
+        openLabResultsModal={openLabResultsModal}
+        closeLabResultsModal={closeLabResultsModal}
       />
 
       <Appointment 
