@@ -17,17 +17,14 @@ import useScheduleData from './hooks/useScheduleData'
 function App() {
   const {
     docStartDate,
-    setDocStartDate,
     docEndDate,
-    setDocEndDate,
     docStartTime,
-    setDocStartTime,
     docEndTime,
-    setDocEndTime,
-    docOnChange,
+    datesOnChange,
+    docStartTimeOnChange,
+    docEndTimeOnChange,
     setAvailability,
-    timeSlots,
-    add
+    saveSchedule
    } = useScheduleData();
 
   const { doctor } = useDoctorsData();
@@ -132,17 +129,14 @@ function App() {
       />
       <Schedule 
         docStartDate={docStartDate}
-        setDocStartDate={setDocStartDate}
         docEndDate={docEndDate}
-        setDocEndDate={setDocEndDate}
         docStartTime={docStartTime}
-        setDocStartTime={setDocStartTime}
         docEndTime={docEndTime}
-        setDocEndTime={setDocEndTime}
-        docOnChange={docOnChange}
+        datesOnChange={datesOnChange}
+        docStartTimeOnChange={docStartTimeOnChange}
+        docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
-        timeSlots={timeSlots}
-        add={add}
+        saveSchedule={saveSchedule}
       />
       
 

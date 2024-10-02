@@ -5,18 +5,16 @@ import { addDays } from 'date-fns';
 
 const Schedule = (props) => {
 
-  // const mappedData = props.timeSlots.map((time) => console.log(time));
-
   return (
     <div>
       <div>
         <DatePicker
           selected={props.docStartDate}
-          onChange={props.docOnChange}
+          onChange={props.datesOnChange}
           startDate={props.docStartDate}
           endDate={props.docEndDate}
           selectsRange
-          minDate={new Date()}
+          minDate={addDays(new Date(), 1)}
           maxDate={addDays(new Date(), 7)}
           inline
         />
@@ -26,11 +24,12 @@ const Schedule = (props) => {
         Start Time: 
         <DatePicker
           selected={props.docStartTime}
-          onChange={(time) => props.setDocStartTime(time)}
+          // onChange={(time) => props.setDocStartTime(time)}
+          onChange={props.docStartTimeOnChange}
           showTimeSelect
           showTimeSelectOnly
           timeIntervals={60}
-          minTime={setHours(setMinutes(new Date(), 0), 6)}        //Only allow times starting from 6:30 AM (i.e after 6:00 AM)
+          minTime={setHours(setMinutes(new Date(), 0), 5)}        //Only allow times starting from 6:30 AM (i.e after 6:00 AM)
           maxTime={setHours(setMinutes(new Date(), 30), 20)}      //Only allow times until 8:30 PM
           timeCaption="Start Time"
           dateFormat="hh:mm aa"
@@ -41,19 +40,20 @@ const Schedule = (props) => {
         End Time: 
         <DatePicker
           selected={props.docEndTime}
-          onChange={(time) => props.setDocEndTime(time)}
+          // onChange={(time) => props.setDocEndTime(time)}
+          onChange={props.docEndTimeOnChange}
           showTimeSelect
           showTimeSelectOnly
           timeIntervals={60}
           minTime={setMinutes(props.docStartTime, 60)}                      //End Time range begins 1 hour after Start Time
-          maxTime={setHours(setMinutes(new Date(), 30), 20)}      //Only allow times until 8:30 PM
+          maxTime={setHours(setMinutes(new Date(), 30), 20)}                //Only allow times until 8:30 PM
           timeCaption="End Time"
           dateFormat="hh:mm aa"
         />
       </div>
 
       <button onClick={props.setAvailability}>Add</button>
-      <button onClick={props.add}>SAVE</button>
+      <button onClick={props.saveSchedule}>SAVE</button>
     </div>
   );
 }

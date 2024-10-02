@@ -13,8 +13,8 @@ import { useState } from 'react';
 // }
 
 const useAppointmentData = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [startTime, setStartTime] = useState(startDate);
+  const [startDate, setStartDate] = useState();
+  const [startTime, setStartTime] = useState();
   const [isVirtual, setIsVirtual] = useState(true);
   const [appointmentType, setAppointmentType] = useState("Virtual");
   const [showDoc, setShowDoc] = useState(false);

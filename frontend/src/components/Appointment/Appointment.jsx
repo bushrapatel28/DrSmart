@@ -20,9 +20,15 @@ const Appointment = (props) => {
         timeCaption="Time"
         dateFormat="hh:mm aa"          //Format for the Time side panel within the calendar
         minDate={new Date()}          // Only allow dates starting from today
-        minTime={setHours(setMinutes(new Date(), 0), 6)}        //Only allow times starting from 6:30 AM (i.e after 6:00 AM)
+        // minTime={setHours(setMinutes(new Date(), 0), 6)}        //Only allow times starting from 6:30 AM (i.e after 6:00 AM)
+        minTime={props.startDate && props.startDate.toDateString() === new Date().toDateString()
+          ? new Date() > setHours(setMinutes(new Date(), 0), 6) // If today, set minTime to current time or 6:00 AM
+            ? new Date()
+            : setHours(setMinutes(new Date(), 0), 6)
+          : setHours(setMinutes(new Date(), 0), 6)}  // For other dates, set minTime to 6:00 AM
         maxTime={setHours(setMinutes(new Date(), 30), 20)}      //Only allow times until 8:30 PM
         // excludeTimes={excludedTimes}             // Exclude specific times
+        
       />
 
       <form className="appointment-form" onSubmit={event => event.preventDefault()}>
@@ -30,13 +36,13 @@ const Appointment = (props) => {
           className="appointment-date"
           readOnly
           name="date"
-          value={props.startDate.toDateString()}
+          value={props.startDate ? props.startDate.toDateString() : ""}
         />
         <input
           className="appointment-time"
           readOnly
           name="time"
-          value={props.startTime.toLocaleTimeString()}     //Converting time to show local time in string format
+          value={props.startTime ? props.startTime.toLocaleTimeString() : ""}     //Converting time to show local time in string format
         />
         <div className="appointment-btns">
           <button className="next-btn" onClick={props.next}>Next</button>
