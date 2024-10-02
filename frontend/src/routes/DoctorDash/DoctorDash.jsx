@@ -3,46 +3,54 @@ import TopNavigationBar from '../../components/TopNavigationBar/TopNavigationBar
 import FunctionBlock from '../FunctionBlock/FunctionBlock';
 
 //Modals
-import RecordDetailsModal from '../RecordDetailsModal/RecordDetailsModal';
-import MsgsModal from '../MsgsModal/MsgsModal';
-import MedicationModal from '../MedicationsModal/MedicationsModal';
-import LabResultsModal from '../LabResultsModal/LabResultsModal';
+import SchedulerModal from '../SchedulerModal/SchedulerModal';
+
 
 // images / icons
-import scheduleIcon from '../../assets/schedule-icon.png';
-import ResultIcon from '../../assets/result-icon.png';
-import MedicineIcon from '../../assets/medicine-icon.png';
-import MsgsIcon from '../../assets/messages-icon.png';
-import VisitsIcon from '../../assets/visits-icon.png';
+import patientDataIcon from '../../assets/patientdata-icon.png';
+import SchedulerIcon from '../../assets/calendar-icon.png';
 
 const DoctorDash = ({
-  isRecordOpen, 
-  patientRecord, 
-  openRecordModal, 
-  closeRecordModal, 
-  isMsgsOpen, 
-  patientMsgs, 
-  openMsgsModal, 
-  closeMsgsModal,
-  isMedicationOpen,
-  patientMedications,
-  openMedicationsModal,
-  closeMedicationsModal,
-  isLabResultsOpen,
-  patientLabResults,
-  openLabResultsModal,
-  closeLabResultsModal
+  doctor,
+  isSchedulerOpen,
+  openSchedulerModal,
+  closeSchedulerModal,
+  docStartDate,
+  setDocStartDate,
+  docEndDate,
+  setDocEndDate,
+  docStartTime,
+  setDocStartTime,
+  docEndTime,
+  setDocEndTime,
+  docOnChange,
+  setAvailability,
+  timeSlots,
+  add
 }) => {
   return (
     <div className="doctordash">
       <TopNavigationBar role="doctor" username="Marie Curie" />
       <div className="functions-section">
-        <FunctionBlock icon={scheduleIcon} label="My Schedule"  openRecordModal={openRecordModal} />
-        {/* {isLabResultsOpen ? (<LabResultsModal patientLabResults={patientLabResults} closeLabResultsModal={closeLabResultsModal} />) : (<FunctionBlock icon={ResultIcon} label="Test Results"  openModal={openLabResultsModal} />)}
-        {isMedicationOpen ? (<MedicationModal patientMedications={patientMedications} closeMedicationsModal={closeMedicationsModal} />) : (<FunctionBlock icon={MedicineIcon} label="Medications"  openModal={openMedicationsModal}  />)}
-        {isMsgsOpen ? (<MsgsModal patientMsgs={patientMsgs} closeMsgsModal={closeMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openMsgsModal} />)}
-        {isRecordOpen ? (<RecordDetailsModal patientRecord={patientRecord} closeRecordModal={closeRecordModal} />) : (<FunctionBlock icon={VisitsIcon} label="Visits" openModal={openRecordModal} />)} */}
-
+        {isSchedulerOpen ? ( 
+          <SchedulerModal 
+            doctorData={doctor} 
+            isSchedulerOpen={isSchedulerOpen}
+            closeSchedulerModal={closeSchedulerModal} 
+            docStartDate={docStartDate}
+            setDocStartDate={setDocStartDate}
+            docEndDate={docEndDate}
+            setDocEndDate={setDocEndDate}
+            docStartTime={docStartTime}
+            setDocStartTime={setDocStartTime}
+            docEndTime={docEndTime}
+            setDocEndTime={setDocEndTime}
+            docOnChange={docOnChange}
+            setAvailability={setAvailability}
+            timeSlots={timeSlots}
+            add={add}  
+            />) : (<FunctionBlock icon={SchedulerIcon} label="Select Your Schedule"  openModal={openSchedulerModal} />)}
+            <FunctionBlock icon={patientDataIcon} label="Patients Data"  openModal={openSchedulerModal} />
       </div>
 
     </div>

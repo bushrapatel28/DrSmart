@@ -48,7 +48,8 @@ const HomePage = ({
   next,
   back,
   save,
-  cancel
+  cancel,
+  filterPassedTime
 }) => {
 
   console.log("PATIENT LAB RESULTS FROM HomePage.jsx: ", patientLabResults);
@@ -56,7 +57,6 @@ const HomePage = ({
     <div className="homepage">
       <TopNavigationBar role="patient" username="Frank Navasky" />
       <div className="functions-section">
-        {/* <FunctionBlock icon={scheduleIcon} label="Schedule an Appointment"  openRecordModal={openRecordModal} /> */}
         {isAppointmentOpen ? (<Appointment 
         doctorData={doctorData} 
         startDate={startDate}
@@ -71,6 +71,8 @@ const HomePage = ({
         save={save}
         cancel={cancel}
         closeAppointmentModal={closeAppointmentModal}
+        isAppointmentOpen={isAppointmentOpen}
+        filterPassedTime={filterPassedTime}
       />
 ) : (<FunctionBlock icon={scheduleIcon} label="Schedule an Appointment"  openModal={openAppointmentModal} />)}
         {isLabResultsOpen ? (<LabResultsModal patientLabResults={patientLabResults} closeLabResultsModal={closeLabResultsModal} />) : (<FunctionBlock icon={ResultIcon} label="Test Results"  openModal={openLabResultsModal} />)}
