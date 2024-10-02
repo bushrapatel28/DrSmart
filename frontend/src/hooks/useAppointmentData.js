@@ -84,6 +84,7 @@ const useAppointmentData = () => {
       });
   }
 
+  //When no selection is made, the showTimeSelect list should only show times after current time until the set end time
   const filterPassedTime = (time) => {
     const currentDate = new Date();
     const selectedDate = new Date(time);

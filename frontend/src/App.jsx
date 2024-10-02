@@ -129,7 +129,7 @@ function App() {
       <PatientsList />
       <PatientMedicalData />
       
-      <Appointment 
+      {/* <Appointment 
         doctorData={doctor} 
         startDate={startDate}
         startTime={startTime}
@@ -142,7 +142,8 @@ function App() {
         back={back}
         save={save}
         cancel={cancel}
-      />
+        filterPassedTime={filterPassedTime}
+      /> */}
       <Schedule 
         docStartDate={docStartDate}
         docEndDate={docEndDate}
@@ -154,7 +155,6 @@ function App() {
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
       />
-      
 
     </>
   )

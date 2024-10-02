@@ -3,20 +3,17 @@ import Schedule from '../../components/Schedule/Schedule'
 
 
 const SchedulerModal = ({
-  docStartDate,
   isSchedulerOpen,
   closeSchedulerModal,
-  setDocStartDate,
+  docStartDate,
   docEndDate,
-  setDocEndDate,
   docStartTime,
-  setDocStartTime,
   docEndTime,
-  setDocEndTime,
-  docOnChange,
+  datesOnChange,
+  docStartTimeOnChange,
+  docEndTimeOnChange,
   setAvailability,
-  timeSlots,
-  add
+  saveSchedule
 }) => {
 
   return (
@@ -30,17 +27,14 @@ const SchedulerModal = ({
           <h3 className="modal__heading">Select Your Next Week's Schedule</h3>
             <Schedule 
             docStartDate={docStartDate}
-            setDocStartDate={setDocStartDate}
             docEndDate={docEndDate}
-            setDocEndDate={setDocEndDate}
             docStartTime={docStartTime}
-            setDocStartTime={setDocStartTime}
             docEndTime={docEndTime}
-            setDocEndTime={setDocEndTime}
-            docOnChange={docOnChange}
+            datesOnChange={datesOnChange}
+            docStartTimeOnChange={docStartTimeOnChange}
+            docEndTimeOnChange={docEndTimeOnChange}
             setAvailability={setAvailability}
-            timeSlots={timeSlots}
-            add={add}
+            saveSchedule={saveSchedule}
             />
           </div>
         </div>
