@@ -11,22 +11,19 @@ import patientDataIcon from '../../assets/patientdata-icon.png';
 import SchedulerIcon from '../../assets/calendar-icon.png';
 
 const DoctorDash = ({
-  doctor,
-  isSchedulerOpen,
-  openSchedulerModal,
-  closeSchedulerModal,
-  docStartDate,
-  setDocStartDate,
-  docEndDate,
-  setDocEndDate,
-  docStartTime,
-  setDocStartTime,
-  docEndTime,
-  setDocEndTime,
-  docOnChange,
-  setAvailability,
-  timeSlots,
-  add
+    doctor,
+    isSchedulerOpen,
+    openSchedulerModal,
+    closeSchedulerModal,
+    docStartDate,
+    docEndDate,
+    docStartTime,
+    docEndTime,
+    datesOnChange,
+    docStartTimeOnChange,
+    docEndTimeOnChange,
+    setAvailability,
+    saveSchedule
 }) => {
   return (
     <div className="doctordash">
@@ -34,21 +31,17 @@ const DoctorDash = ({
       <div className="functions-section">
         {isSchedulerOpen ? ( 
           <SchedulerModal 
-            doctorData={doctor} 
-            isSchedulerOpen={isSchedulerOpen}
-            closeSchedulerModal={closeSchedulerModal} 
-            docStartDate={docStartDate}
-            setDocStartDate={setDocStartDate}
-            docEndDate={docEndDate}
-            setDocEndDate={setDocEndDate}
-            docStartTime={docStartTime}
-            setDocStartTime={setDocStartTime}
-            docEndTime={docEndTime}
-            setDocEndTime={setDocEndTime}
-            docOnChange={docOnChange}
-            setAvailability={setAvailability}
-            timeSlots={timeSlots}
-            add={add}  
+          docStartDate={docStartDate}
+          docEndDate={docEndDate}
+          docStartTime={docStartTime}
+          docEndTime={docEndTime}
+          datesOnChange={datesOnChange}
+          docStartTimeOnChange={docStartTimeOnChange}
+          docEndTimeOnChange={docEndTimeOnChange}
+          setAvailability={setAvailability}
+          saveSchedule={saveSchedule}
+          isSchedulerOpen={isSchedulerOpen}
+          closeSchedulerModal={closeSchedulerModal}
             />) : (<FunctionBlock icon={SchedulerIcon} label="Select Your Schedule"  openModal={openSchedulerModal} />)}
             <FunctionBlock icon={patientDataIcon} label="Patients Data"  openModal={openSchedulerModal} />
       </div>

@@ -111,21 +111,19 @@ function App() {
         filterPassedTime={filterPassedTime}
       />
       <DoctorDash
+        doctor={doctor}
         isSchedulerOpen={isSchedulerOpen}
         openSchedulerModal={openSchedulerModal}
         closeSchedulerModal={closeSchedulerModal}
         docStartDate={docStartDate}
-        setDocStartDate={setDocStartDate}
         docEndDate={docEndDate}
-        setDocEndDate={setDocEndDate}
         docStartTime={docStartTime}
-        setDocStartTime={setDocStartTime}
         docEndTime={docEndTime}
-        setDocEndTime={setDocEndTime}
-        docOnChange={docOnChange}
+        datesOnChange={datesOnChange}
+        docStartTimeOnChange={docStartTimeOnChange}
+        docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
-        timeSlots={timeSlots}
-        add={add}
+        saveSchedule={saveSchedule}
       />
       <RegistrationForm />
       <PatientsList />
