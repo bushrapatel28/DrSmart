@@ -84,6 +84,12 @@ const useAppointmentData = () => {
       });
   }
 
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
 
   function cancel() {
     console.log("Cancel");
@@ -103,7 +109,8 @@ const useAppointmentData = () => {
     next,
     back,
     save,
-    cancel
+    cancel,
+    filterPassedTime
   }
 }
 
