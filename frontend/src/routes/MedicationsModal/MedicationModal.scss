@@ -15,11 +15,13 @@
   &__content {
     background-color: $color-block-bg;
     width: 50%;
+    max-height: 80%; // Set a max height for scrolling
     padding: 20px;
     border-radius: 8px;
     box-shadow: $box-shadow;
     position: relative;
     color: $color-text;
+    overflow-y: auto; // Enable vertical scrolling
 
     &:hover {
       box-shadow: 0 6px 10px -4px $color-shadow-hover;

@@ -64,25 +64,29 @@ const PatientsList = () => {
   ));
 
   return (
-    <div className='patient_list'>
-      <h1>
-        Patient Records
-      </h1>
-      <h2>Medical Records</h2>
-      <table className='patient_list_table'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>E-mail</th>
-            <th>ID</th>
-            <th>Medical File</th>
-          </tr>
-        </thead>
-        <tbody>
-          {records}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <div className='modal_patient_list'>
+        <div className='modal_patient_list__content'>
+          <h1 className='modal_patient_list__heading'>
+            Patient Records
+          </h1>
+          <h2>Medical Records</h2>
+          <table className='patient_list_table'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>ID</th>
+                <th>Medical File</th>
+              </tr>
+            </thead>
+            <tbody>
+              {records}
+            </tbody>
+          </table>
+        </div>
+      </div >
+    </>
   );
 };
 

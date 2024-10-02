@@ -1,10 +1,10 @@
-// import "./Registration.scss"
+import './MedicalHistoryModal.scss';
 import React, { useState } from 'react';
-import useRegistrationData from '../hooks/useRegistrationData';
+import useRegistrationData from '../../hooks/useRegistrationData';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const RegistrationForm = () => {
+const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
   const {
     formData,
     handleDateChange,
@@ -20,6 +20,9 @@ const RegistrationForm = () => {
     <>
       <div className="modal">
         <div className="modal__content">
+          <button className="modal__close-button" onClick={() => closeMedicalHistoryModal()}>
+            <span>&times;</span>
+          </button>
           <h3 className="modal__heading">Personal and Medical Record</h3>
           <form className="modal__msg-list" onSubmit={handleSubmit}>
             <div>
@@ -188,5 +191,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
-
+export default MedicalHistoryModal;

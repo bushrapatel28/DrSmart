@@ -28,10 +28,10 @@ function App() {
     setAvailability,
     timeSlots,
     add
-   } = useScheduleData();
+  } = useScheduleData();
 
   const { doctor } = useDoctorsData();
-  const { 
+  const {
     startDate,
     startTime,
     isVirtual,
@@ -45,14 +45,14 @@ function App() {
     cancel
   } = useAppointmentData();
 
-  const { 
-    isRecordOpen, 
-    patientRecord, 
-    openRecordModal, 
-    closeRecordModal, 
-    isMsgsOpen, 
-    patientMsgs, 
-    openMsgsModal, 
+  const {
+    isRecordOpen,
+    patientRecord,
+    openRecordModal,
+    closeRecordModal,
+    isMsgsOpen,
+    patientMsgs,
+    openMsgsModal,
     closeMsgsModal,
     isMedicationOpen,
     patientMedications,
@@ -64,9 +64,12 @@ function App() {
     closeLabResultsModal,
     isAppointmentOpen,
     openAppointmentModal,
-    closeAppointmentModal
- } = usePatientData();
- 
+    closeAppointmentModal,
+    isMedicalHistoryOpen,
+    openMedicalHistoryModal,
+    closeMedicalHistoryModal
+  } = usePatientData();
+
   const [currentComponent, setCurrentComponent] = useState('home');
   console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
   const setMainWindow = (component) => {
@@ -77,15 +80,15 @@ function App() {
       {/* <Appointment /> */}
       {/* <DoctorList doctorData={doctor}/>       */}
 
-      
-      <HomePage 
-        isRecordOpen={isRecordOpen} 
-        patientRecord={patientRecord} 
-        openRecordModal={openRecordModal} 
-        closeRecordModal={closeRecordModal} 
-        isMsgsOpen={isMsgsOpen} 
-        patientMsgs={patientMsgs} 
-        openMsgsModal={openMsgsModal} 
+
+      <HomePage
+        isRecordOpen={isRecordOpen}
+        patientRecord={patientRecord}
+        openRecordModal={openRecordModal}
+        closeRecordModal={closeRecordModal}
+        isMsgsOpen={isMsgsOpen}
+        patientMsgs={patientMsgs}
+        openMsgsModal={openMsgsModal}
         closeMsgsModal={closeMsgsModal}
         isMedicationOpen={isMedicationOpen}
         patientMedications={patientMedications}
@@ -98,7 +101,10 @@ function App() {
         isAppointmentOpen={isAppointmentOpen}
         openAppointmentModal={openAppointmentModal}
         closeAppointmentModal={closeAppointmentModal}
-        doctorData={doctor} 
+        isMedicalHistoryOpen={isMedicalHistoryOpen}
+        openMedicalHistoryModal={openMedicalHistoryModal}
+        closeMedicalHistoryModal={closeMedicalHistoryModal}
+        doctorData={doctor}
         startDate={startDate}
         startTime={startTime}
         isVirtual={isVirtual}
@@ -112,12 +118,12 @@ function App() {
         cancel={cancel}
       />
       <DoctorDash />
-      <RegistrationForm />
+      {/* <RegistrationForm /> */}
       <PatientsList />
       <PatientMedicalData />
-      
-      <Appointment 
-        doctorData={doctor} 
+
+      <Appointment
+        doctorData={doctor}
         startDate={startDate}
         startTime={startTime}
         isVirtual={isVirtual}
@@ -130,7 +136,7 @@ function App() {
         save={save}
         cancel={cancel}
       />
-      <Schedule 
+      <Schedule
         docStartDate={docStartDate}
         setDocStartDate={setDocStartDate}
         docEndDate={docEndDate}
@@ -144,7 +150,7 @@ function App() {
         timeSlots={timeSlots}
         add={add}
       />
-      
+
 
     </>
   )
