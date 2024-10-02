@@ -31,7 +31,11 @@ module.exports = db => {
     console.log("TIME ARRAY", time_slot_ids.length);
     console.log("TIME ARRAY", time_slot_ids);
  
-    
+    // dates.map((dateOj) => {
+    //   dateOj.dates.map((date) => {
+        
+    //   })
+    // })
 
     // Insert new availability into the database
     // db.query(`

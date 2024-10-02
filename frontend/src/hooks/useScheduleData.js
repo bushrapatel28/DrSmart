@@ -72,8 +72,11 @@ const useScheduleData = () => {
   const getAllTimeIdsBetween = (startTime, endTime) => {
     const timeIds = [];
 
+    const startTimeStr = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false});  // Converting to hh:mm:ss format for 24hrs
+    const endTimeStr = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false});      // Converting to hh:mm:ss format for 24hrs
+    
     timeSlots.map((timeSlot) => {
-      if(timeSlot.end_time > startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false}) && timeSlot.end_time <= endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false})) {
+      if(timeSlot.end_time > startTimeStr && timeSlot.end_time <= endTimeStr) {
         console.log("MATCHED END", timeSlot.id);
         timeIds.push(timeSlot.id);
       }
