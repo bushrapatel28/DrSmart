@@ -2,7 +2,7 @@ import React from "react";
 import DoctorListItem from "../DoctorListItem/DoctorListItem";
 
 const DoctorList = (props) => {
-
+  console.log("Props.DocData in the DoctorList: ", props.doctorData);
   return (
     <div className="doctors">
       <ul className="doctors-list">

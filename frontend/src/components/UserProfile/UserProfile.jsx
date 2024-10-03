@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './ProfileMenu.scss';
-import ProfileIcon from '../../assets/profile-icon.png'
-const ProfileMenu = () => {
+import './UserProfile.scss';
+import ProfileIcon from '../../assets/user-profile-icon.png'
+const UserProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -9,8 +9,8 @@ const ProfileMenu = () => {
   };
 
   return (
-    <div className="profile-menu">
-      <img src={ProfileIcon} className="hamburger" onClick={toggleMenu} />
+    <div className="menu-items ">
+      <img src={ProfileIcon} className="menu-item" onClick={toggleMenu} />
       {isOpen && (
         <div className="menu-options">
           <p>Profile</p>
@@ -22,4 +22,4 @@ const ProfileMenu = () => {
   );
 };
 
-export default ProfileMenu;
+export default UserProfile;

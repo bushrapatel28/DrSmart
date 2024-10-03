@@ -1,28 +1,40 @@
 @import '../../colors.scss';
 
 .function-block {
-  width: 150px;
-  height: 150px;
-  background-color: $color-block-bg; // Use variable for block background
+  width: 180px;
+  height: 180px;
+  background-color: $color-block-bg;
   border-radius: 10px;
   display: flex;
+  margin: 0 30px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 1.2rem;
-  transition: background-color 0.3s ease;
-  box-shadow: $box-shadow; // Use variable for shadow
+  transition: background-color 0.5s ease;
+  box-shadow: 0 3px 5px $color-shadow-hover;
 
-  &:hover {
-    background-color: $color-block-hover; // Use variable for hover color
-    box-shadow: 0 6px 10px $color-shadow-hover; // Slightly stronger shadow on hover
+  .function-block-icon {
+    transition: 0.8s;
+    
   }
+  &:hover {
+    // background-color: #96d7c6b6;
+    background-color: #5aa7a7bb;
+    box-shadow: 0 6px 10px $color-shadow-hover;
+    cursor: pointer;
+
+  .function-block-icon {
+    transform: scale(1.25);
+  }
+  .label {
+    text-shadow: 0 6px 10px $color-shadow-hover;
+  }
+  }
+
 }
 
-.icon {
-  font-size: 2.5rem;
-}
 
 .label {
   margin-top: 10px;

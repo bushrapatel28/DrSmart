@@ -14,7 +14,14 @@
 }
 
 .top-nav-bar__logo {
-  width: 150px; /* Set the width of the logo */
+  width: 165px; /* Set the width of the logo */
   height: auto; /* Maintain aspect ratio */
   object-fit: contain; /* Ensures the logo scales properly without distortion */
 }
+
+.nav-icons {
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
