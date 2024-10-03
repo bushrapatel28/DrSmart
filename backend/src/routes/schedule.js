@@ -20,13 +20,22 @@ module.exports = db => {
   router.post("/:id/availability/new", (req, res) => {
     // Extract appointment details from request body
     const {
-      date,
+      dates,
       vacant,
-      time_slot_id,
+      time_slot_ids,
       doctor_id
     } = req.body;
 
-    console.log("DATE ARRAY", date.length);
+    console.log("DATE ARRAY", dates.length);
+    console.log("DATE ARRAY", dates);
+    console.log("TIME ARRAY", time_slot_ids.length);
+    console.log("TIME ARRAY", time_slot_ids);
+ 
+    // dates.map((dateOj) => {
+    //   dateOj.dates.map((date) => {
+        
+    //   })
+    // })
 
     // Insert new availability into the database
     // db.query(`

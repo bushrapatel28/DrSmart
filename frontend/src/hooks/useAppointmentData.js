@@ -13,8 +13,8 @@ import { useState } from 'react';
 // }
 
 const useAppointmentData = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [startTime, setStartTime] = useState(startDate);
+  const [startDate, setStartDate] = useState();
+  const [startTime, setStartTime] = useState();
   const [isVirtual, setIsVirtual] = useState(true);
   const [appointmentType, setAppointmentType] = useState("Virtual");
   const [showDoc, setShowDoc] = useState(false);
@@ -84,6 +84,13 @@ const useAppointmentData = () => {
       });
   }
 
+  //When no selection is made, the showTimeSelect list should only show times after current time until the set end time
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
 
   function cancel() {
     console.log("Cancel");
@@ -103,7 +110,8 @@ const useAppointmentData = () => {
     next,
     back,
     save,
-    cancel
+    cancel,
+    filterPassedTime
   }
 }
 

@@ -1,12 +1,8 @@
 @import '../../colors.scss';
 
 
-.profile-menu {
-  // position: absolute;
-  top: 20px;
-  right: 20px;
-
-  .hamburger {
+  .menu-item {
+    width: 45px;
     font-size: 2rem;
     cursor: pointer;
   }
@@ -30,4 +26,3 @@
       color: $color-block-hover;
     }
   }
-}

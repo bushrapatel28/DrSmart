@@ -17,20 +17,19 @@ import useScheduleData from './hooks/useScheduleData'
 function App() {
   const {
     docStartDate,
-    setDocStartDate,
     docEndDate,
-    setDocEndDate,
     docStartTime,
-    setDocStartTime,
     docEndTime,
-    setDocEndTime,
-    docOnChange,
+    datesOnChange,
+    docStartTimeOnChange,
+    docEndTimeOnChange,
     setAvailability,
     timeSlots,
-    add
+    add,
+    saveSchedule
   } = useScheduleData();
 
-  const { doctor } = useDoctorsData();
+  const { doctor, isSchedulerOpen, openSchedulerModal, closeSchedulerModal } = useDoctorsData();
   const {
     startDate,
     startTime,
@@ -42,7 +41,8 @@ function App() {
     next,
     back,
     save,
-    cancel
+    cancel,
+    filterPassedTime
   } = useAppointmentData();
 
   const {
@@ -116,14 +116,27 @@ function App() {
         back={back}
         save={save}
         cancel={cancel}
+        filterPassedTime={filterPassedTime}
+      />
+      <DoctorDash
+        doctor={doctor}
+        isSchedulerOpen={isSchedulerOpen}
+        openSchedulerModal={openSchedulerModal}
+        closeSchedulerModal={closeSchedulerModal}
+        docStartDate={docStartDate}
+        docEndDate={docEndDate}
+        docStartTime={docStartTime}
+        docEndTime={docEndTime}
+        datesOnChange={datesOnChange}
+        docStartTimeOnChange={docStartTimeOnChange}
+        docEndTimeOnChange={docEndTimeOnChange}
+        setAvailability={setAvailability}
+        saveSchedule={saveSchedule}
       />
       <DoctorDash />
       {/* <RegistrationForm /> */}
-      <PatientsList />
-      <PatientMedicalData />
-
-      <Appointment
-        doctorData={doctor}
+      {/* <Appointment 
+        doctorData={doctor} 
         startDate={startDate}
         startTime={startTime}
         isVirtual={isVirtual}
@@ -135,22 +148,19 @@ function App() {
         back={back}
         save={save}
         cancel={cancel}
-      />
+        filterPassedTime={filterPassedTime}
+      /> */}
       <Schedule
         docStartDate={docStartDate}
-        setDocStartDate={setDocStartDate}
         docEndDate={docEndDate}
-        setDocEndDate={setDocEndDate}
         docStartTime={docStartTime}
-        setDocStartTime={setDocStartTime}
         docEndTime={docEndTime}
-        setDocEndTime={setDocEndTime}
-        docOnChange={docOnChange}
+        datesOnChange={datesOnChange}
+        docStartTimeOnChange={docStartTimeOnChange}
+        docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
-        timeSlots={timeSlots}
-        add={add}
+        saveSchedule={saveSchedule}
       />
-
 
     </>
   )

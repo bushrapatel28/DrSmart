@@ -8,6 +8,7 @@ const DoctorListItem = (props) => {
   //   specialization,
   //   availability
   // } = props;
+  console.log("Props. in Doctor list item: ", props.availability);
 
   const apptDate = props.appointmentDate.toISOString().slice(0, 10);  //YYYY-MM-DD Format without the Time
   const apptTime = props.appointmentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false});  //hh:mm:ss Format for 24hrs
@@ -15,8 +16,9 @@ const DoctorListItem = (props) => {
   return (
     <div className="doctors-list-item">
       {props.availability.map((avail) => {
+        console.log("In the map loop: ", avail.date, apptDate, avail.vacant);
         if(avail.date === apptDate && avail.vacant) {
-
+          console.log("After the if statement");
           const startTime = avail.time[0].start_time;
           const endTime = avail.time[0].end_time;
 
