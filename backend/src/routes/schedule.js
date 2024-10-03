@@ -41,7 +41,7 @@ module.exports = db => {
       // Collect promises for each date
       const datePromises = all_dates[index].dates.map((date) => {
         // Collect promises for each time slot within the current date
-        return Promise.all(all_time_slot_ids[index].time_ids.map((time_id) => {
+        return all_time_slot_ids[index].time_ids.map((time_id) => {
           console.log(`INSIDE the MAP`, date.slice(0, 10), time_id);     
           // const date = each_date.slice(0, 10);                          //YYYY-MM-DD Format without the Time
           // console.log("NEW DATE FORMAT", date);
@@ -78,7 +78,7 @@ module.exports = db => {
             // res.status(500).json({ error: "Internal server error" });
           });
 
-        }));
+        });
         console.log("NEXT LOOP");
       });
 
