@@ -1,6 +1,6 @@
 @import '../../colors.scss';
 
-.modal {
+.top-nav-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,15 +13,13 @@
   z-index: 1000;
 
   &__content {
-    background-color: $color-block-bg;
+    background-color: $color-top-nav-block-bg;
     width: 50%;
-    max-height: 80%; // Set a max height for scrolling
-    padding: 10px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: $box-shadow;
     position: relative;
     color: $color-text;
-    overflow-y: auto; // Enable vertical scrolling
 
     &:hover {
       box-shadow: 0 6px 10px -4px $color-shadow-hover;
@@ -72,22 +70,6 @@
 
       &:hover {
         color: $color-block-hover;
-      }
-    }
-  }
-
-  &__record-details {
-    padding: 5px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid $color-accent-2; // Light accent color for dividers
-
-    p {
-      margin: 0;
-      font-size: 1rem;
-      color: $color-text; // Changed to white from $color-text
-
-      strong {
-        color: $color-accent-1; // Accent color for bold text
       }
     }
   }

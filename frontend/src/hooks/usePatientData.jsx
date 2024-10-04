@@ -1,21 +1,23 @@
-import {useReducer, useState, useEffect} from 'react';
+import { useReducer, useState, useEffect } from 'react';
 // import  {patients, doctors, records, prescriptions, msgs} from '../mocks/mockData';
 
-const OPEN_RECORD         = 'OPEN_RECORD';
-const CLOSE_RECORD        = 'CLOSE_RECORD';
-const OPEN_MSGS           = 'OPEN_MSGS';
-const CLOSE_MSGS          = 'CLOSE_MSGS';
-const OPEN_MEDICATIONS    = 'OPEN_MEDICATIONS';
-const CLOSE_MEDICATIONS   = 'CLOSE_MEDICATIONS';
-const OPEN_LABRESULTS    = 'OPEN_LABRESULTS';
-const CLOSE_LABRESULTS   = 'CLOSE_LABRESULTS';
-const OPEN_APPOINTMENT   = 'OPEN_APPOINTMENT';
-const CLOSE_APPOINTMENT  = 'CLOSE_APPOINTMENT';
+const OPEN_RECORD = 'OPEN_RECORD';
+const CLOSE_RECORD = 'CLOSE_RECORD';
+const OPEN_MSGS = 'OPEN_MSGS';
+const CLOSE_MSGS = 'CLOSE_MSGS';
+const OPEN_MEDICATIONS = 'OPEN_MEDICATIONS';
+const CLOSE_MEDICATIONS = 'CLOSE_MEDICATIONS';
+const OPEN_LABRESULTS = 'OPEN_LABRESULTS';
+const CLOSE_LABRESULTS = 'CLOSE_LABRESULTS';
+const OPEN_APPOINTMENT = 'OPEN_APPOINTMENT';
+const CLOSE_APPOINTMENT = 'CLOSE_APPOINTMENT';
+const OPEN_MEDICAL_HISTORY = 'OPEN_MEDICAL_HISTORY';
+const CLOSE_MEDICAL_HISTORY = 'CLOSE_MEDICAL_HISTORY';
 
 // const SET_PATIENT_RECORD    = 'SET_PATIENT_RECORD';
 
 const reducer = (state, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case OPEN_RECORD:
       console.log("PATIENT RECORD FROM DISPATCH: ", action.payload);
       return {
@@ -36,49 +38,60 @@ const reducer = (state, action) => {
         isMsgsOpen: true,
         patientMsgs: action.payload
       };
-      case CLOSE_MSGS:
-        return {
-          ...state,
-          isMsgsOpen: false,
-          patientMsgs: null
-        }
-      case OPEN_MEDICATIONS:
-        console.log("PATIENT MEDICATIONS FROM DISPATCH: ", action.payload);
-        return {
-          ...state,
-          isMedicationOpen: true,
-          patientMedications: action.payload
-        };
-      case CLOSE_MEDICATIONS:
-        return {
-          ...state,
-          isMedicationOpen: false,
-          patientMedications: null
-        }
-        case OPEN_LABRESULTS:
-          console.log(" ======= PATIENT LAB RESULTS FROM DISPATCH: ", action.payload);
-          return {
-            ...state,
-            isLabResultsOpen: true,
-            patientLabResults: action.payload
-          };
-        case CLOSE_LABRESULTS:
-          return {
-            ...state,
-            isLabResultsOpen: false,
-            patientLabResults: null
-          };
-        case OPEN_APPOINTMENT:
-          console.log("Appointment Calender i sshowing");
-          return {
-            ...state,
-            isAppointmentOpen: true,
-          };
-        case CLOSE_APPOINTMENT:
-          return {
-            ...state,
-            isAppointmentOpen: false,
-            }
+    case CLOSE_MSGS:
+      return {
+        ...state,
+        isMsgsOpen: false,
+        patientMsgs: null
+      }
+    case OPEN_MEDICATIONS:
+      console.log("PATIENT MEDICATIONS FROM DISPATCH: ", action.payload);
+      return {
+        ...state,
+        isMedicationOpen: true,
+        patientMedications: action.payload
+      };
+    case CLOSE_MEDICATIONS:
+      return {
+        ...state,
+        isMedicationOpen: false,
+        patientMedications: null
+      }
+    case OPEN_LABRESULTS:
+      console.log(" ======= PATIENT LAB RESULTS FROM DISPATCH: ", action.payload);
+      return {
+        ...state,
+        isLabResultsOpen: true,
+        patientLabResults: action.payload
+      };
+    case CLOSE_LABRESULTS:
+      return {
+        ...state,
+        isLabResultsOpen: false,
+        patientLabResults: null
+      };
+    case OPEN_APPOINTMENT:
+      console.log("Appointment Calender i sshowing");
+      return {
+        ...state,
+        isAppointmentOpen: true,
+      };
+    case CLOSE_APPOINTMENT:
+      return {
+        ...state,
+        isAppointmentOpen: false,
+      }
+    case OPEN_MEDICAL_HISTORY:
+      console.log("MedicalHistory is showing");
+      return {
+        ...state,
+        isMedicalHistoryOpen: true,
+      };
+    case CLOSE_MEDICAL_HISTORY:
+      return {
+        ...state,
+        isMedicalHistoryOpen: false,
+      }
   }
 }
 
@@ -91,7 +104,8 @@ const initialState = {
   patientMedications: null,
   isLabResultsOpen: false,
   patientLabResults: null,
-  isAppointmentOpen: false
+  isAppointmentOpen: false,
+  isMedicalHistoryOpen: false
 }
 
 
@@ -100,32 +114,32 @@ const usePatientData = () => {
 
 
   const openRecordModal = (user_id) => {
-    fetch(`/patient/${user_id}/visits`) 
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Error: ${res.status} - ${res.statusText}`);
-      }
-      return res.json();
-    })
-    .then(data => {
-      console.log("Requested data from DB: ", data);
-      dispatch({ type: OPEN_RECORD, payload: data });
-    })
-    .catch(error => {
-      console.error("Error fetching visits: ", error);
-    });
+    fetch(`/patient/${user_id}/visits`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status} - ${res.statusText}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log("Requested data from DB: ", data);
+        dispatch({ type: OPEN_RECORD, payload: data });
+      })
+      .catch(error => {
+        console.error("Error fetching visits: ", error);
+      });
 
     // console.log("User id in open modal fucntion: ", user_id);
     // dispatch({type: OPEN_RECORD, payload: user_id});
   }
   const closeRecordModal = () => {
-    dispatch({type: CLOSE_RECORD, payload: null});
+    dispatch({ type: CLOSE_RECORD, payload: null });
   }
 
   const openMsgsModal = (user_id) => {
     console.log("openMsgsModal function is dispatching");
-  
-    fetch(`/patient/${user_id}/messages`) 
+
+    fetch(`/patient/${user_id}/messages`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`Error: ${res.status} - ${res.statusText}`);
@@ -134,20 +148,20 @@ const usePatientData = () => {
       })
       .then(data => {
         console.log("Requested data from DB: ", data);
-        dispatch({ type: OPEN_MSGS, payload: data }); 
+        dispatch({ type: OPEN_MSGS, payload: data });
       })
       .catch(error => {
         console.error("Error fetching messages: ", error);
       });
   }
-  
+
   const closeMsgsModal = () => {
-    dispatch({type: CLOSE_MSGS, payload: null});
+    dispatch({ type: CLOSE_MSGS, payload: null });
   }
   const openMedicationsModal = (user_id) => {
     console.log("openMedicationsModal function is dispatching");
-  
-    fetch(`/patient/${user_id}/medications`) 
+
+    fetch(`/patient/${user_id}/medications`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`Error: ${res.status} - ${res.statusText}`);
@@ -156,20 +170,20 @@ const usePatientData = () => {
       })
       .then(data => {
         console.log("Requested data from DB: ", data);
-        dispatch({ type: OPEN_MEDICATIONS, payload: data }); 
+        dispatch({ type: OPEN_MEDICATIONS, payload: data });
       })
       .catch(error => {
         console.error("Error fetching Medications: ", error);
       });
   }
-  
+
   const closeMedicationsModal = () => {
-    dispatch({type: CLOSE_MEDICATIONS, payload: null});
+    dispatch({ type: CLOSE_MEDICATIONS, payload: null });
   }
   const openLabResultsModal = (user_id) => {
     console.log("openLabResultsModal function is dispatching");
-  
-    fetch(`/patient/${user_id}/lab-results`) 
+
+    fetch(`/patient/${user_id}/lab-results`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`Error: ${res.status} - ${res.statusText}`);
@@ -178,24 +192,32 @@ const usePatientData = () => {
       })
       .then(data => {
         console.log("Requested data from DB: ", data);
-        dispatch({ type: OPEN_LABRESULTS, payload: data }); 
+        dispatch({ type: OPEN_LABRESULTS, payload: data });
       })
       .catch(error => {
         console.error("Error fetching Lab Results: ", error);
       });
   }
-  
+
   const closeLabResultsModal = () => {
-    dispatch({type: CLOSE_LABRESULTS, payload: null});
+    dispatch({ type: CLOSE_LABRESULTS, payload: null });
   }
 
   const openAppointmentModal = (user_id) => {
     console.log("Adding Appointment for user: ", user_id);
-    dispatch({type: OPEN_APPOINTMENT});
+    dispatch({ type: OPEN_APPOINTMENT });
   }
 
   const closeAppointmentModal = () => {
-    dispatch({type: CLOSE_APPOINTMENT});
+    dispatch({ type: CLOSE_APPOINTMENT });
+  }
+  const openMedicalHistoryModal = (user_id) => {
+    console.log("Adding MedicalHistory for user: ", user_id);
+    dispatch({ type: OPEN_MEDICAL_HISTORY });
+  }
+
+  const closeMedicalHistoryModal = () => {
+    dispatch({ type: CLOSE_MEDICAL_HISTORY });
 
   }
   console.log("******* Lab results alive: ", state.patientLabResults);
@@ -218,7 +240,10 @@ const usePatientData = () => {
     closeLabResultsModal,
     isAppointmentOpen: state.isAppointmentOpen,
     openAppointmentModal,
-    closeAppointmentModal
+    closeAppointmentModal,
+    isMedicalHistoryOpen: state.isMedicalHistoryOpen,
+    openMedicalHistoryModal,
+    closeMedicalHistoryModal
   }
 
 };

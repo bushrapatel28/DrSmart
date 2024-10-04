@@ -1,6 +1,6 @@
 @import '../../colors.scss';
 
-.modal {
+.top-nav-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,10 +13,11 @@
   z-index: 1000;
 
   &__content {
-    background-color: $color-block-bg;
-    width: 50%;
-    max-height: 80%; // Set a max height for scrolling
-    padding: 10px;
+    background-color: $color-top-nav-block-bg;
+    margin-top: 100px;
+    width: 80%;
+    height: 70%; // Set a max height for scrolling
+    padding: 20px;
     border-radius: 8px;
     box-shadow: $box-shadow;
     position: relative;
@@ -75,20 +76,43 @@
       }
     }
   }
+}
 
-  &__record-details {
-    padding: 5px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid $color-accent-2; // Light accent color for dividers
+.patient_list,
+.patient-medical-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
-    p {
-      margin: 0;
-      font-size: 1rem;
-      color: $color-text; // Changed to white from $color-text
+.patient_list_table,
+.medical-data-table {
+  border-collapse: collapse;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 80%;
+  max-width: 800px;
+}
 
-      strong {
-        color: $color-accent-1; // Accent color for bold text
-      }
-    }
-  }
+.patient_list_table th,
+.patient_list_table td,
+.medical-data-table th,
+.medical-data-table td {
+  border: 2px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.patient_list_table th,
+.medical-data-table th {
+  background-color: #6C8CBF;
+}
+
+.patient_list_table tbody,
+.medical-data-table tbody {
+  background-color: rgb(255, 255, 255, 0.2);
 }

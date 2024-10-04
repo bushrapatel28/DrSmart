@@ -1,23 +1,23 @@
 import { useState } from 'react';
 import './UserProfile.scss';
 import ProfileIcon from '../../assets/user-profile-icon.png'
-const UserProfile = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const UserProfile = ({ openProfile }) => {
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleMenu = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   return (
     <div className="menu-items ">
-      <img src={ProfileIcon} className="menu-item" onClick={toggleMenu} />
-      {isOpen && (
+      <img src={ProfileIcon} className="menu-item" onClick={openProfile} />
+      {/* {isOpen && (
         <div className="menu-options">
           <p>Profile</p>
           <p>Settings</p>
           <p>Logout</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

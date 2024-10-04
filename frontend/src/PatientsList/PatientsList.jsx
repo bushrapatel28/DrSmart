@@ -65,30 +65,28 @@ const PatientsList = ({ closePatientRecordModal }) => {
 
   return (
     <>
-    <div className="modal">
-      <div className='patient_list modal__content'>
-        <button className="modal__close-button" onClick={() => closePatientRecordModal(4)}>
-          <span>&times;</span>
-        </button>
-        <h3 className="modal__heading">Patient Records</h3>
-        {/* <h3 className="modal__heading">Medical Records</h3> */}
-        <table className='patient_list_table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>E-mail</th>
-              <th>ID</th>
-              <th>Medical File</th>
-            </tr>
-          </thead>
-          <tbody>
-            {records}
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <div className='modal_patient_list'>
+        <div className='modal_patient_list__content'>
+          <h1 className='modal_patient_list__heading'>
+            Patient Records
+          </h1>
+          <h2>Medical Records</h2>
+          <table className='patient_list_table'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>E-mail</th>
+                <th>ID</th>
+                <th>Medical File</th>
+              </tr>
+            </thead>
+            <tbody>
+              {records}
+            </tbody>
+          </table>
+        </div>
+      </div >
     </>
-    
   );
 };
 

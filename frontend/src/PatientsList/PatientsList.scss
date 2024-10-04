@@ -1,25 +1,66 @@
-.patient_list {
+@import '../../colors.scss'; // Assuming this is where your colors are defined
+
+.modal_patient_list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-shadow; // Background overlay
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-}
+  align-items: center;
+  z-index: 1000;
 
-.patient_list_table {
-  border-collapse: collapse;
-  margin-top: 20px;
-  width: 80%;
-  max-width: 800px;
-}
+  &__content {
+    background-color: $color-block-bg; // Main block background color
+    width: 50%; // Modal width
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: $box-shadow;
+    position: relative; // For close button positioning
+    color: $color-text; // Changed to white from $color-text
 
-.patient_list_table th,
-.patient_list_table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
+    &:hover {
+      box-shadow: 0 6px 10px -4px $color-shadow-hover;
+    }
+  }
 
-.patient_list_table th {
-  background-color: #f2f2f2;
+  &__close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: $color-text; // Changed to white from $color-text
+
+    &:hover {
+      color: $color-block-hover;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: $color-text; // Accent color for heading
+  }
+
+  &__record-details {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $color-accent-2; // Light accent color for dividers
+
+    p {
+      margin: 8px 0;
+      font-size: 1rem;
+      color: $color-text; // Changed to white from $color-text
+
+      strong {
+        color: $color-accent-1; // Accent color for bold text
+      }
+    }
+  }
 }

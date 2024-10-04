@@ -13,8 +13,17 @@ import useAppointmentData from './hooks/useAppointmentData'
 import usePatientData from './hooks/usePatientData';
 import DoctorDash from './routes/DoctorDash/DoctorDash'
 import useScheduleData from './hooks/useScheduleData'
+import useTopNavProfileModal from './hooks/useTopNavProfileModal'
 
 function App() {
+  const {
+    topNavState,
+    openProfile,
+    closeProfile,
+    openSettings,
+    closeSettings
+  } = useTopNavProfileModal();
+
   const {
     docStartDate,
     docEndDate,
@@ -24,19 +33,21 @@ function App() {
     docStartTimeOnChange,
     docEndTimeOnChange,
     setAvailability,
+    timeSlots,
+    add,
     saveSchedule
-   } = useScheduleData();
+  } = useScheduleData();
 
-  const { 
-    doctor, 
-    isSchedulerOpen, 
-    openSchedulerModal, 
+  const {
+    doctor,
+    isSchedulerOpen,
+    openSchedulerModal,
     closeSchedulerModal,
     isPatientRecordOpen,
     openPatientRecordModal,
     closePatientRecordModal
-   } = useDoctorsData();
-  const { 
+  } = useDoctorsData();
+  const {
     startDate,
     startTime,
     isVirtual,
@@ -51,14 +62,14 @@ function App() {
     filterPassedTime
   } = useAppointmentData();
 
-  const { 
-    isRecordOpen, 
-    patientRecord, 
-    openRecordModal, 
-    closeRecordModal, 
-    isMsgsOpen, 
-    patientMsgs, 
-    openMsgsModal, 
+  const {
+    isRecordOpen,
+    patientRecord,
+    openRecordModal,
+    closeRecordModal,
+    isMsgsOpen,
+    patientMsgs,
+    openMsgsModal,
     closeMsgsModal,
     isMedicationOpen,
     patientMedications,
@@ -70,9 +81,12 @@ function App() {
     closeLabResultsModal,
     isAppointmentOpen,
     openAppointmentModal,
-    closeAppointmentModal
- } = usePatientData();
- 
+    closeAppointmentModal,
+    isMedicalHistoryOpen,
+    openMedicalHistoryModal,
+    closeMedicalHistoryModal
+  } = usePatientData();
+
   const [currentComponent, setCurrentComponent] = useState('home');
   console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
   const setMainWindow = (component) => {
@@ -83,15 +97,22 @@ function App() {
       {/* <Appointment /> */}
       {/* <DoctorList doctorData={doctor}/>       */}
 
-      
-      <HomePage 
-        isRecordOpen={isRecordOpen} 
-        patientRecord={patientRecord} 
-        openRecordModal={openRecordModal} 
-        closeRecordModal={closeRecordModal} 
-        isMsgsOpen={isMsgsOpen} 
-        patientMsgs={patientMsgs} 
-        openMsgsModal={openMsgsModal} 
+
+      <HomePage
+        /*TopNav Props*/
+        topNavState={topNavState}
+        openProfile={openProfile}
+        closeProfile={closeProfile}
+        openSettings={openSettings}
+        closeSettings={closeSettings}
+        /*TopNav Props End*/
+        isRecordOpen={isRecordOpen}
+        patientRecord={patientRecord}
+        openRecordModal={openRecordModal}
+        closeRecordModal={closeRecordModal}
+        isMsgsOpen={isMsgsOpen}
+        patientMsgs={patientMsgs}
+        openMsgsModal={openMsgsModal}
         closeMsgsModal={closeMsgsModal}
         isMedicationOpen={isMedicationOpen}
         patientMedications={patientMedications}
@@ -104,7 +125,10 @@ function App() {
         isAppointmentOpen={isAppointmentOpen}
         openAppointmentModal={openAppointmentModal}
         closeAppointmentModal={closeAppointmentModal}
-        doctorData={doctor} 
+        isMedicalHistoryOpen={isMedicalHistoryOpen}
+        openMedicalHistoryModal={openMedicalHistoryModal}
+        closeMedicalHistoryModal={closeMedicalHistoryModal}
+        doctorData={doctor}
         startDate={startDate}
         startTime={startTime}
         isVirtual={isVirtual}
@@ -135,12 +159,10 @@ function App() {
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
       />
-      <RegistrationForm />
-      {/* <PatientsList /> */}
-      <PatientMedicalData />
-      
-      {/* <Appointment 
-        doctorData={doctor} 
+      {/* <DoctorDash /> */}
+      {/* <RegistrationForm /> */}
+      {/* <Appointment
+        doctorData={doctor}
         startDate={startDate}
         startTime={startTime}
         isVirtual={isVirtual}
@@ -154,7 +176,7 @@ function App() {
         cancel={cancel}
         filterPassedTime={filterPassedTime}
       /> */}
-      <Schedule 
+      <Schedule
         docStartDate={docStartDate}
         docEndDate={docEndDate}
         docStartTime={docStartTime}
