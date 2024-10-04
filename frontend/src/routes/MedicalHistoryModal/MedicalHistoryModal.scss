@@ -31,7 +31,7 @@
   &__close-button {
     position: absolute;
     top: 10px;
-    right: 20px;
+    right: 0px;
     background: none;
     border: none;
     font-size: 24px;
@@ -44,6 +44,7 @@
   }
 
   &__heading {
+    margin-top: 50px;
     margin-bottom: 20px;
     text-align: center;
     font-size: 1.5rem;
@@ -77,18 +78,24 @@
   }
 
   &__record-details {
-    padding: 5px;
+    padding: 15px;
     margin-bottom: 20px;
+    margin-top: 20px;
     border-bottom: 1px solid $color-accent-2; // Light accent color for dividers
 
     p {
       margin: 0;
+      margin-bottom: 10px;
       font-size: 1rem;
       color: $color-text; // Changed to white from $color-text
 
       strong {
         color: $color-accent-1; // Accent color for bold text
       }
+    }
+
+    input {
+      margin-bottom: 10px;
     }
   }
 }

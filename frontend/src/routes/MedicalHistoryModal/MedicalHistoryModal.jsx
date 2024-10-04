@@ -18,15 +18,15 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
 
   return (
     <>
-      <div className="modal">
-        <div className="modal__content">
-          <button className="modal__close-button" onClick={() => closeMedicalHistoryModal()}>
+      <div className="medical-history-modal">
+        <div className="medical-history-modal__content">
+          <button className="medical-history-modal__close-button" onClick={() => closeMedicalHistoryModal()}>
             <span>&times;</span>
           </button>
-          <h3 className="modal__heading">Personal and Medical Record</h3>
-          <form className="modal__msg-list" onSubmit={handleSubmit}>
-            <div>
-              <label className="modal__record-details">
+          <h3 className="medical-history-modal__heading">Personal and Medical Record</h3>
+          <form className="medical-history-modal__msg-list" onSubmit={handleSubmit}>
+            <div className="medical-history-modal__record-details">
+              <label>
                 <p><strong>Date of Birth:</strong></p>
                 <DatePicker
                   selected={formData.dateOfBirth}
@@ -36,8 +36,8 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
                 />
               </label>
             </div>
-            <div>
-              <label className="modal__record-details">
+            <div className="medical-history-modal__record-details">
+              <label>
                 <p><strong>Height:</strong></p>
                 <input
                   type="number"
@@ -52,8 +52,8 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
                 </select>
               </label>
             </div>
-            <div>
-              <label className="modal__record-details">
+            <div className="medical-history-modal__record-details">
+              <label>
                 <p><strong>Weight:</strong></p>
                 <input
                   type="number"
@@ -68,8 +68,8 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
                 </select>
               </label>
             </div>
-            <div>
-              <label className="modal__record-details"><p><strong>Do you smoke?</strong></p></label>
+            <div className="medical-history-modal__record-details">
+              <label><p><strong>Do you smoke?</strong></p></label>
               <div>
                 <label>
                   <input
@@ -93,8 +93,8 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
                 </label>
               </div>
             </div>
-            <div>
-              <label className="modal__record-details">
+            <div className="medical-history-modal__record-details">
+              <label>
                 <p><strong>Are you diabetic?</strong></p>
                 <select
                   name="diabetesStatus"
@@ -107,8 +107,8 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
                 </select>
               </label>
             </div>
-            <div>
-              <label className="modal__record-details"><p><strong>Allergies?</strong></p></label>
+            <div className="medical-history-modal__record-details">
+              <label><p><strong>Allergies?</strong></p></label>
               <div>
                 <label>
                   <input
@@ -131,22 +131,23 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
                   No
                 </label>
               </div>
+
+              <div>
+                <label>
+                  <p><strong>Please describe:</strong></p>
+                  <input
+                    type="text"
+                    name="allergyDescription"
+                    value={formData.allergyDescription}
+                    onChange={handleChange}
+                    // Enable input only if Yes is selected
+                    disabled={formData.allergies !== 'Yes'}
+                  />
+                </label>
+              </div>
             </div>
-            <div>
-              <label className="modal__record-details">
-                <p><strong>Please describe:</strong></p>
-                <input
-                  type="text"
-                  name="allergyDescription"
-                  value={formData.allergyDescription}
-                  onChange={handleChange}
-                  // Enable input only if Yes is selected
-                  disabled={formData.allergies !== 'Yes'}
-                />
-              </label>
-            </div>
-            <div>
-              <label className="modal__record-details"><p><strong>Any ongoing medication?</strong></p></label>
+            <div className="medical-history-modal__record-details">
+              <label><p><strong>Any ongoing medication?</strong></p></label>
               <div>
                 <label>
                   <input
@@ -169,19 +170,19 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal }) => {
                   No
                 </label>
               </div>
-            </div>
-            <div>
-              <label className="modal__record-details">
-                <p><strong>Please describe:</strong></p>
-                <input
-                  type="text"
-                  name="medicationDescription"
-                  value={formData.medicationDescription}
-                  onChange={handleChange}
-                  // Enable input only if Yes is selected
-                  disabled={formData.medication !== 'Yes'}
-                />
-              </label>
+              <div>
+                <label>
+                  <p><strong>Please describe:</strong></p>
+                  <input
+                    type="text"
+                    name="medicationDescription"
+                    value={formData.medicationDescription}
+                    onChange={handleChange}
+                    // Enable input only if Yes is selected
+                    disabled={formData.medication !== 'Yes'}
+                  />
+                </label>
+              </div>
             </div>
             <button type="submit">Submit</button>
           </form>

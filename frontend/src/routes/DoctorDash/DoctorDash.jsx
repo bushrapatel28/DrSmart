@@ -9,6 +9,7 @@ import SchedulerModal from '../SchedulerModal/SchedulerModal';
 // images / icons
 import patientDataIcon from '../../assets/patientdata-icon.png';
 import SchedulerIcon from '../../assets/calendar-icon.png';
+import DoctorPatientsModal from '../DoctorPatientsModal/DoctorPatientsModal';
 
 const DoctorDash = ({
   doctor,
@@ -23,7 +24,11 @@ const DoctorDash = ({
   docStartTimeOnChange,
   docEndTimeOnChange,
   setAvailability,
-  saveSchedule
+  saveSchedule,
+  patients,
+  isPatientsOpen,
+  openPatientsModal,
+  closePatientsModal
 }) => {
   return (
     <div className="doctordash">
@@ -43,7 +48,16 @@ const DoctorDash = ({
             isSchedulerOpen={isSchedulerOpen}
             closeSchedulerModal={closeSchedulerModal}
           />) : (<FunctionBlock icon={SchedulerIcon} label="Select Your Schedule" openModal={openSchedulerModal} />)}
-        <FunctionBlock icon={patientDataIcon} label="Patients Data" openModal={openSchedulerModal} />
+        {isPatientsOpen ? (
+          <DoctorPatientsModal
+            patientsList={patients}
+            closePatientsModal={closePatientsModal} />
+        ) : (
+          <FunctionBlock
+            icon={patientDataIcon}
+            label="Patients Data"
+            openModal={openPatientsModal} />
+        )}
       </div>
 
     </div>

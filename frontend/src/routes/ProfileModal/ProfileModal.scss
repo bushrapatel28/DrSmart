@@ -12,6 +12,11 @@
   align-items: center;
   z-index: 1000;
 
+
+  &__greeting {
+    font-size: 40px;
+  }
+
   &__content {
     background-color: $color-top-nav-block-bg;
     margin-top: 100px;
@@ -89,30 +94,52 @@
 
 .patient_list_table,
 .medical-data-table {
-  border-collapse: collapse;
-  border-radius: 20px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
   overflow: hidden;
   margin-top: 20px;
-  margin-left: 20px;
   width: 80%;
   max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
 }
 
 .patient_list_table th,
 .patient_list_table td,
 .medical-data-table th,
 .medical-data-table td {
-  border: 2px solid #ccc;
+  border: 1px solid #08354f;
   padding: 8px;
   text-align: left;
 }
 
 .patient_list_table th,
 .medical-data-table th {
-  background-color: #6C8CBF;
+  color: $color-text-dark;
+  background-color: #89a3cd;
 }
 
 .patient_list_table tbody,
 .medical-data-table tbody {
-  background-color: rgb(255, 255, 255, 0.2);
+  color: $color-text-dark;
+  background-color: rgb(255, 255, 255, 0.9);
+}
+
+// Specific styles for the first and last cells in the first and last rows
+tr:first-child th:first-child {
+  border-top-left-radius: 10px; // Top-left corner
+}
+
+tr:first-child th:last-child {
+  border-top-right-radius: 10px; // Top-right corner
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 10px; // Bottom-left corner
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px; // Bottom-right corner
 }

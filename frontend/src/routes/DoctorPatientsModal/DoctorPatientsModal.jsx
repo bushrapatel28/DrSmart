@@ -1,7 +1,7 @@
 import './DoctorPatientsModal.scss';
 
-const DoctorPatientsModal = ({ closeProfile, profilePatientArr }) => {
-  const records = profilePatientArr.map((record, index) => (
+const DoctorPatientsModal = ({ closePatientsModal, patientsList }) => {
+  const records = patientsList.map((record, index) => (
     <tr key={index}>
       <td>{record.name}</td>
       <td>{record.email}</td>
@@ -18,13 +18,12 @@ const DoctorPatientsModal = ({ closeProfile, profilePatientArr }) => {
     <>
       <div className='top-nav-modal'>
         <div className='top-nav-modal__content'>
-          <button className="top-nav-modal__close-button" onClick={closeProfile}>
+          <button className="top-nav-modal__close-button" onClick={closePatientsModal}>
             <span>&times;</span>
           </button>
           <h3 className="top-nav-modal__heading">
             Patient Records
           </h3>
-          <h2>Medical Records</h2>
           <table className='patient_list_table'>
             <thead>
               <tr>
