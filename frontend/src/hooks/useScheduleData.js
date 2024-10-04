@@ -76,21 +76,19 @@ const useScheduleData = () => {
     const endTimeStr = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false});      // Converting to hh:mm:ss format for 24hrs
     
     timeSlots.map((timeSlot) => {
-      if(timeSlot.end_time > startTimeStr && timeSlot.end_time <= endTimeStr) {
+      if(timeSlot.end_time > startTimeStr && timeSlot.end_time <= endTimeStr) {         //Condition for getting only the ids of time slots which fall between the selected start time and end time
         console.log("MATCHED END", timeSlot.id);
-        timeIds.push(timeSlot.id);
+        timeIds.push(timeSlot.id);          // Add the current timeSlotId to the array
       }
     })
-
     return timeIds;
   }  
 
   function saveSchedule() {
     const scheduleData = {
-      dates: dateRanges,
+      all_dates: dateRanges,
       vacant: true,
-      time_slot_ids: timeSlotIdRanges,
-      doctor_id: 4
+      all_time_slot_ids: timeSlotIdRanges
     };
 
     fetch("/doctor/:id/availability/new", {
@@ -108,7 +106,7 @@ const useScheduleData = () => {
         return response.json();          // Parse the JSON response
       })
       .then(data => {
-        console.log("Availability created:", data);  // Handle the success response
+        console.log("Availability added:", data);  // Handle the success response
       })
       .catch(error => {
         console.error("Error:", error);  // Handle any errors that occur
