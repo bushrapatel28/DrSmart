@@ -30,7 +30,7 @@ import { useState, useEffect } from 'react';
 //     medical_history: 'https://www.retention-project.eu/ig/Patient-P003.json.html'
 //   }
 // ];
-const PatientsList = () => {
+const PatientsList = ({ closePatientRecordModal }) => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
@@ -64,25 +64,31 @@ const PatientsList = () => {
   ));
 
   return (
-    <div className='patient_list'>
-      <h1>
-        Patient Records
-      </h1>
-      <h2>Medical Records</h2>
-      <table className='patient_list_table'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>E-mail</th>
-            <th>ID</th>
-            <th>Medical File</th>
-          </tr>
-        </thead>
-        <tbody>
-          {records}
-        </tbody>
-      </table>
+    <>
+    <div className="modal">
+      <div className='patient_list modal__content'>
+        <button className="modal__close-button" onClick={() => closePatientRecordModal(4)}>
+          <span>&times;</span>
+        </button>
+        <h3 className="modal__heading">Patient Records</h3>
+        {/* <h3 className="modal__heading">Medical Records</h3> */}
+        <table className='patient_list_table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>E-mail</th>
+              <th>ID</th>
+              <th>Medical File</th>
+            </tr>
+          </thead>
+          <tbody>
+            {records}
+          </tbody>
+        </table>
+      </div>
     </div>
+    </>
+    
   );
 };
 

@@ -27,7 +27,15 @@ function App() {
     saveSchedule
    } = useScheduleData();
 
-  const { doctor, isSchedulerOpen, openSchedulerModal, closeSchedulerModal } = useDoctorsData();
+  const { 
+    doctor, 
+    isSchedulerOpen, 
+    openSchedulerModal, 
+    closeSchedulerModal,
+    isPatientRecordOpen,
+    openPatientRecordModal,
+    closePatientRecordModal
+   } = useDoctorsData();
   const { 
     startDate,
     startTime,
@@ -111,10 +119,12 @@ function App() {
         filterPassedTime={filterPassedTime}
       />
       <DoctorDash
-        doctor={doctor}
         isSchedulerOpen={isSchedulerOpen}
         openSchedulerModal={openSchedulerModal}
         closeSchedulerModal={closeSchedulerModal}
+        isPatientRecordOpen={isPatientRecordOpen}
+        openPatientRecordModal={openPatientRecordModal}
+        closePatientRecordModal={closePatientRecordModal}
         docStartDate={docStartDate}
         docEndDate={docEndDate}
         docStartTime={docStartTime}
@@ -126,7 +136,7 @@ function App() {
         saveSchedule={saveSchedule}
       />
       <RegistrationForm />
-      <PatientsList />
+      {/* <PatientsList /> */}
       <PatientMedicalData />
       
       {/* <Appointment 

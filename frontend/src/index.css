@@ -2,19 +2,19 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* line-height: 1.5; */
+  /* font-weight: 400; */
 
   /* color-scheme: light dark; */
-  color: rgba(0, 0, 0, 0.87);
+  /* color: rgba(0, 0, 0, 0.87); */
   /* background-color: #242424; */
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
 
 
-  font-synthesis: none;
+  /* font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
 }
 
 a {
@@ -73,11 +73,65 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
   padding: 10px;
 }
 
+.doctor-profile-image {
+  margin-right: 15px;
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
 
+/* Will Delete later */
+
+.available-doctor {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background-color: #5AA7A7;
+  box-shadow: 0 0px 20px -6px #222;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.available-doctor:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 8px -4px rgba(0, 0, 0, 0.2);
+}
+
+.available-doctor .doctor-profile-image {
+  margin-right: 15px;
+}
+
+.available-doctor .doctor-profile-image img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.available-doctor .doctor-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff; 
+}
+
+.available-doctor .doctor-speciality {
+  font-size: 0.9rem;
+  color: #BAC94A; 
+  margin-left: auto;
+}
+
+/* up until here */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
   }
 
   a:hover {
