@@ -12,9 +12,9 @@ const ProfileModal = ({ closeProfile, profilePatientArr }) => {
           <button className="top-nav-modal__close-button" onClick={closeProfile}>
             <span>&times;</span>
           </button>
-          <h3>Patient Medical Data</h3>
+          <h2 className='top-nav-modal__greeting'>Hi, Frank!</h2>
           {/* Records Table */}
-          <h2>Records</h2>
+          <h2>Your Records</h2>
           <table className='medical-data-table'>
             <thead>
               <tr>
@@ -39,7 +39,7 @@ const ProfileModal = ({ closeProfile, profilePatientArr }) => {
           </table>
 
           {/* Prescriptions Table */}
-          <h2>Prescriptions</h2>
+          <h2>Your Prescriptions</h2>
           <table className='medical-data-table'>
             <thead>
               <tr>
@@ -60,7 +60,7 @@ const ProfileModal = ({ closeProfile, profilePatientArr }) => {
           </table>
 
 
-          <h2>Tests</h2>
+          <h2>Your Tests</h2>
           <table className='medical-data-table'>
             <thead>
               <tr>

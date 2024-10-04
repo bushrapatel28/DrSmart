@@ -12,14 +12,12 @@ import SchedulerIcon from '../../assets/calendar-icon.png';
 import MsgsIcon from '../../assets/messages-icon.png';
 import visitSummaryIcon from '../../assets/visit-summary-icon.png';
 
+import DoctorPatientsModal from '../DoctorPatientsModal/DoctorPatientsModal';
 
 const DoctorDash = ({
   isSchedulerOpen,
   openSchedulerModal,
   closeSchedulerModal,
-  isPatientRecordOpen,
-  openPatientRecordModal,
-  closePatientRecordModal,
   docStartDate,
   docEndDate,
   docStartTime,
@@ -28,7 +26,11 @@ const DoctorDash = ({
   docStartTimeOnChange,
   docEndTimeOnChange,
   setAvailability,
-  saveSchedule
+  saveSchedule,
+  patients,
+  isPatientsOpen,
+  openPatientsModal,
+  closePatientsModal
 }) => {
   return (
     <div className="doctordash">
@@ -48,13 +50,16 @@ const DoctorDash = ({
             isSchedulerOpen={isSchedulerOpen}
             closeSchedulerModal={closeSchedulerModal}
           />) : (<FunctionBlock icon={SchedulerIcon} label="Select Your Schedule" openModal={openSchedulerModal} />)}
-
-
-        {isPatientRecordOpen ? <PatientsList closePatientRecordModal={closePatientRecordModal} /> : <FunctionBlock icon={patientDataIcon} label="My Patients Data" openModal={openPatientRecordModal} />}
-        {/* {isMsgsOpen ? (<MsgsModal patientMsgs={patientMsgs} closeMsgsModal={closeMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openMsgsModal} />)} */}
-        <FunctionBlock icon={MsgsIcon} label="Messages" />
-        <FunctionBlock icon={visitSummaryIcon} label="After Visit Summary" />
-
+        {isPatientsOpen ? (
+          <DoctorPatientsModal
+            patientsList={patients}
+            closePatientsModal={closePatientsModal} />
+        ) : (
+          <FunctionBlock
+            icon={patientDataIcon}
+            label="Patients Data"
+            openModal={openPatientsModal} />
+        )}
       </div>
 
     </div>
