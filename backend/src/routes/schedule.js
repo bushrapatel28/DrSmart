@@ -36,12 +36,15 @@ module.exports = db => {
     let index = 0;
     const arrSize = all_dates.length;
     let allPromises = [];                 // Initialize an array to store all the promises
+    let success = false;
 
     while (index < arrSize) {
       // Collect promises for each date
-      const datePromises = all_dates[index].dates.map((date) => {
+      // const datePromises = 
+      all_dates[index].dates.map((date) => {
         // Collect promises for each time slot within the current date
-        return all_time_slot_ids[index].time_ids.map((time_id) => {
+        // return 
+        all_time_slot_ids[index].time_ids.map((time_id) => {
           console.log(`INSIDE the MAP`, date.slice(0, 10), time_id);     
           // const date = each_date.slice(0, 10);                          //YYYY-MM-DD Format without the Time
           // console.log("NEW DATE FORMAT", date);
@@ -53,10 +56,11 @@ module.exports = db => {
             RETURNING *
           `,[date, vacant, time_id, doctor_id]
           )
-          .then(({ rows }) => {
+          .then(( { rows } ) => {
             console.log("SUCCESS");
             console.log(rows[0]);
-            return rows[0];  // Return the result for tracking purposes
+            success = true;
+            // return rows[0];  // Return the result for tracking purposes
             
             // // Return the created availability as a response
             // res.status(201).json({
@@ -74,6 +78,7 @@ module.exports = db => {
           // })
           .catch((err) => {
             console.error("Error creating availability:", err);
+            success = false;
             throw err;  // Propagate error to handle in `Promise.all`
             // res.status(500).json({ error: "Internal server error" });
           });
@@ -81,27 +86,40 @@ module.exports = db => {
         });
         console.log("NEXT LOOP");
       });
-
-      console.log("DATE PROMISES", datePromises);
-      // Flatten the inner array of promises and add to allPromises
-      allPromises.push(...datePromises.flat());  // Collect all promises for this index
-      console.log("ALL PROMISES", allPromises);
+      
+      // console.log("DATE PROMISES", datePromises);
+      // // Flatten the inner array of promises and add to allPromises
+      // allPromises.push(...datePromises.flat());  // Collect all promises for this index
+      // console.log("ALL PROMISES", allPromises);
       index++;
     }
 
-    // Use Promise.all to wait for all promises to resolve
-    Promise.all(allPromises)
-      .then((results) => {
-        console.log("All availabilities inserted successfully.");
-        res.status(201).json({
-          message: "All availabilities added successfully",
-          availabilities: results,  // Return all inserted records
-        });
-      })
-      .catch((err) => {
-        console.error("Error inserting availabilities:", err);
-        res.status(500).json({ error: "Internal server error" });
-      })
+    setTimeout(() => {
+      if(index === arrSize) {
+        if(success) {
+          res.status(201).json({
+            message: "Availability added successfully",
+          })
+        } else {
+          res.status(500).json({ error: "Internal server error" });
+        }
+      }
+    }, 2000);
+    
+    // console.log("LINE 91", allPromises);
+    // // Use Promise.all to wait for all promises to resolve
+    // Promise.all(allPromises)
+    //   .then((results) => {
+    //     console.log("All availabilities inserted successfully.");
+    //     res.status(201).json({
+    //       message: "All availabilities added successfully",
+    //       availabilities: results,  // Return all inserted records
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.error("Error inserting availabilities:", err);
+    //     res.status(500).json({ error: "Internal server error" });
+    //   })
   });
 
   return router;
