@@ -13,8 +13,17 @@ import useAppointmentData from './hooks/useAppointmentData'
 import usePatientData from './hooks/usePatientData';
 import DoctorDash from './routes/DoctorDash/DoctorDash'
 import useScheduleData from './hooks/useScheduleData'
+import useTopNavProfileModal from './hooks/useTopNavProfileModal'
 
 function App() {
+  const {
+    topNavState,
+    openProfile,
+    closeProfile,
+    openSettings,
+    closeSettings
+  } = useTopNavProfileModal();
+
   const {
     docStartDate,
     docEndDate,
@@ -82,6 +91,13 @@ function App() {
 
 
       <HomePage
+        /*TopNav Props*/
+        topNavState={topNavState}
+        openProfile={openProfile}
+        closeProfile={closeProfile}
+        openSettings={openSettings}
+        closeSettings={closeSettings}
+        /*TopNav Props End*/
         isRecordOpen={isRecordOpen}
         patientRecord={patientRecord}
         openRecordModal={openRecordModal}
@@ -135,8 +151,8 @@ function App() {
       />
       <DoctorDash />
       {/* <RegistrationForm /> */}
-      {/* <Appointment 
-        doctorData={doctor} 
+      {/* <Appointment
+        doctorData={doctor}
         startDate={startDate}
         startTime={startTime}
         isVirtual={isVirtual}

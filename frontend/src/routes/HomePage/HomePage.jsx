@@ -8,6 +8,8 @@ import MsgsModal from '../MsgsModal/MsgsModal';
 import MedicationModal from '../MedicationsModal/MedicationsModal';
 import LabResultsModal from '../LabResultsModal/LabResultsModal';
 import Appointment from '../../components/Appointment/Appointment';
+import ProfileModal from '../ProfileModal/ProfileModal';
+import SettingsModal from '../SettingsModal/SettingsModal';
 
 // images / icons
 import scheduleIcon from '../../assets/schedule-icon.png';
@@ -20,6 +22,13 @@ import MedicalHistoryModal from '../MedicalHistoryModal/MedicalHistoryModal';
 
 
 const HomePage = ({
+  /*TopNav Props*/
+  topNavState,
+  openProfile,
+  closeProfile,
+  openSettings,
+  closeSettings,
+  /*TopNav Props End*/
   isRecordOpen,
   patientRecord,
   openRecordModal,
@@ -56,11 +65,24 @@ const HomePage = ({
   cancel,
   filterPassedTime
 }) => {
+  /*TopNav State deconstruction*/
+  const isProfileOpen = topNavState.isProfileOpen;
+  const isSettingsOpen = topNavState.isSettingsOpen;
+  const profilePatientArr = topNavState.patient;
 
   console.log("PATIENT LAB RESULTS FROM HomePage.jsx: ", patientLabResults);
   return (
     <div className="homepage">
-      <TopNavigationBar role="patient" username="Frank Navasky" />
+      <TopNavigationBar
+        role="patient"
+        username="Frank Navasky"
+        openProfile={openProfile}
+        openSettings={openSettings}
+      />
+      <div>
+        {isProfileOpen && <ProfileModal closeProfile={closeProfile} profilePatientArr={profilePatientArr} />}
+        {isSettingsOpen && <SettingsModal closeSettings={closeSettings} />}
+      </div>
       <div className="functions-section">
         {isAppointmentOpen ? (<Appointment
           doctorData={doctorData}

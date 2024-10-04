@@ -4,7 +4,7 @@ import logo from '../../assets/drsmart-logo.png';
 import Settings from '../Settings/Settings';
 import Logout from '../Logout/Logout';
 
-const TopNavigationBar = ({ role, username }) => {
+const TopNavigationBar = ({ openProfile, openSettings, role, username }) => {
   return (
     <div className="top-nav-bar">
       <div>
@@ -15,8 +15,8 @@ const TopNavigationBar = ({ role, username }) => {
         {role === "doctor" && <h1>Dr, {username}</h1>}
       </div>
       <div className="nav-icons">
-        <UserProfile />
-        <Settings />
+        <UserProfile openProfile={openProfile} />
+        <Settings openSettings={openSettings} />
         <Logout />
 
       </div>

@@ -43,34 +43,3 @@
 .read-the-docs {
   color: #888;
 }
-
-.patient_list,
-.patient-medical-data {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.patient_list_table,
-.medical-data-table {
-  border-collapse: collapse;
-  margin-top: 20px;
-  width: 80%;
-  max-width: 800px;
-}
-
-.patient_list_table th,
-.patient_list_table td,
-.medical-data-table th,
-.medical-data-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
-
-.patient_list_table th,
-.medical-data-table th {
-  background-color: #f2f2f2;
-}

@@ -1,0 +1,118 @@
+@import '../../colors.scss';
+
+.top-nav-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-shadow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__content {
+    background-color: $color-top-nav-block-bg;
+    margin-top: 100px;
+    width: 80%;
+    height: 70%; // Set a max height for scrolling
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: $box-shadow;
+    position: relative;
+    color: $color-text;
+    overflow-y: auto; // Enable vertical scrolling
+
+    &:hover {
+      box-shadow: 0 6px 10px -4px $color-shadow-hover;
+    }
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: $color-text;
+
+    &:hover {
+      color: $color-block-hover;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: $color-text;
+  }
+
+  &__list {
+    list-style-type: none;
+    padding: 0;
+
+    &__list-item {
+      margin: 10px 0;
+      padding: 15px;
+      background-color: $color-accent-1;
+      color: $color-text;
+      border-radius: 5px;
+      box-shadow: $box-shadow;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    a {
+      color: $color-accent-2;
+      text-decoration: underline;
+
+      &:hover {
+        color: $color-block-hover;
+      }
+    }
+  }
+}
+
+.patient_list,
+.patient-medical-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.patient_list_table,
+.medical-data-table {
+  border-collapse: collapse;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 80%;
+  max-width: 800px;
+}
+
+.patient_list_table th,
+.patient_list_table td,
+.medical-data-table th,
+.medical-data-table td {
+  border: 2px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.patient_list_table th,
+.medical-data-table th {
+  background-color: #6C8CBF;
+}
+
+.patient_list_table tbody,
+.medical-data-table tbody {
+  background-color: rgb(255, 255, 255, 0.2);
+}
