@@ -99,6 +99,7 @@ const useScheduleData = () => {
   }  
 
   function saveSchedule() {
+    setSelectedRanges([]);
     const scheduleData = {
       all_dates: dateRanges,
       vacant: true,
