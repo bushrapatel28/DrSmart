@@ -156,6 +156,7 @@ function App() {
         docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
+        selectedRanges={selectedRanges}
         // Patients props
         patients={patients}
         isPatientsOpen={isPatientsOpen}
