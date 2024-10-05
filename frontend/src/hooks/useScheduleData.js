@@ -128,15 +128,21 @@ const useScheduleData = () => {
       });
     }
 
-  function deleteAvailability(removeRange) {
-      console.log("SR", selectedRanges);
-      console.log("RR", removeRange);
-      const updatedSelectedRanges = selectedRanges.filter((range, i) => i !== removeRange);
-      console.log("NEW", updatedSelectedRanges);
-      
-      // setSelectedRanges(prev => [...prev, updatedSelectedRanges]);
-
-      // setAvailability();
+  function deleteAvailability(index) {
+    console.log("SR", selectedRanges);
+    console.log("RR", index);
+    //Get the new selectedRanges by filtering out the range whose index matched the index of the range for which delete was clicked
+    const updatedSelectedRanges = selectedRanges.filter((range, i) => i !== index);
+    console.log("NEW", updatedSelectedRanges);
+    const updatedDateRanges = dateRanges.filter((_, i) => i !== index);
+    const updatedTimeSlotIdRanges = timeSlotIdRanges.filter((_, i) => i !== index);
+  
+    // Update the state for all three arrays
+    setSelectedRanges(updatedSelectedRanges);
+    setDateRanges(updatedDateRanges);
+    setTimeSlotIdRanges(updatedTimeSlotIdRanges);
+    
+    // setAvailability();
   }
 
   return { 

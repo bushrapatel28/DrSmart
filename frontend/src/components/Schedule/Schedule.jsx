@@ -55,7 +55,7 @@ const Schedule = (props) => {
       </div>
 
       <div>
-        <button onClick={props.setAvailability}>Add</button>
+        <button onClick={props.setAvailability}>ADD</button>
         <button onClick={props.saveSchedule}>SAVE</button>
       </div>
 
