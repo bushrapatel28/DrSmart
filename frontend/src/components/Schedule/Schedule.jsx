@@ -2,6 +2,8 @@ import DatePicker from "react-datepicker";
 import { setHours, setMinutes } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from 'date-fns';
+import AvailabilityList from "../AvailabilityList/AvailabilityList"
+import { process_params } from "express/lib/router";
 
 const Schedule = (props) => {
 
@@ -52,8 +54,15 @@ const Schedule = (props) => {
         />
       </div>
 
-      <button onClick={props.setAvailability}>Add</button>
-      <button onClick={props.saveSchedule}>SAVE</button>
+      <div>
+        <button onClick={props.setAvailability}>Add</button>
+        <button onClick={props.saveSchedule}>SAVE</button>
+      </div>
+
+      <AvailabilityList 
+        selectedRanges={props.selectedRanges}
+      />
+      
     </div>
   );
 }

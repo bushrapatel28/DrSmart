@@ -44,13 +44,13 @@ const Appointment = (props) => {
             className="modal__appointment-date"
             readOnly
             name="date"
-            value={props.startDate ? props.startDate.toDateString() : ""}
+            value={props.startDate && props.startDate.toDateString()}
           />
           <input
             className="appointment-time"
             readOnly
             name="time"
-            value={props.startTime ? props.startTime.toLocaleTimeString() : ""}     //Converting time to show local time in string format
+            value={props.startTime && props.startTime.toLocaleTimeString()}     //Converting time to show local time in string format
           />
           <div className="modal__appointment-btns">
             <button className="next-btn" onClick={props.next}>Next</button>

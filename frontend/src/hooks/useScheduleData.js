@@ -10,6 +10,9 @@ const useScheduleData = () => {
   const [dateRanges, setDateRanges] = useState([]);
   const [timeSlotIdRanges, setTimeSlotIdRanges] = useState([]);
 
+  // Store the selected ranges
+  const [selectedRanges, setSelectedRanges] = useState([]);
+
   const [timeSlots, setTimeSlots] = useState([]);
   
   useEffect(() => {
@@ -18,7 +21,6 @@ const useScheduleData = () => {
     .then(data => setTimeSlots(data))
   }, []);
   
-
   const datesOnChange = (dates) => {
     const [start, end] = dates;
     console.log("START", start);
@@ -47,8 +49,20 @@ const useScheduleData = () => {
     const timeIdsArray = getAllTimeIdsBetween(docStartTime, docEndTime);
     setTimeSlotIdRanges((prev) => [...prev, { "time_ids": timeIdsArray }]);
 
+    // Add the selected range to the selectedRanges state
+    setSelectedRanges(prev => [
+      ...prev,
+      {
+        startDate: docStartDate,
+        endDate: docEndDate,
+        startTime: docStartTime,
+        endTime: docEndTime
+      }
+    ]);
+
     setDocStartTime(null);
     setDocEndTime(null);
+    // setData(false);
   }
   
   const getAllDatesBetween = (startDate, endDate) => {
@@ -122,7 +136,8 @@ const useScheduleData = () => {
     docStartTimeOnChange,
     docEndTimeOnChange,
     setAvailability,
-    saveSchedule
+    saveSchedule,
+    selectedRanges
    };
 }
 

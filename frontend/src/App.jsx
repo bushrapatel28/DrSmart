@@ -33,9 +33,8 @@ function App() {
     docStartTimeOnChange,
     docEndTimeOnChange,
     setAvailability,
-    timeSlots,
-    add,
-    saveSchedule
+    saveSchedule,
+    selectedRanges
   } = useScheduleData();
 
   const {
@@ -186,6 +185,7 @@ function App() {
         docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
+        selectedRanges={selectedRanges}
       />
 
     </>
