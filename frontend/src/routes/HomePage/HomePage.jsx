@@ -19,6 +19,7 @@ import MsgsIcon from '../../assets/messages-icon.png';
 import VisitsIcon from '../../assets/visits-icon.png';
 import RegistrationForm from '../../Registration/RegistrationForm';
 import MedicalHistoryModal from '../MedicalHistoryModal/MedicalHistoryModal';
+import AppointmentModal from '../AppointmentModal/AppointmentModal';
 
 
 const HomePage = ({
@@ -58,7 +59,7 @@ const HomePage = ({
   showDoc,
   saveDoctorInfo,
   selectDateTime,
-  toggleAppointment,
+  toggleAppointmentType,
   next,
   back,
   save,
@@ -84,7 +85,10 @@ const HomePage = ({
         {isSettingsOpen && <SettingsModal closeSettings={closeSettings} />}
       </div>
       <div className="functions-section">
-        {isAppointmentOpen ? (<Appointment
+        {isAppointmentOpen ? (<AppointmentModal
+          isAppointmentOpen={isAppointmentOpen}
+          closeAppointmentModal={closeAppointmentModal}
+          toggleAppointmentType={toggleAppointmentType}
           doctorData={doctorData}
           startDate={startDate}
           startTime={startTime}
@@ -92,13 +96,10 @@ const HomePage = ({
           showDoc={showDoc}
           saveDoctorInfo={saveDoctorInfo}
           selectDateTime={selectDateTime}
-          toggleAppointment={toggleAppointment}
           next={next}
           back={back}
           save={save}
           cancel={cancel}
-          closeAppointmentModal={closeAppointmentModal}
-          isAppointmentOpen={isAppointmentOpen}
           filterPassedTime={filterPassedTime}
         />
         ) : (<FunctionBlock icon={scheduleIcon} label="Schedule an Appointment" openModal={openAppointmentModal} />)}

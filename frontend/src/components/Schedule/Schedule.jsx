@@ -61,6 +61,7 @@ const Schedule = (props) => {
 
       <AvailabilityList 
         selectedRanges={props.selectedRanges}
+        deleteAvailability={props.deleteAvailability}
       />
       
     </div>

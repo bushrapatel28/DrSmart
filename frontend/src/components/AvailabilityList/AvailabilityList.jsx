@@ -15,9 +15,10 @@ const AvailabilityList = (props) => {
                   {range.startDate.toDateString()} - {range.endDate ? range.endDate.toDateString() : range.startDate.toDateString()} 
                 </div>
                 <div>
-                  {range.startTime.toLocaleTimeString()} - {range.endTime.toLocaleTimeString()}
+                  {range.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })} - {range.endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}
                 </div>
                 <br />
+                <button className="delete-btn" onClick={() => props.deleteAvailability(index)}>Delete</button>
               </div>
             ))}
           </ul>

@@ -62,7 +62,6 @@ const useScheduleData = () => {
 
     setDocStartTime(null);
     setDocEndTime(null);
-    // setData(false);
   }
   
   const getAllDatesBetween = (startDate, endDate) => {
@@ -100,6 +99,7 @@ const useScheduleData = () => {
 
   function saveSchedule() {
     setSelectedRanges([]);
+
     const scheduleData = {
       all_dates: dateRanges,
       vacant: true,
@@ -126,6 +126,17 @@ const useScheduleData = () => {
       .catch(error => {
         console.error("Error:", error);  // Handle any errors that occur
       });
+    }
+
+  function deleteAvailability(removeRange) {
+      console.log("SR", selectedRanges);
+      console.log("RR", removeRange);
+      const updatedSelectedRanges = selectedRanges.filter((range, i) => i !== removeRange);
+      console.log("NEW", updatedSelectedRanges);
+      
+      // setSelectedRanges(prev => [...prev, updatedSelectedRanges]);
+
+      // setAvailability();
   }
 
   return { 
@@ -138,7 +149,8 @@ const useScheduleData = () => {
     docEndTimeOnChange,
     setAvailability,
     saveSchedule,
-    selectedRanges
+    selectedRanges,
+    deleteAvailability
    };
 }
 
