@@ -42,10 +42,12 @@ function App() {
     isSchedulerOpen,
     openSchedulerModal,
     closeSchedulerModal,
-    isPatientRecordOpen,
-    openPatientRecordModal,
-    closePatientRecordModal
+    patients,
+    isPatientsOpen,
+    openPatientsModal,
+    closePatientsModal
   } = useDoctorsData();
+
   const {
     startDate,
     startTime,
@@ -145,9 +147,6 @@ function App() {
         isSchedulerOpen={isSchedulerOpen}
         openSchedulerModal={openSchedulerModal}
         closeSchedulerModal={closeSchedulerModal}
-        isPatientRecordOpen={isPatientRecordOpen}
-        openPatientRecordModal={openPatientRecordModal}
-        closePatientRecordModal={closePatientRecordModal}
         docStartDate={docStartDate}
         docEndDate={docEndDate}
         docStartTime={docStartTime}
@@ -157,6 +156,11 @@ function App() {
         docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
+        // Patients props
+        patients={patients}
+        isPatientsOpen={isPatientsOpen}
+        openPatientsModal={openPatientsModal}
+        closePatientsModal={closePatientsModal}
       />
       {/* <DoctorDash /> */}
       {/* <RegistrationForm /> */}
