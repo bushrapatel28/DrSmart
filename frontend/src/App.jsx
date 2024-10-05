@@ -158,6 +158,7 @@ function App() {
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
         selectedRanges={selectedRanges}
+        deleteAvailability={deleteAvailability}
         // Patients props
         patients={patients}
         isPatientsOpen={isPatientsOpen}

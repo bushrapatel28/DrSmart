@@ -53,8 +53,8 @@ const Appointment = (props) => {
             value={props.startTime && props.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}     //Converting time to show local time in string format
           />
           <div className="modal__appointment-btns">
-            <button className="next-btn" onClick={props.next}>Next</button>
-            <button className="back-btn" onClick={() => {props.closeAppointmentModal(); props.back()}}>Back</button>
+            <button className="next-btn" onClick={props.next}>NEXT</button>
+            <button className="back-btn" onClick={() => {props.closeAppointmentModal(); props.back()}}>BACK</button>
           </div>
 
           <div className="appointment-type">

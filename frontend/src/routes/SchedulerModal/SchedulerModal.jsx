@@ -14,7 +14,8 @@ const SchedulerModal = ({
   docEndTimeOnChange,
   setAvailability,
   saveSchedule,
-  selectedRanges
+  selectedRanges,
+  deleteAvailability
 }) => {
 
   return (
@@ -37,6 +38,7 @@ const SchedulerModal = ({
               setAvailability={setAvailability}
               saveSchedule={saveSchedule}
               selectedRanges={selectedRanges}
+              deleteAvailability={deleteAvailability}
             />
           </div>
         </div>
