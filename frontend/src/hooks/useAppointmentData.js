@@ -1,4 +1,5 @@
 import { useState, useReducer } from 'react';
+import { setHours, setMinutes } from 'date-fns';
 
 export const ACTIONS = {
   DOCTOR_ADDED: "DOCTOR_ADDED",
@@ -11,8 +12,8 @@ export const ACTIONS = {
   APPOINTMENT_DATE_REMOVED: "APPOINTMENT_DATE_REMOVED",
   APPOINTMENT_TIME_ADDED: "APPOINTMENT_TIME_ADDED",
   APPOINTMENT_TIME_REMOVED: "APPOINTMENT_TIME_REMOVED",
-  DISPLAY_ERROR: "DISPLAY_ERROR",
-  HIDE_ERROR: "HIDE_ERROR"
+  ERROR_MSG_ADDED: "ERROR_MSG_ADDED",
+  ERROR_MSG_REMOVED: "ERROR_MSG_REMOVED"
 }
 
 function reducer(state, action) {
@@ -37,10 +38,10 @@ function reducer(state, action) {
       return {...state, startTime: action.payload};
     case ACTIONS.APPOINTMENT_TIME_REMOVED:
       return {...state, startTime: ""};
-    case ACTIONS.DISPLAY_ERROR:
-      return {...state, hasError: action.payload};
-    case ACTIONS.HIDE_ERROR:
-      return {...state, hasError: ""};
+    case ACTIONS.ERROR_MSG_ADDED:
+      return {...state, errorMsg: action.payload};
+    case ACTIONS.ERROR_MSG_REMOVED:
+      return {...state, errorMsg: ""};
     default: 
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -55,7 +56,7 @@ const initialState = {
   appointmentType: "Virtual",
   showDoc: false,
   doctorInfo: null,
-  hasError: ""
+  errorMsg: ""
 }
 
 const useAppointmentData = () => {
@@ -82,15 +83,16 @@ const useAppointmentData = () => {
     console.log(selectedDoc);
     // setDoctorInfo(selectedDoc);
     dispatch({type: ACTIONS.DOCTOR_ADDED, payload: selectedDoc});
-    dispatch({type: ACTIONS.HIDE_ERROR});
+    dispatch({type: ACTIONS.ERROR_MSG_REMOVED});
   }
   
   function selectDateTime(selectedDate) {
     // setStartDate(date);
     // setStartTime(date);
+    dispatch({type: ACTIONS.CLOSE_DOCTORS_LIST});
     dispatch({type: ACTIONS.APPOINTMENT_DATE_ADDED, payload: selectedDate});
     dispatch({type: ACTIONS.APPOINTMENT_TIME_ADDED, payload: selectedDate});
-    dispatch({type: ACTIONS.HIDE_ERROR});
+    dispatch({type: ACTIONS.ERROR_MSG_REMOVED});
   }
   
   function toggleAppointmentType() {
@@ -103,15 +105,18 @@ const useAppointmentData = () => {
       // setIsVirtual(true);
       // setAppointmentType("Virtual");
       dispatch({type: ACTIONS.SET_VIRTUAL, payload: true});
-      dispatch({type: ACTIONS.SELECT_APPOINTMENT_TYPE, payload: "VIRTUAL"});
+      dispatch({type: ACTIONS.SELECT_APPOINTMENT_TYPE, payload: "Virtual"});
     }
   }
   
   function next() {
     console.log(`Next`);
+    console.log(`START TIME AND CONDITIONAL`,state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
     if(!state.startDate || !state.startTime) {
       console.log("PLEASE SELECT AN APPOINTMENT DATE AND TIME");
-      dispatch({type: ACTIONS.DISPLAY_ERROR, payload: "Appointment Date and Time cannot be empty"});
+      dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Appointment Date and Time cannot be empty"});
+    } else if (state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }) < "06:30 AM") {
+      dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Appointment Time must be between 6:30 AM and 8:30 PM"});
     } else {
       // setShowDoc(true);
       dispatch({type: ACTIONS.DISPLAY_DOCTORS_LIST});
@@ -128,14 +133,14 @@ const useAppointmentData = () => {
     dispatch({type: ACTIONS.DOCTOR_REMOVED});
     dispatch({type: ACTIONS.APPOINTMENT_DATE_REMOVED});
     dispatch({type: ACTIONS.APPOINTMENT_TIME_REMOVED});
-    dispatch({type: ACTIONS.HIDE_ERROR});
+    dispatch({type: ACTIONS.ERROR_MSG_REMOVED});
   }
   
   function save() {
     console.log(`Save ${state.startDate} ${state.startTime}`);
     // setShowDoc(false);
     if(!state.doctorInfo) {
-      dispatch({type: ACTIONS.DISPLAY_ERROR, payload: "Please Select a Doctor to Book"});
+      dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Please Select a Doctor to Book"});
     } else {
 
       const appointmentData = {

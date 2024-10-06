@@ -9,7 +9,7 @@ const Appointment = (props) => {
   console.log("STATE in Appointment comp: ", props.state);
 
   const {
-    state:{startDate, startTime, isVirtual, showDoc, hasError},
+    state:{startDate, startTime, isVirtual, showDoc, errorMsg},
     doctorData,
     saveDoctorInfo,
     selectDateTime,
@@ -73,9 +73,9 @@ const Appointment = (props) => {
           </div>
 
           <div className="error-message">
-            <h3 className="appointment-error">{hasError}</h3>
+            <h3 className="appointment-error">{errorMsg}</h3>
           </div>
-          {/* {hasError && 
+          {/* {errorMsg && 
           } */}
 
           <div className="appointment-type">
@@ -112,7 +112,7 @@ const Appointment = (props) => {
               saveDoctorInfo={saveDoctorInfo}
               save={save}
               cancel={cancel}
-              hasError={hasError}
+              errorMsg={errorMsg}
           />
         }
       {/* </div>
