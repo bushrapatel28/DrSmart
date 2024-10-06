@@ -11,7 +11,7 @@
   width: 100%; // Ensures full width
   // background-color: white; // Set background to white
   color: $color-main-bg; // Use variable for text color
-  background-image: url("../../assets/home-background-img-text.jpg");
+  background-image: url("../../assets/home-background-cross.jpg");
   // background-color: #cccccc;
   background-position: center;
   background-repeat: no-repeat;
@@ -25,7 +25,8 @@
 }
 
 .slogan {
-  margin-top: 80px;
+  color: $color-top-nav-block-bg-dark;
+  margin-top: 10px;
 }
 
 .welcome-section h1 {
