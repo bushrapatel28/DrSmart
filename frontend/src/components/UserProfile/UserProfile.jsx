@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './UserProfile.scss';
-import ProfileIcon from '../../assets/user-profile-icon.png'
+import ProfileIcon from '../../assets/profile-icon-new.png'
 const UserProfile = ({ openProfile }) => {
   // const [isOpen, setIsOpen] = useState(false);
 

@@ -12,25 +12,28 @@
   justify-content: center;
   color: white;
   font-size: 1.2rem;
-  transition: background-color 0.5s ease;
+  transition: transform 1s ease, background-color 0.5s ease;
   box-shadow: 0 3px 5px $color-shadow-hover;
 
   .function-block-icon {
-    transition: 0.8s;
-    
+    transition: transform 1s ease;
+
   }
+
   &:hover {
     // background-color: #96d7c6b6;
     background-color: #5aa7a7bb;
     box-shadow: 0 6px 10px $color-shadow-hover;
     cursor: pointer;
+    transform: scale(1.2);
 
-  .function-block-icon {
-    transform: scale(1.25);
-  }
-  .label {
-    text-shadow: 0 6px 10px $color-shadow-hover;
-  }
+    .function-block-icon {
+      transform: scale(1.25);
+    }
+
+    .label {
+      text-shadow: 0 6px 10px $color-shadow-hover;
+    }
   }
 
 }

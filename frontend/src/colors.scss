@@ -1,14 +1,18 @@
 // colors.scss
 $color-main-bg: #6C8CBF;
 $color-block-bg: #5AA7A7;
-$color-top-nav-block-bg: rgb(90, 167, 167, 0.8);
+$color-top-nav-block-bg: rgb(90, 167, 167);
 $color-top-nav-block-bg-dark: rgba(25, 101, 122, 0.8);
+$color-top-nav-block-bg-gradiant: linear-gradient(20deg, #19667b, #448fa4);
 $color-block-hover: #96D7C6;
 // $color-text: #6C8CBF;
 $color-text: #ffffff;
+$color-text-alpha: rgb(255, 255, 255, 0.9);
 $color-text-dark: #1e3c6b;
 $color-shadow: rgba(0, 0, 0, 0.5);
 $color-shadow-hover: rgba(0, 0, 0, 0.2);
-$color-accent-1: #BAC94A;
+$color-accent-1: rgb(186, 201, 74);
 $color-accent-2: #E2D368;
 $box-shadow: 0 4px 6px -6px #222;
+// GRADIENTS
+$gradient-1: linear-gradient(#5076b1, #1c3a6a);

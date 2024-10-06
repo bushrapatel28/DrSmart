@@ -1,6 +1,6 @@
 import './TopNavigationBar.scss';
 import UserProfile from '../UserProfile/UserProfile';
-import logo from '../../assets/drsmart-logo.png';
+import logo from '../../assets/drsmart-logo-slogan.png';
 import Settings from '../Settings/Settings';
 import Logout from '../Logout/Logout';
 
@@ -11,6 +11,8 @@ const TopNavigationBar = ({ openProfile, openSettings, role, username }) => {
         <img className="top-nav-bar__logo" src={logo} alt="DrSmart Logo" />
       </div>
       <div className="welcome-section">
+        {/* <h1>DRSMART</h1>
+        <h1>SMARTER CARE, ANYTIME, ANYWHERE.</h1> */}
         {role === "patient" && <h1>Welcome, {username}</h1>}
         {role === "doctor" && <h1>Dr, {username}</h1>}
       </div>
