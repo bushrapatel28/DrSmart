@@ -3,7 +3,6 @@ import { setHours, setMinutes } from 'date-fns';
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from 'date-fns';
 import AvailabilityList from "../AvailabilityList/AvailabilityList"
-import { process_params } from "express/lib/router";
 
 const Schedule = (props) => {
 
