@@ -167,7 +167,7 @@ function App() {
       />
       {/* <DoctorDash /> */}
       {/* <RegistrationForm /> */}
-      <Appointment
+      {/* <Appointment
         doctorData={doctor}
         startDate={startDate}
         startTime={startTime}
@@ -194,7 +194,7 @@ function App() {
         saveSchedule={saveSchedule}
         selectedRanges={selectedRanges}
         deleteAvailability={deleteAvailability}
-      />
+      /> */}
 
     </>
   )

@@ -1,6 +1,6 @@
 import './TopNavigationBar.scss';
 import UserProfile from '../UserProfile/UserProfile';
-import logo from '../../assets/drsmart-logo-slogan.png';
+import logo from '../../assets/drsmart-logo-small.png';
 import Settings from '../Settings/Settings';
 import Logout from '../Logout/Logout';
 

@@ -15,7 +15,7 @@
   background-image: $gradient-1;
 
   h1 {
-    color: $color-text-alpha;
+    color: $color-top-nav-block-bg;
     font-weight: 500;
   }
 }
@@ -23,7 +23,7 @@
 .top-nav-bar__logo {
   margin-left: 20px;
   margin-top: 5px;
-  width: 280px;
+  width: 110px;
   /* Set the width of the logo */
   height: auto;
   /* Maintain aspect ratio */
