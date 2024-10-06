@@ -52,16 +52,18 @@ const HomePage = ({
   isMedicalHistoryOpen,
   openMedicalHistoryModal,
   closeMedicalHistoryModal,
+  /*Appointment Props Start */
+  state,
   doctorData,
-  startDate,
-  startTime,
-  isVirtual,
-  showDoc,
+  // startDate,
+  // startTime,
+  // isVirtual,
+  // showDoc,
   saveDoctorInfo,
   selectDateTime,
   toggleAppointmentType,
   next,
-  back,
+  clear,
   save,
   cancel,
   filterPassedTime
@@ -89,15 +91,16 @@ const HomePage = ({
           isAppointmentOpen={isAppointmentOpen}
           closeAppointmentModal={closeAppointmentModal}
           toggleAppointmentType={toggleAppointmentType}
+          state={state}
           doctorData={doctorData}
-          startDate={startDate}
-          startTime={startTime}
-          isVirtual={isVirtual}
-          showDoc={showDoc}
+          // startDate={startDate}
+          // startTime={startTime}
+          // isVirtual={isVirtual}
+          // showDoc={showDoc}
           saveDoctorInfo={saveDoctorInfo}
           selectDateTime={selectDateTime}
           next={next}
-          back={back}
+          clear={clear}
           save={save}
           cancel={cancel}
           filterPassedTime={filterPassedTime}

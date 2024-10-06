@@ -1,16 +1,62 @@
 import { useState, useReducer } from 'react';
 
-// const useDoctorsData = () => {
-//   const [doctor, setDoctor] = useState([]);
+export const ACTIONS = {
+  DOCTOR_ADDED: "DOCTOR_ADDED",
+  DOCTOR_REMOVED: "DOCTOR_REMOVED",
+  DISPLAY_DOCTORS_LIST: "DISPLAY_DOCTORS_LIST",
+  CLOSE_DOCTORS_LIST: "CLOSE_DOCTORS_LIST",
+  SET_VIRTUAL: "SET_VIRTUAL",
+  SELECT_APPOINTMENT_TYPE: "SELECT_APPOINTMENT_TYPE",
+  APPOINTMENT_DATE_ADDED: "APPOINTMENT_DATE_ADDED",
+  APPOINTMENT_DATE_REMOVED: "APPOINTMENT_DATE_REMOVED",
+  APPOINTMENT_TIME_ADDED: "APPOINTMENT_TIME_ADDED",
+  APPOINTMENT_TIME_REMOVED: "APPOINTMENT_TIME_REMOVED",
+  ERROR_MSG_ADDED: "ERROR_MSG_ADDED",
+  ERROR_MSG_REMOVED: "ERROR_MSG_REMOVED"
+}
 
-//   useEffect(() => {
-//     fetch('/api/doctors')
-//       .then(res => res.json())
-//       .then(data => setDoctor(data))
-//   }, []);
+function reducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.DOCTOR_ADDED:
+      return {...state, doctorInfo: action.payload};
+    case ACTIONS.DOCTOR_REMOVED:
+      return {...state, doctorInfo: null};
+    case ACTIONS.DISPLAY_DOCTORS_LIST:
+      return {...state, showDoc: true};
+    case ACTIONS.CLOSE_DOCTORS_LIST:
+      return {...state, showDoc: false};
+    case ACTIONS.SET_VIRTUAL:
+      return {...state, isVirtual: action.payload};
+    case ACTIONS.SELECT_APPOINTMENT_TYPE:
+      return {...state, appointmentType: action.payload};
+    case ACTIONS.APPOINTMENT_DATE_ADDED:
+      return {...state, startDate: action.payload};
+    case ACTIONS.APPOINTMENT_DATE_REMOVED:
+      return {...state, startDate: ""};
+    case ACTIONS.APPOINTMENT_TIME_ADDED:
+      return {...state, startTime: action.payload};
+    case ACTIONS.APPOINTMENT_TIME_REMOVED:
+      return {...state, startTime: ""};
+    case ACTIONS.ERROR_MSG_ADDED:
+      return {...state, errorMsg: action.payload};
+    case ACTIONS.ERROR_MSG_REMOVED:
+      return {...state, errorMsg: ""};
+    default: 
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      )
+  }
+}
 
-//   return { doctor };
-// }
+const initialState = {
+  startDate: "",
+  startTime: "",
+  isVirtual: true,
+  appointmentType: "Virtual",
+  showDoc: false,
+  doctorInfo: null,
+  errorMsg: ""
+}
 
 export const ACTIONS = {
   DOCTOR_ADDED: "DOCTOR_ADDED",
@@ -63,6 +109,7 @@ const useAppointmentData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+<<<<<<< HEAD
   const [startDate, setStartDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [isVirtual, setIsVirtual] = useState(true);
@@ -96,6 +143,15 @@ const useAppointmentData = () => {
       dispatch({type: ACTIONS.SELECT_APPOINTMENT_TYPE, payload: "VIRTUAL"})
     }
   }
+=======
+  // const [startDate, setStartDate] = useState("");
+  // const [startTime, setStartTime] = useState("");
+  // const [isVirtual, setIsVirtual] = useState(true);
+  // const [appointmentType, setAppointmentType] = useState("Virtual");
+  // const [showDoc, setShowDoc] = useState(false);
+  // const [doctorInfo, setDoctorInfo] = useState(null);
+
+>>>>>>> fix/reducer/appointment
 
   //When no selection is made, the showTimeSelect list should only show times after current time until the set end time
   const filterPassedTime = (time) => {
@@ -105,76 +161,130 @@ const useAppointmentData = () => {
     return currentDate.getTime() < selectedDate.getTime();
   };
   
-  function next() {
-    console.log(`Next`);
-    setShowDoc(true);
+  function saveDoctorInfo(selectedDoc) {
+    console.log(selectedDoc);
+    // setDoctorInfo(selectedDoc);
+    dispatch({type: ACTIONS.DOCTOR_ADDED, payload: selectedDoc});
+    dispatch({type: ACTIONS.ERROR_MSG_REMOVED});
   }
   
-  function back() {
-    console.log("Back");
-    setShowDoc(false);
-    setDoctorInfo(null);
-    setStartDate("");
-    setStartTime("");
+  function selectDateTime(selectedDate) {
+    // setStartDate(date);
+    // setStartTime(date);
+    dispatch({type: ACTIONS.CLOSE_DOCTORS_LIST});
+    dispatch({type: ACTIONS.APPOINTMENT_DATE_ADDED, payload: selectedDate});
+    dispatch({type: ACTIONS.APPOINTMENT_TIME_ADDED, payload: selectedDate});
+    dispatch({type: ACTIONS.ERROR_MSG_REMOVED});
   }
-
+  
+  function toggleAppointmentType() {
+    if (state.isVirtual) {
+      // setIsVirtual(false);
+      // setAppointmentType("In-Person");
+      dispatch({type: ACTIONS.SET_VIRTUAL, payload: false});
+      dispatch({type: ACTIONS.SELECT_APPOINTMENT_TYPE, payload: "In-Person"});
+    } else {
+      // setIsVirtual(true);
+      // setAppointmentType("Virtual");
+      dispatch({type: ACTIONS.SET_VIRTUAL, payload: true});
+      dispatch({type: ACTIONS.SELECT_APPOINTMENT_TYPE, payload: "Virtual"});
+    }
+  }
+  
+  function next() {
+    console.log(`Next`);
+    // console.log(`START TIME AND CONDITIONAL`,state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
+    if(!state.startDate || !state.startTime) {
+      console.log("PLEASE SELECT AN APPOINTMENT DATE AND TIME");
+      dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Appointment Date and Time cannot be empty"});
+    } else if (state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }) < "06:30 AM") {
+      dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Appointment Time must be between 6:30 AM and 8:30 PM"});
+    } else {
+      // setShowDoc(true);
+      dispatch({type: ACTIONS.DISPLAY_DOCTORS_LIST});
+    }
+  }
+  
+  function clear() {
+    console.log("Back");
+    // setShowDoc(false);
+    // setDoctorInfo(null);
+    // setStartDate("");
+    // setStartTime("");
+    dispatch({type: ACTIONS.CLOSE_DOCTORS_LIST});
+    dispatch({type: ACTIONS.DOCTOR_REMOVED});
+    dispatch({type: ACTIONS.APPOINTMENT_DATE_REMOVED});
+    dispatch({type: ACTIONS.APPOINTMENT_TIME_REMOVED});
+    dispatch({type: ACTIONS.ERROR_MSG_REMOVED});
+  }
+  
   function save() {
-    console.log(`Save ${startDate} ${startTime}`);
-    setShowDoc(false);
-    
-    const appointmentData = {
-      appointment_date: startDate,
-      appointment_time: startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false}),
-      appointment_type: appointmentType,
-      status: "Pending",
-      patient_id: 1,
-      doctor_id: doctorInfo
-    };
+    console.log(`Save ${state.startDate} ${state.startTime}`);
+    // setShowDoc(false);
+    if(!state.doctorInfo) {
+      dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Please Select a Doctor to Book"});
+    } else {
 
-    fetch("/api/appointments/new", {
-      method: "POST",                         // Set method to POST
-      headers: {
-        "Content-Type": "application/json",  // Specify the content type as JSON
-      },
-      body: JSON.stringify(appointmentData)  // Convert the data to JSON format
-    })
+      const appointmentData = {
+        appointment_date: state.startDate,
+        appointment_time: state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false}),
+        appointment_type: state.appointmentType,
+        status: "Pending",
+        patient_id: 1,
+        doctor_id: state.doctorInfo
+      };
+  
+      fetch("/api/appointments/new", {
+        method: "POST",                         // Set method to POST
+        headers: {
+          "Content-Type": "application/json",  // Specify the content type as JSON
+        },
+        body: JSON.stringify(appointmentData)  // Convert the data to JSON format
+      })
       .then(response => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         return response.json();          // Parse the JSON response
-      })
-      .then(data => {
-        console.log("Appointment created:", data);  // Handle the success response
-      })
-      .catch(error => {
-        console.error("Error:", error);  // Handle any errors that occur
-      });
+        })
+        .then(data => {
+          console.log("Appointment created:", data);  // Handle the success response
+          dispatch({type: ACTIONS.CLOSE_DOCTORS_LIST});
+          dispatch({type: ACTIONS.APPOINTMENT_DATE_REMOVED});
+          dispatch({type: ACTIONS.APPOINTMENT_TIME_REMOVED});
+          dispatch({type: ACTIONS.DOCTOR_REMOVED});
+        })
+        .catch(error => {
+          console.error("Error:", error);  // Handle any errors that occur
+        });
+    }
   }
-
+  
   function cancel() {
     console.log("Cancel");
-    setDoctorInfo("");
-    setShowDoc(false);
+    // setDoctorInfo("");
+    // setShowDoc(false);
+    dispatch({type: ACTIONS.DOCTOR_REMOVED});
+    dispatch({type: ACTIONS.CLOSE_DOCTORS_LIST});
+    dispatch({type: ACTIONS.APPOINTMENT_DATE_REMOVED});
+    dispatch({type: ACTIONS.APPOINTMENT_TIME_REMOVED});
   }
-
+    
   return {
-    startDate,
-    startTime,
-    isVirtual,
-    showDoc,
-    doctorInfo,
+    state,
+    // startDate,
+    // startTime,
+    // isVirtual,
+    // showDoc,
     saveDoctorInfo,
     selectDateTime,
     toggleAppointmentType,
     next,
-    back,
+    clear,
     save,
     cancel,
     filterPassedTime
   }
 }
-
-
 
 export default useAppointmentData;
