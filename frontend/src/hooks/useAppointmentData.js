@@ -1,5 +1,4 @@
 import { useState, useReducer } from 'react';
-import { setHours, setMinutes } from 'date-fns';
 
 export const ACTIONS = {
   DOCTOR_ADDED: "DOCTOR_ADDED",
@@ -111,7 +110,7 @@ const useAppointmentData = () => {
   
   function next() {
     console.log(`Next`);
-    console.log(`START TIME AND CONDITIONAL`,state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
+    // console.log(`START TIME AND CONDITIONAL`,state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
     if(!state.startDate || !state.startTime) {
       console.log("PLEASE SELECT AN APPOINTMENT DATE AND TIME");
       dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Appointment Date and Time cannot be empty"});
@@ -184,6 +183,8 @@ const useAppointmentData = () => {
     // setShowDoc(false);
     dispatch({type: ACTIONS.DOCTOR_REMOVED});
     dispatch({type: ACTIONS.CLOSE_DOCTORS_LIST});
+    dispatch({type: ACTIONS.APPOINTMENT_DATE_REMOVED});
+    dispatch({type: ACTIONS.APPOINTMENT_TIME_REMOVED});
   }
     
   return {
