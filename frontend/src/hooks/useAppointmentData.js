@@ -38,9 +38,9 @@ function reducer(state, action) {
     case ACTIONS.APPOINTMENT_TIME_REMOVED:
       return {...state, startTime: ""};
     case ACTIONS.DISPLAY_ERROR:
-      return {...state, hasError: true};
+      return {...state, hasError: action.payload};
     case ACTIONS.HIDE_ERROR:
-      return {...state, hasError: false};
+      return {...state, hasError: ""};
     default: 
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -55,7 +55,7 @@ const initialState = {
   appointmentType: "Virtual",
   showDoc: false,
   doctorInfo: null,
-  hasError: false
+  hasError: ""
 }
 
 const useAppointmentData = () => {
@@ -111,7 +111,7 @@ const useAppointmentData = () => {
     console.log(`Next`);
     if(!state.startDate || !state.startTime) {
       console.log("PLEASE SELECT AN APPOINTMENT DATE AND TIME");
-      dispatch({type: ACTIONS.DISPLAY_ERROR});
+      dispatch({type: ACTIONS.DISPLAY_ERROR, payload: "Appointment Date and Time cannot be empty"});
     } else {
       // setShowDoc(true);
       dispatch({type: ACTIONS.DISPLAY_DOCTORS_LIST});
@@ -135,7 +135,7 @@ const useAppointmentData = () => {
     console.log(`Save ${state.startDate} ${state.startTime}`);
     // setShowDoc(false);
     if(!state.doctorInfo) {
-      dispatch({type: ACTIONS.DISPLAY_ERROR});
+      dispatch({type: ACTIONS.DISPLAY_ERROR, payload: "Please Select a Doctor to Book"});
     } else {
 
       const appointmentData = {

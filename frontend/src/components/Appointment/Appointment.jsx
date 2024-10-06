@@ -72,11 +72,11 @@ const Appointment = (props) => {
             <button className="back-btn" onClick={clear}>CLEAR</button>
           </div>
 
-          {hasError && 
-            <div className="error-message">
-              <h3 className="appointment-error">Appointment Date and Time cannot be empty</h3>
-            </div>
-          }
+          <div className="error-message">
+            <h3 className="appointment-error">{hasError}</h3>
+          </div>
+          {/* {hasError && 
+          } */}
 
           <div className="appointment-type">
             <label>

@@ -24,11 +24,6 @@ const DoctorList = (props) => {
       </ul>
       <button className="book-appointment-btn" onClick={() => props.save()}>BOOK</button>
       <button className="cancel-appointment-btn" onClick={() => props.cancel()}>CANCEL</button>
-      {props.hasError && 
-        <div className="error-message">
-          <h3 className="appointment-error">Please Select a Doctor to Book</h3>
-        </div>
-      }
     </div>
   )
 
