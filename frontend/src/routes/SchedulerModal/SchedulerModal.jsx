@@ -13,7 +13,9 @@ const SchedulerModal = ({
   docStartTimeOnChange,
   docEndTimeOnChange,
   setAvailability,
-  saveSchedule
+  saveSchedule,
+  selectedRanges,
+  deleteAvailability
 }) => {
 
   return (
@@ -26,15 +28,17 @@ const SchedulerModal = ({
           </button>
           <h3 className="modal__heading">Select Your Next Week's Schedule</h3>
             <Schedule 
-            docStartDate={docStartDate}
-            docEndDate={docEndDate}
-            docStartTime={docStartTime}
-            docEndTime={docEndTime}
-            datesOnChange={datesOnChange}
-            docStartTimeOnChange={docStartTimeOnChange}
-            docEndTimeOnChange={docEndTimeOnChange}
-            setAvailability={setAvailability}
-            saveSchedule={saveSchedule}
+              docStartDate={docStartDate}
+              docEndDate={docEndDate}
+              docStartTime={docStartTime}
+              docEndTime={docEndTime}
+              datesOnChange={datesOnChange}
+              docStartTimeOnChange={docStartTimeOnChange}
+              docEndTimeOnChange={docEndTimeOnChange}
+              setAvailability={setAvailability}
+              saveSchedule={saveSchedule}
+              selectedRanges={selectedRanges}
+              deleteAvailability={deleteAvailability}
             />
           </div>
         </div>

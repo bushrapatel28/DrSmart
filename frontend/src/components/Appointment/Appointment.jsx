@@ -8,18 +8,18 @@ const Appointment = (props) => {
   // console.log("props in Appointment comp: ", props);
   return (
     <>
-      <div className="modal">
+      {/* <div className="modal">
       <div className="modal__content">
         <button className="modal__close-button" onClick={props.closeAppointmentModal}>
             <span>&times;</span>
         </button>
-        <h3 className="modal__heading">Book Your Appointment</h3>
+        <h3 className="modal__heading">Book Your Appointment</h3> */}
         <div>
           <DatePicker
             inline
             showIcon
             icon="fa fa-calendar"
-            selected={props.startDate} 
+            selected={props.startDate && props.startDate} 
             onChange={(date) => props.selectDateTime(date)} 
             showTimeSelect
             timeIntervals={30}
@@ -44,17 +44,17 @@ const Appointment = (props) => {
             className="modal__appointment-date"
             readOnly
             name="date"
-            value={props.startDate ? props.startDate.toDateString() : ""}
+            value={props.startDate && props.startDate.toDateString()}
           />
           <input
             className="appointment-time"
             readOnly
             name="time"
-            value={props.startTime ? props.startTime.toLocaleTimeString() : ""}     //Converting time to show local time in string format
+            value={props.startTime && props.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}     //Converting time to show local time in string format
           />
           <div className="modal__appointment-btns">
-            <button className="next-btn" onClick={props.next}>Next</button>
-            <button className="back-btn" onClick={props.closeAppointmentModal}>Back</button>
+            <button className="next-btn" onClick={props.next}>NEXT</button>
+            <button className="back-btn" onClick={() => {props.closeAppointmentModal(); props.back()}}>BACK</button>
           </div>
 
           <div className="appointment-type">
@@ -65,7 +65,7 @@ const Appointment = (props) => {
                 name="in-person"
                 value="In-person"
                 checked={!props.isVirtual}
-                onChange={() => props.toggleAppointment()}
+                onChange={() => props.toggleAppointmentType()}
               />
               In-person
             </label>
@@ -76,7 +76,7 @@ const Appointment = (props) => {
                 name="virtual"
                 value="Virtual"
                 checked={props.isVirtual}
-                onChange={() => props.toggleAppointment()}
+                onChange={() => props.toggleAppointmentType()}
               />
               Virtual
             </label>
@@ -93,8 +93,8 @@ const Appointment = (props) => {
               cancel={props.cancel}
           />
         }
-      </div>
-    </div>
+      {/* </div>
+    </div> */}
 
     </>
   );

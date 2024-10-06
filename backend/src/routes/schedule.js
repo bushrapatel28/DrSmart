@@ -18,7 +18,7 @@ module.exports = db => {
   });
 
   router.post("/:id/availability/new", (req, res) => {
-    // Extract appointment details from request body
+    // Extract schedule details from request body
     const {
       all_dates,
       vacant,
@@ -61,21 +61,7 @@ module.exports = db => {
             console.log(rows[0]);
             success = true;
             // return rows[0];  // Return the result for tracking purposes
-            
-            // // Return the created availability as a response
-            // res.status(201).json({
-            //   message: "Availability added successfully",
-            //   availability: rows[0],
-            // });
           })
-          // .then (() => {
-          //   console.log("NEXT")
-          //   // Return the created availability as a response
-          //   // res.status(201).json({
-          //   //   message: "Availability added successfully",
-          //   //   availability: rows[0],
-          //   // });
-          // })
           .catch((err) => {
             console.error("Error creating availability:", err);
             success = false;

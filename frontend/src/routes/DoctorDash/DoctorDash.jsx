@@ -27,6 +27,8 @@ const DoctorDash = ({
   docEndTimeOnChange,
   setAvailability,
   saveSchedule,
+  selectedRanges,
+  deleteAvailability,
   patients,
   isPatientsOpen,
   openPatientsModal,
@@ -47,6 +49,8 @@ const DoctorDash = ({
             docEndTimeOnChange={docEndTimeOnChange}
             setAvailability={setAvailability}
             saveSchedule={saveSchedule}
+            selectedRanges={selectedRanges}
+            deleteAvailability={deleteAvailability}
             isSchedulerOpen={isSchedulerOpen}
             closeSchedulerModal={closeSchedulerModal}
           />) : (<FunctionBlock icon={SchedulerIcon} label="Select Your Schedule" openModal={openSchedulerModal} />)}

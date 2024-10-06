@@ -22,8 +22,8 @@ const DoctorList = (props) => {
           )
         })}
       </ul>
-      <button className="book-appointment-btn" onClick={() => props.save()}>Book</button>
-      <button className="cancel-appointment-btn" onClick={() => props.cancel()}>Cancel</button>
+      <button className="book-appointment-btn" onClick={() => props.save()}>BOOK</button>
+      <button className="cancel-appointment-btn" onClick={() => props.cancel()}>CANCEL</button>
     </div>
   )
 

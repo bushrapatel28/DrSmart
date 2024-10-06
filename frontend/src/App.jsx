@@ -33,9 +33,9 @@ function App() {
     docStartTimeOnChange,
     docEndTimeOnChange,
     setAvailability,
-    timeSlots,
-    add,
-    saveSchedule
+    saveSchedule,
+    selectedRanges,
+    deleteAvailability
   } = useScheduleData();
 
   const {
@@ -56,7 +56,7 @@ function App() {
     showDoc,
     saveDoctorInfo,
     selectDateTime,
-    toggleAppointment,
+    toggleAppointmentType,
     next,
     back,
     save,
@@ -137,7 +137,7 @@ function App() {
         showDoc={showDoc}
         saveDoctorInfo={saveDoctorInfo}
         selectDateTime={selectDateTime}
-        toggleAppointment={toggleAppointment}
+        toggleAppointmentType={toggleAppointmentType}
         next={next}
         back={back}
         save={save}
@@ -157,6 +157,8 @@ function App() {
         docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
+        selectedRanges={selectedRanges}
+        deleteAvailability={deleteAvailability}
         // Patients props
         patients={patients}
         isPatientsOpen={isPatientsOpen}
@@ -165,7 +167,7 @@ function App() {
       />
       {/* <DoctorDash /> */}
       {/* <RegistrationForm /> */}
-      {/* <Appointment
+      <Appointment
         doctorData={doctor}
         startDate={startDate}
         startTime={startTime}
@@ -173,13 +175,13 @@ function App() {
         showDoc={showDoc}
         saveDoctorInfo={saveDoctorInfo}
         selectDateTime={selectDateTime}
-        toggleAppointment={toggleAppointment}
+        toggleAppointmentType={toggleAppointmentType}
         next={next}
         back={back}
         save={save}
         cancel={cancel}
         filterPassedTime={filterPassedTime}
-      /> */}
+      />
       <Schedule
         docStartDate={docStartDate}
         docEndDate={docEndDate}
@@ -190,6 +192,8 @@ function App() {
         docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
+        selectedRanges={selectedRanges}
+        deleteAvailability={deleteAvailability}
       />
 
     </>

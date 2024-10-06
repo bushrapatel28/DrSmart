@@ -10,6 +10,9 @@ const useScheduleData = () => {
   const [dateRanges, setDateRanges] = useState([]);
   const [timeSlotIdRanges, setTimeSlotIdRanges] = useState([]);
 
+  // Store the selected ranges
+  const [selectedRanges, setSelectedRanges] = useState([]);
+
   const [timeSlots, setTimeSlots] = useState([]);
   
   useEffect(() => {
@@ -18,7 +21,6 @@ const useScheduleData = () => {
     .then(data => setTimeSlots(data))
   }, []);
   
-
   const datesOnChange = (dates) => {
     const [start, end] = dates;
     console.log("START", start);
@@ -46,6 +48,17 @@ const useScheduleData = () => {
     
     const timeIdsArray = getAllTimeIdsBetween(docStartTime, docEndTime);
     setTimeSlotIdRanges((prev) => [...prev, { "time_ids": timeIdsArray }]);
+
+    // Add the selected range to the selectedRanges state
+    setSelectedRanges(prev => [
+      ...prev,
+      {
+        startDate: docStartDate,
+        endDate: docEndDate,
+        startTime: docStartTime,
+        endTime: docEndTime
+      }
+    ]);
 
     setDocStartTime(null);
     setDocEndTime(null);
@@ -85,6 +98,8 @@ const useScheduleData = () => {
   }  
 
   function saveSchedule() {
+    setSelectedRanges([]);
+
     const scheduleData = {
       all_dates: dateRanges,
       vacant: true,
@@ -111,6 +126,23 @@ const useScheduleData = () => {
       .catch(error => {
         console.error("Error:", error);  // Handle any errors that occur
       });
+    }
+
+  function deleteAvailability(index) {
+    console.log("SR", selectedRanges);
+    console.log("RR", index);
+    //Get the new selectedRanges by filtering out the range whose index matched the index of the range for which delete was clicked
+    const updatedSelectedRanges = selectedRanges.filter((range, i) => i !== index);
+    console.log("NEW", updatedSelectedRanges);
+    const updatedDateRanges = dateRanges.filter((_, i) => i !== index);
+    const updatedTimeSlotIdRanges = timeSlotIdRanges.filter((_, i) => i !== index);
+  
+    // Update the state for all three arrays
+    setSelectedRanges(updatedSelectedRanges);
+    setDateRanges(updatedDateRanges);
+    setTimeSlotIdRanges(updatedTimeSlotIdRanges);
+    
+    // setAvailability();
   }
 
   return { 
@@ -122,7 +154,9 @@ const useScheduleData = () => {
     docStartTimeOnChange,
     docEndTimeOnChange,
     setAvailability,
-    saveSchedule
+    saveSchedule,
+    selectedRanges,
+    deleteAvailability
    };
 }
 

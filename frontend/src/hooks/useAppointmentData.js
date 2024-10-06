@@ -13,8 +13,8 @@ import { useState } from 'react';
 // }
 
 const useAppointmentData = () => {
-  const [startDate, setStartDate] = useState();
-  const [startTime, setStartTime] = useState();
+  const [startDate, setStartDate] = useState("");
+  const [startTime, setStartTime] = useState("");
   const [isVirtual, setIsVirtual] = useState(true);
   const [appointmentType, setAppointmentType] = useState("Virtual");
   const [showDoc, setShowDoc] = useState(false);
@@ -24,13 +24,13 @@ const useAppointmentData = () => {
     console.log(doc);
     setDoctorInfo(doc);
   }
-  
+
   function selectDateTime(date) {
     setStartDate(date);
     setStartTime(date);
   }
   
-  function toggleAppointment() {
+  function toggleAppointmentType() {
     if (isVirtual) {
       setIsVirtual(false);
       setAppointmentType("In-Person");
@@ -39,6 +39,14 @@ const useAppointmentData = () => {
       setAppointmentType("Virtual");
     }
   }
+
+  //When no selection is made, the showTimeSelect list should only show times after current time until the set end time
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
+  };
   
   function next() {
     console.log(`Next`);
@@ -48,11 +56,13 @@ const useAppointmentData = () => {
   function back() {
     console.log("Back");
     setShowDoc(false);
+    setStartDate();
+    setStartTime();
   }
 
   function save() {
     console.log(`Save ${startDate} ${startTime}`);
-    setShowDoc(true);
+    setShowDoc(false);
     
     const appointmentData = {
       appointment_date: startDate,
@@ -84,14 +94,6 @@ const useAppointmentData = () => {
       });
   }
 
-  //When no selection is made, the showTimeSelect list should only show times after current time until the set end time
-  const filterPassedTime = (time) => {
-    const currentDate = new Date();
-    const selectedDate = new Date(time);
-
-    return currentDate.getTime() < selectedDate.getTime();
-  };
-
   function cancel() {
     console.log("Cancel");
     setDoctorInfo("");
@@ -106,7 +108,7 @@ const useAppointmentData = () => {
     doctorInfo,
     saveDoctorInfo,
     selectDateTime,
-    toggleAppointment,
+    toggleAppointmentType,
     next,
     back,
     save,
