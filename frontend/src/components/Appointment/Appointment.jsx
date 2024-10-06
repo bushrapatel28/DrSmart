@@ -6,11 +6,26 @@ import DoctorList from "../DoctorList/DoctorList";
 
 const Appointment = (props) => {
   // console.log("props in Appointment comp: ", props);
+  console.log("STATE in Appointment comp: ", props.state);
+
+  const {
+    state:{startDate, startTime, isVirtual, showDoc, hasError},
+    doctorData,
+    saveDoctorInfo,
+    selectDateTime,
+    toggleAppointmentType,
+    next,
+    clear,
+    save,
+    cancel,
+    filterPassedTime
+  } = props;
+
   return (
     <>
       {/* <div className="modal">
       <div className="modal__content">
-        <button className="modal__close-button" onClick={props.closeAppointmentModal}>
+        <button className="modal__close-button" onClick={closeAppointmentModal}>
             <span>&times;</span>
         </button>
         <h3 className="modal__heading">Book Your Appointment</h3> */}
@@ -19,15 +34,15 @@ const Appointment = (props) => {
             inline
             showIcon
             icon="fa fa-calendar"
-            selected={props.startDate && props.startDate} 
-            onChange={(date) => props.selectDateTime(date)} 
+            selected={startDate && startDate} 
+            onChange={(date) => selectDateTime(date)} 
             showTimeSelect
             timeIntervals={30}
             timeCaption="Time"
-            filterTime={props.filterPassedTime}
+            filterTime={filterPassedTime}
             dateFormat="hh:mm aa"          //Format for the Time side panel within the calendar
             minDate={new Date()}          // Only allow dates starting from today
-            minTime={props.startDate && props.startDate.toDateString() === new Date().toDateString()
+            minTime={startDate && startDate.toDateString() === new Date().toDateString()
               ? new Date() > setHours(setMinutes(new Date(), 0), 6) // If today, set minTime to current time or 6:00 AM
                 ? new Date()
                 : setHours(setMinutes(new Date(), 0), 6)
@@ -44,18 +59,24 @@ const Appointment = (props) => {
             className="modal__appointment-date"
             readOnly
             name="date"
-            value={props.startDate && props.startDate.toDateString()}
+            value={startDate && startDate.toDateString()}
           />
           <input
             className="appointment-time"
             readOnly
             name="time"
-            value={props.startTime && props.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}     //Converting time to show local time in string format
+            value={startTime && startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}     //Converting time to show local time in string format
           />
           <div className="modal__appointment-btns">
-            <button className="next-btn" onClick={props.next}>NEXT</button>
-            <button className="back-btn" onClick={() => {props.closeAppointmentModal(); props.back()}}>BACK</button>
+            <button className="next-btn" onClick={next}>NEXT</button>
+            <button className="back-btn" onClick={clear}>CLEAR</button>
           </div>
+
+          {hasError && 
+            <div className="error-message">
+              <h3 className="appointment-error">Appointment Date and Time cannot be empty</h3>
+            </div>
+          }
 
           <div className="appointment-type">
             <label>
@@ -64,8 +85,8 @@ const Appointment = (props) => {
                 type="radio"
                 name="in-person"
                 value="In-person"
-                checked={!props.isVirtual}
-                onChange={() => props.toggleAppointmentType()}
+                checked={!isVirtual}
+                onChange={() => toggleAppointmentType()}
               />
               In-person
             </label>
@@ -75,22 +96,23 @@ const Appointment = (props) => {
                 type="radio"
                 name="virtual"
                 value="Virtual"
-                checked={props.isVirtual}
-                onChange={() => props.toggleAppointmentType()}
+                checked={isVirtual}
+                onChange={() => toggleAppointmentType()}
               />
               Virtual
             </label>
           </div>
         </form>
         
-        {props.showDoc 
+        {showDoc 
         && <DoctorList 
-              doctorData={props.doctorData} 
-              appointmentDate={props.startDate}
-              appointmentTime={props.startTime}
-              saveDoctorInfo={props.saveDoctorInfo}
-              save={props.save}
-              cancel={props.cancel}
+              doctorData={doctorData} 
+              appointmentDate={startDate}
+              appointmentTime={startTime}
+              saveDoctorInfo={saveDoctorInfo}
+              save={save}
+              cancel={cancel}
+              hasError={hasError}
           />
         }
       {/* </div>

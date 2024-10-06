@@ -50,15 +50,16 @@ function App() {
   } = useDoctorsData();
 
   const {
-    startDate,
-    startTime,
-    isVirtual,
-    showDoc,
+    state,
+    // startDate, 
+    // startTime, 
+    // isVirtual, 
+    // showDoc,
     saveDoctorInfo,
     selectDateTime,
     toggleAppointmentType,
     next,
-    back,
+    clear,
     save,
     cancel,
     filterPassedTime
@@ -130,16 +131,18 @@ function App() {
         isMedicalHistoryOpen={isMedicalHistoryOpen}
         openMedicalHistoryModal={openMedicalHistoryModal}
         closeMedicalHistoryModal={closeMedicalHistoryModal}
+        /*Appointment Props Start */
+        state={state}
         doctorData={doctor}
-        startDate={startDate}
-        startTime={startTime}
-        isVirtual={isVirtual}
-        showDoc={showDoc}
+        // startDate={startDate}
+        // startTime={startTime}
+        // isVirtual={isVirtual}
+        // showDoc={showDoc}
         saveDoctorInfo={saveDoctorInfo}
         selectDateTime={selectDateTime}
         toggleAppointmentType={toggleAppointmentType}
         next={next}
-        back={back}
+        clear={clear}
         save={save}
         cancel={cancel}
         filterPassedTime={filterPassedTime}
@@ -168,16 +171,17 @@ function App() {
       {/* <DoctorDash /> */}
       {/* <RegistrationForm /> */}
       <Appointment
+        state={state}
         doctorData={doctor}
-        startDate={startDate}
-        startTime={startTime}
-        isVirtual={isVirtual}
-        showDoc={showDoc}
+        // startDate={startDate}
+        // startTime={startTime}
+        // isVirtual={isVirtual}
+        // showDoc={showDoc}
         saveDoctorInfo={saveDoctorInfo}
         selectDateTime={selectDateTime}
         toggleAppointmentType={toggleAppointmentType}
         next={next}
-        back={back}
+        clear={clear}
         save={save}
         cancel={cancel}
         filterPassedTime={filterPassedTime}
