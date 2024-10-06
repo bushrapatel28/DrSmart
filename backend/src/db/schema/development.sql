@@ -8,11 +8,17 @@ VALUES
 
 INSERT INTO doctors (name, email, password, profile_image, address, specialization)
 VALUES
-  ('Edward Jenner', 'jenner.edward@medicine.com', 'VaC-C1n35', 'https://picsum.photos/200/300', '5678 E 49th Ave, V6K 9P5, Vancouver, BC', 'Pediatrics'),
-  ('Marie Curie', 'curie.marie@medicine.com', 'R4di0_AcT1v3', 'https://picsum.photos/200/300', '123 Science Blvd, H2X 3Y7, Montreal, QC', 'Radiology'),
-  ('Paul Farmer', 'farmer.paul@medicine.com', 'C0mmuN1ty_Car3', 'https://picsum.photos/200/300', '789 Global St, K1N 5T5, Ottawa, ON', 'Public Health'),
-  ('Virginia Apgar', 'apgar.virginia@medicine.com', 'S1gN_4_Lif3', 'https://picsum.photos/200/300', '456 Care Rd, R3M 4B5, Winnipeg, MB', 'Anesthesiology'),
-  ('Atul Gawande', 'gawande.atul@medicine.com', 'Ch3ckl1st_Sav3', 'https://picsum.photos/200/300', '321 Healthway, V5K 1A1, Calgary, AB', 'General Surgery');
+  ('Elizabeth Blackwell', 'blackwell.elizabeth@medicine.com', 'F1rst_D0ct0r', 'https://pixabay.com/illustrations/ai-generated-doctor-woman-people-8578393/', '123 Pioneer St, M5A 1A2, Toronto, ON', 'Gynecology'),
+  ('Harvey Cushing', 'cushing.harvey@medicine.com', 'N3ur0_Surg3on', 'https://pixabay.com/illustrations/ai-generated-man-male-doctor-8795644/', '888 Brain Ln, T2P 3L8, Calgary, AB', 'Neurosurgery'),
+  ('Florence Nightingale', 'nightingale.florence@medicine.com', 'L4mp_0f_Car3', 'https://pixabay.com/illustrations/ai-generated-woman-doctor-care-8578391/', '456 Lamp St, N1K 1K9, Guelph, ON', 'Nursing'),
+  ('Joseph Lister', 'lister.joseph@medicine.com', 'Ant1_S3pt1c', 'https://pixabay.com/illustrations/ai-generated-man-doctor-clinical-8591733/', '321 Hygiene Rd, H2Y 2W8, Montreal, QC', 'Surgical Sterilization'),
+  ('Clara Barton', 'barton.clara@medicine.com', 'R3dcR0ss_Fndr', 'https://pixabay.com/illustrations/ai-generated-woman-nurse-caregiver-8451341/', '555 Aid Ln, V8Z 1B2, Victoria, BC', 'Emergency Medicine'),
+  ('William Osler', 'osler.william@medicine.com', 'M0d3rn_M3dic1ne', 'https://pixabay.com/illustrations/ai-generated-man-doctor-medical-8451270/', '222 Medicine Rd, B3K 3Z1, Halifax, NS', 'Internal Medicine'),
+  ('Jean-Martin Charcot', 'charcot.jean@medicine.com', 'N3ur0l0g1st', 'https://pixabay.com/illustrations/ai-generated-man-doctor-medicine-8451277/', '778 Neurology Blvd, R2M 1X8, Winnipeg, MB', 'Neurology'),
+  ('Christiaan Barnard', 'barnard.christiaan@medicine.com', 'H3art_Tr4nspl4nt', 'https://pixabay.com/illustrations/ai-generated-man-doctor-hospital-8655320/', '910 Surgery St, L2T 4Z7, St. Catharines, ON', 'Cardiothoracic Surgery'),
+  ('Dorothy Andersen', 'andersen.dorothy@medicine.com', 'CfD1agn0sis', 'https://pixabay.com/illustrations/ai-generated-doctor-health-9019517/', '800 Diagnosis St, S7K 2J9, Saskatoon, SK', 'Pathology'),
+  ('Charles Drew', 'drew.charles@medicine.com', 'B1ood_B4nk', 'https://pixabay.com/illustrations/ai-generated-doctor-male-health-9019518/', '900 Blood Bank Ave, E2L 4H8, Saint John, NB', 'Hematology');
+
 
 INSERT INTO appointments (appointment_date, appointment_time, appointment_type, status, patient_id, doctor_id) 
 VALUES 
@@ -20,7 +26,22 @@ VALUES
     ('2024-09-26', '10:30:00', 'Consultation', 'Completed', 2, 1),
     ('2024-09-27', '14:00:00', 'Follow-up', 'Cancelled', 3, 2),
     ('2024-09-28', '11:15:00', 'Immunization', 'Scheduled', 4, 3),
-    ('2024-09-29', '16:00:00', 'Physical Therapy', 'Pending', 5, 2);
+    ('2024-09-29', '16:00:00', 'Physical Therapy', 'Pending', 5, 2)
+    ('2024-10-10', '08:00', 'Checkup', 'Pending', 1, 4),
+    ('2024-10-10', '10:00', 'Consultation', 'Pending', 2, 4),
+    ('2024-10-10', '14:00', 'Follow-up', 'Pending', 3, 7),
+    ('2024-10-11', '09:00', 'Checkup', 'Pending', 1, 10),
+    ('2024-10-11', '11:00', 'Consultation', 'Pending', 4, 4),
+    ('2024-10-12', '08:00', 'Consultation', 'Pending', 3, 8),
+    ('2024-10-12', '13:00', 'Follow-up', 'Pending', 5, 4),
+    ('2024-10-13', '09:00', 'Checkup', 'Pending', 2, 6),
+    ('2024-10-14', '08:00', 'Consultation', 'Pending', 1, 4),
+    ('2024-10-14', '15:00', 'Follow-up', 'Pending', 2, 6),
+    ('2024-10-15', '10:00', 'Checkup', 'Pending', 4, 5),
+    ('2024-10-15', '14:00', 'Consultation', 'Pending', 7, 4),
+    ('2024-10-16', '09:00', 'Follow-up', 'Pending', 3, 9),
+    ('2024-10-17', '08:00', 'Consultation', 'Pending', 5, 4),
+    ('2024-10-17', '16:00', 'Checkup', 'Pending', 3, 6);
 
 INSERT INTO records (diagnosis, patient_id, doctor_id, appointment_id) 
 VALUES 
