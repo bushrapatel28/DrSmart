@@ -58,92 +58,10 @@ const initialState = {
   errorMsg: ""
 }
 
-export const ACTIONS = {
-  DOCTOR_ADDED: "DOCTOR_ADDED",
-  DOCTOR_REMOVED: "DOCTOR_REMOVED",
-  DISPLAY_DOCTORS_LIST: "DISPLAY_DOCTORS_LIST",
-  CLOSE_DOCTORS_LIST: "CLOSE_DOCTORS_LIST",
-  SET_VIRTUAL: "SET_VIRTUAL",
-  SELECT_APPOINTMENT_TYPE: "SELECT_APPOINTMENT_TYPE",
-  APPOINTMENT_DATE_ADDED: "APPOINTMENT_DATE_ADDED",
-  APPOINTMENT_DATE_REMOVED: "APPOINTMENT_DATE_REMOVED",
-  APPOINTMENT_TIME_ADDED: "APPOINTMENT_TIME_ADDED",
-  APPOINTMENT_TIME_REMOVED: "APPOINTMENT_TIME_REMOVED"
-}
-
-function reducer(state, action) {
-  switch (action.type) {
-    case ACTIONS.DOCTOR_ADDED:
-      return {...state, doctorInfo: action.payload};
-    case ACTIONS.DOCTOR_REMOVED:
-      return {...state, };
-    case ACTIONS.DISPLAY_DOCTORS_LIST:
-      return {...state, };
-    case ACTIONS.CLOSE_DOCTORS_LIST:
-      return {...state, };
-    case ACTIONS.SET_VIRTUAL:
-      return {...state, };
-    case ACTIONS.SELECT_APPOINTMENT_TYPE:
-      return {...state, };
-    case ACTIONS.APPOINTMENT_DATE_ADDED:
-      return {...state, startDate: action.payload};
-    case ACTIONS.APPOINTMENT_DATE_REMOVED:
-      return {...state, };
-    case ACTIONS.APPOINTMENT_TIME_ADDED:
-      return {...state, startTime: action.payload};
-    case ACTIONS.APPOINTMENT_TIME_REMOVED:
-      return {...state, };
-  }
-}
-
-const initialState = {
-  startDate: "",
-  startTime: "",
-  isVirtual: true,
-  appointmentType: "Virtual",
-  showDoc: false,
-  doctorInfo: null
-}
-
 const useAppointmentData = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-<<<<<<< HEAD
-  const [startDate, setStartDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [isVirtual, setIsVirtual] = useState(true);
-  const [appointmentType, setAppointmentType] = useState("Virtual");
-  const [showDoc, setShowDoc] = useState(false);
-  const [doctorInfo, setDoctorInfo] = useState(null);
-  
-  function saveDoctorInfo(selectedDoc) {
-    console.log(selectedDoc);
-    // setDoctorInfo(selectedDoc);
-    dispatch({type: ACTIONS.DOCTOR_ADDED, payload: selectedDoc})
-  }
-  
-  function selectDateTime(selectedDate) {
-    // setStartDate(date);
-    // setStartTime(date);
-    dispatch({type: ACTIONS.APPOINTMENT_DATE_ADDED, payload: selectedDate})
-    dispatch({type: ACTIONS.APPOINTMENT_TIME_ADDED, payload: selectedDate})
-  }
-  
-  function toggleAppointmentType() {
-    if (state.isVirtual) {
-      // setIsVirtual(false);
-      // setAppointmentType("In-Person");
-      dispatch({type: ACTIONS.SET_VIRTUAL, payload: false})
-      dispatch({type: ACTIONS.SELECT_APPOINTMENT_TYPE, payload: "In-Person"})
-    } else {
-      // setIsVirtual(true);
-      // setAppointmentType("Virtual");
-      dispatch({type: ACTIONS.SET_VIRTUAL, payload: true})
-      dispatch({type: ACTIONS.SELECT_APPOINTMENT_TYPE, payload: "VIRTUAL"})
-    }
-  }
-=======
   // const [startDate, setStartDate] = useState("");
   // const [startTime, setStartTime] = useState("");
   // const [isVirtual, setIsVirtual] = useState(true);
@@ -151,7 +69,6 @@ const useAppointmentData = () => {
   // const [showDoc, setShowDoc] = useState(false);
   // const [doctorInfo, setDoctorInfo] = useState(null);
 
->>>>>>> fix/reducer/appointment
 
   //When no selection is made, the showTimeSelect list should only show times after current time until the set end time
   const filterPassedTime = (time) => {
