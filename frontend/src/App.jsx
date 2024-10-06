@@ -170,8 +170,7 @@ function App() {
       />
       {/* <DoctorDash /> */}
       {/* <RegistrationForm /> */}
-      <Appointment
-        state={state}
+      {/* <Appointment
         doctorData={doctor}
         // startDate={startDate}
         // startTime={startTime}
@@ -198,7 +197,7 @@ function App() {
         saveSchedule={saveSchedule}
         selectedRanges={selectedRanges}
         deleteAvailability={deleteAvailability}
-      />
+      /> */}
 
     </>
   )
