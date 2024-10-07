@@ -15,7 +15,58 @@ import DoctorDash from './routes/DoctorDash/DoctorDash'
 import useScheduleData from './hooks/useScheduleData'
 import useTopNavProfileModal from './hooks/useTopNavProfileModal'
 
-function App() {
+//Zoom Setup
+import { useEffect, useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { message } from 'antd';
+import ZoomVideo from '@zoom/videosdk';
+import ZoomContext from './context/zoom-context';
+import MediaContext from './context/media-context';
+import LoadingLayout from './components/LoadingLayout/LoadingLayout'
+import VideoContainer from './feature/Video/Video';
+import Home from './feature/Home/Home'
+
+function App(props) {
+
+  //Destructure props object
+  const {
+    meetingArgs: { sdkKey, topic, signature, name, password }
+  } = props;
+
+  const [loading, setIsLoading] = useState(true);
+  const [loadingText, setLoadingText] = useState(' ');
+  const [mediaStream, setMediaStream] = useState();
+  const [status, setStatus] = useState(false);
+
+  //Use useContext hook to grab passed down value and create client variable
+  const client = useContext(ZoomContext);
+
+  useEffect(() => {
+    //Create init async function with try...catch block
+    const init = async () => {
+      client.init('US-EN', 'CDN')
+
+      try {
+        setLoadingText('Joining Session..')
+        await client.join(topic, name, password, signature);
+        const stream = client.getMediaStream();
+        setMediaStream(stream);
+        setIsLoading(false);
+      }
+      catch(err) {
+        console.log('Error Joining Meeting', err);
+        setIsLoading(false);
+        message.error(err.reason);
+      }
+    }
+    //Call function and create clean up functionality
+      init();
+      return () => {
+        ZoomVideo.destroyClient();
+    }
+  }, [sdkKey, signature, client, topic, name, password])
+
+
   const {
     topNavState,
     openProfile,
@@ -173,37 +224,18 @@ function App() {
         openPatientsModal={openPatientsModal}
         closePatientsModal={closePatientsModal}
       />
-      {/* <DoctorDash /> */}
-      {/* <RegistrationForm /> */}
-      {/* <Appointment
-        doctorData={doctor}
-        // startDate={startDate}
-        // startTime={startTime}
-        // isVirtual={isVirtual}
-        // showDoc={showDoc}
-        saveDoctorInfo={saveDoctorInfo}
-        selectDateTime={selectDateTime}
-        toggleAppointmentType={toggleAppointmentType}
-        next={next}
-        clear={clear}
-        save={save}
-        cancel={cancel}
-        filterPassedTime={filterPassedTime}
-      />
-      <Schedule
-        docStartDate={docStartDate}
-        docEndDate={docEndDate}
-        docStartTime={docStartTime}
-        docEndTime={docEndTime}
-        datesOnChange={datesOnChange}
-        docStartTimeOnChange={docStartTimeOnChange}
-        docEndTimeOnChange={docEndTimeOnChange}
-        setAvailability={setAvailability}
-        saveSchedule={saveSchedule}
-        selectedRanges={selectedRanges}
-        deleteAvailability={deleteAvailability}
-      /> */}
-
+      
+      {loading && <LoadingLayout content = {loadingText}/>}
+      {!loading && (
+        <MediaContext.Provider value = {mediaStream}>
+          <Router>
+            <Routes>
+              <Route path = "/home" element = {<Home props={props} status={status}/>}/>
+              <Route path = "/video" element = {<VideoContainer/>}/>
+            </Routes>
+          </Router>
+        </MediaContext.Provider>
+      )}
     </>
   )
 }
