@@ -16,7 +16,7 @@ const useScheduleData = () => {
   const [timeSlots, setTimeSlots] = useState([]);
   
   useEffect(() => {
-    fetch('/doctor/timeslots')
+    fetch('/doctors/timeslots')
     .then(res => res.json())
     .then(data => setTimeSlots(data))
   }, []);
@@ -106,7 +106,7 @@ const useScheduleData = () => {
       all_time_slot_ids: timeSlotIdRanges
     };
 
-    fetch("/doctor/:id/availability/new", {
+    fetch("/doctors/:id/availability/new", {
       method: "POST",                         // Set method to POST
       headers: {
         "Content-Type": "application/json",  // Specify the content type as JSON

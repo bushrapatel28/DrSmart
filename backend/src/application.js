@@ -61,7 +61,7 @@ module.exports = function application(ENV) {
   app.use('/patient', medications(db));
   app.use('/patient', labresults(db));
 
-  app.use('/doctor', schedule(db));
+  app.use('/doctors', schedule(db));
   app.use('/doctors', visit_form(db));
   app.use('/doctors', doc_messages(db));
 
