@@ -21,8 +21,8 @@ const Schedule = (props) => {
         />
       </div>
 
-      <div>
-        Start Time: 
+      <div className="selected-time-range">
+        <h4>Start Time:</h4>
         <DatePicker
           selected={props.docStartTime}
           // onChange={(time) => props.setDocStartTime(time)}
@@ -34,11 +34,12 @@ const Schedule = (props) => {
           maxTime={setHours(setMinutes(new Date(), 30), 20)}      //Only allow times until 8:30 PM
           timeCaption="Start Time"
           dateFormat="hh:mm aa"
+          className="schedule-time"
         />
       </div>
 
-      <div>
-        End Time: 
+      <div className="selected-time-range">
+        <h4>End Time:</h4>
         <DatePicker
           selected={props.docEndTime}
           // onChange={(time) => props.setDocEndTime(time)}
@@ -50,6 +51,7 @@ const Schedule = (props) => {
           maxTime={setHours(setMinutes(new Date(), 30), 20)}                //Only allow times until 8:30 PM
           timeCaption="End Time"
           dateFormat="hh:mm aa"
+          className="schedule-time"
         />
       </div>
 
@@ -58,11 +60,11 @@ const Schedule = (props) => {
         <button onClick={props.saveSchedule}>SAVE</button>
       </div>
 
-      <AvailabilityList 
+      <AvailabilityList
         selectedRanges={props.selectedRanges}
         deleteAvailability={props.deleteAvailability}
       />
-      
+
     </div>
   );
 }

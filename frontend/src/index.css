@@ -15,6 +15,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased; */
   /* -moz-osx-font-smoothing: grayscale; */
+
+  /* background-image: url("../../assets/home-background-img.jpg"); */
 }
 
 a {
@@ -75,6 +77,7 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
 
 .doctor-profile-image {
   margin-right: 15px;
+
   img {
     width: 50px;
     height: 50px;
@@ -118,12 +121,12 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
 .available-doctor .doctor-name {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .available-doctor .doctor-speciality {
   font-size: 0.9rem;
-  color: #BAC94A; 
+  color: #BAC94A;
   margin-left: auto;
 }
 
@@ -141,5 +144,5 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
   button {
     background-color: #f9f9f9;
   }
-  
+
 }

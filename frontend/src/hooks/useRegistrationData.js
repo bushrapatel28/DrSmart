@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import usePatientData from './usePatientData';
+import useTopNavProfileModal from './useTopNavProfileModal';
 
 const useRegistrationData = () => {
   const [formData, setFormData] = useState({
@@ -104,7 +106,7 @@ const useRegistrationData = () => {
       medicationDescription: ''
     });
 
-    fetch('http://localhost:8001/patient/history/:id', {
+    return fetch('http://localhost:8001/patient/history/:id', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
