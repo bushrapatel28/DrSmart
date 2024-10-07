@@ -26,8 +26,13 @@ const useAppointmentData = () => {
   }
   
   function selectDateTime(date) {
+    console.log("Sent date in the function:", date);
     setStartDate(date);
     setStartTime(date);
+    console.log("Set date After function:", startDate);
+    console.log("Set time After function:", startTime);
+
+
   }
   
   function toggleAppointment() {

@@ -1,7 +1,7 @@
 import './MsgsModal.scss';
 
-const MsgsModal = ({ patientMsgs, closeMsgsModal }) => {
-  console.log("PATIENT MSG WITHIN MODAL: ", patientMsgs);
+const MsgsModal = ({ msgsData, closeMsgsModal }) => {
+  console.log("PATIENT MSG WITHIN MODAL: ", msgsData);
   return (
     <>
       <div className="modal">
@@ -11,9 +11,9 @@ const MsgsModal = ({ patientMsgs, closeMsgsModal }) => {
           </button>
           <h3 className="modal__heading">Your Messages</h3>
 
-          {patientMsgs && patientMsgs.length > 0 ? (
+          {msgsData && msgsData.length > 0 ? (
             <ul className="modal__msg-list">
-              {patientMsgs.map((msgObj, index) => (
+              {msgsData.map((msgObj, index) => (
                 <li key={index} className="modal__msg-item">
                   `{msgObj.message} with {msgObj.doctor_name}`
                 </li>

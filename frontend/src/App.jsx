@@ -39,13 +39,15 @@ function App() {
   } = useScheduleData();
 
   const {
-    doctor,
-    isSchedulerOpen,
+    docState,
     openSchedulerModal,
     closeSchedulerModal,
-    isPatientRecordOpen,
     openPatientRecordModal,
-    closePatientRecordModal
+    closePatientRecordModal,
+    openVisitModal,
+    closeVisitModal,
+    openDocMsgsModal,
+    closeDocMsgsModal
   } = useDoctorsData();
   const {
     startDate,
@@ -128,7 +130,7 @@ function App() {
         isMedicalHistoryOpen={isMedicalHistoryOpen}
         openMedicalHistoryModal={openMedicalHistoryModal}
         closeMedicalHistoryModal={closeMedicalHistoryModal}
-        doctorData={doctor}
+        doctorData={docState.doctor}
         startDate={startDate}
         startTime={startTime}
         isVirtual={isVirtual}
@@ -143,12 +145,15 @@ function App() {
         filterPassedTime={filterPassedTime}
       />
       <DoctorDash
-        isSchedulerOpen={isSchedulerOpen}
+        state={docState}
         openSchedulerModal={openSchedulerModal}
         closeSchedulerModal={closeSchedulerModal}
-        isPatientRecordOpen={isPatientRecordOpen}
         openPatientRecordModal={openPatientRecordModal}
         closePatientRecordModal={closePatientRecordModal}
+        openVisitModal={openVisitModal}
+        closeVisitModal={closeVisitModal}
+        openDocMsgsModal={openDocMsgsModal}
+        closeDocMsgsModal={closeDocMsgsModal}
         docStartDate={docStartDate}
         docEndDate={docEndDate}
         docStartTime={docStartTime}

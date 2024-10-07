@@ -1,9 +1,14 @@
 import { useEffect, useReducer } from "react";
-const OPEN_SCHEDULER = "OPEN_SCHEDULER";
-const CLOSE_SCHEDULER = "CLOSE_SCHEDULER";
-const SET_DOCTOR = "SET_DOCTOR"
-const OPEN_PATIENT_RECORD = "OPEN_PATIENT_RECORD";
-const CLOSE_PATIENT_RECORD = "CLOSE_PATIENT_RECORD";
+
+const OPEN_SCHEDULER         = "OPEN_SCHEDULER";
+const CLOSE_SCHEDULER        = "CLOSE_SCHEDULER";
+const SET_DOCTOR             = "SET_DOCTOR"
+const OPEN_PATIENT_RECORD    = "OPEN_PATIENT_RECORD";
+const CLOSE_PATIENT_RECORD   = "CLOSE_PATIENT_RECORD";
+const OPEN_VISIT_FORM        = "OPEN_VISIT_FORM";
+const CLOSE_VISIT_FORM       = "CLOSE_VISIT_FORM";
+const OPEN_DOC_MSGS        = "OPEN_DOC_MSGS";
+const CLOSE_DOC_MSGS       = "CLOSE_DOC_MSGS";
 
 const reducer = (state, action) => {
   switch(action.type) {
@@ -34,14 +39,36 @@ const reducer = (state, action) => {
       return {
         ...state,
         isPatientRecordOpen: false
-      };      
+      };
+      case OPEN_VISIT_FORM:
+        return {
+          ...state,
+          isVisitFormOpen: true
+        };
+      case CLOSE_VISIT_FORM:
+        return {
+          ...state,
+          isVisitFormOpen: false
+        };    
+        case OPEN_DOC_MSGS:
+          return {
+            ...state,
+            isMsgsOpen: true
+          };
+        case CLOSE_DOC_MSGS:
+          return {
+            ...state,
+            isMsgsOpen: false
+          };     
   }
 }
 
 const initialState = {
   isSchedulerOpen: false,
   doctor: [],
-  isPatientRecordOpen: false
+  isPatientRecordOpen: false,
+  isVisitFormOpen: false,
+  isMsgsOpen: false
 }
 
 
@@ -57,8 +84,8 @@ const useDoctorsData = () => {
       })
   }, []);
 
-  const openSchedulerModal = (user_id) => {
-    console.log("Adding Appointment for user: ", user_id);
+  const openSchedulerModal = (doc_id) => {
+    console.log("Adding Appointment for user: ", doc_id);
     dispatch({type: OPEN_SCHEDULER});
   }
 
@@ -67,7 +94,7 @@ const useDoctorsData = () => {
 
   }
 
-  const openPatientRecordModal = (user_id) => {
+  const openPatientRecordModal = (doc_id) => {
     dispatch({type: OPEN_PATIENT_RECORD});
   }
 
@@ -76,14 +103,48 @@ const useDoctorsData = () => {
 
   }
 
+  const openVisitModal = (doc_id) => {
+    dispatch({type: OPEN_VISIT_FORM});
+  }
+
+  const closeVisitModal = () => {
+    dispatch({type: CLOSE_VISIT_FORM});
+
+  }
+
+  const openDocMsgsModal = (doc_id) => {
+    console.log("openMsgsModal function is dispatching");
+
+    fetch(`/doctors/${doc_id}/messages`)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status} - ${res.statusText}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log("Requested data from DB: ", data);
+        dispatch({ type: OPEN_DOC_MSGS, payload: data });
+      })
+      .catch(error => {
+        console.error("Error fetching messages: ", error);
+      });
+    }
+
+  const closeDocMsgsModal = () => {
+    dispatch({type: CLOSE_DOC_MSGS});
+
+  }
   return { 
-    doctor: state.doctor,
-    isSchedulerOpen: state.isSchedulerOpen,
+    docState: state,
     openSchedulerModal,
     closeSchedulerModal,
-    isPatientRecordOpen: state.isPatientRecordOpen,
     openPatientRecordModal,
-    closePatientRecordModal
+    closePatientRecordModal,
+    openVisitModal,
+    closeVisitModal,
+    openDocMsgsModal,
+    closeDocMsgsModal
   };
 }
 
