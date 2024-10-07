@@ -8,16 +8,16 @@ VALUES
 
 INSERT INTO doctors (name, email, password, profile_image, address, specialization)
 VALUES
-  ('Elizabeth Blackwell', 'blackwell.elizabeth@medicine.com', 'F1rst_D0ct0r', 'https://pixabay.com/illustrations/ai-generated-doctor-woman-people-8578393/', '123 Pioneer St, M5A 1A2, Toronto, ON', 'Gynecology'),
-  ('Harvey Cushing', 'cushing.harvey@medicine.com', 'N3ur0_Surg3on', 'https://pixabay.com/illustrations/ai-generated-man-male-doctor-8795644/', '888 Brain Ln, T2P 3L8, Calgary, AB', 'Neurosurgery'),
-  ('Florence Nightingale', 'nightingale.florence@medicine.com', 'L4mp_0f_Car3', 'https://pixabay.com/illustrations/ai-generated-woman-doctor-care-8578391/', '456 Lamp St, N1K 1K9, Guelph, ON', 'Nursing'),
-  ('Joseph Lister', 'lister.joseph@medicine.com', 'Ant1_S3pt1c', 'https://pixabay.com/illustrations/ai-generated-man-doctor-clinical-8591733/', '321 Hygiene Rd, H2Y 2W8, Montreal, QC', 'Surgical Sterilization'),
-  ('Clara Barton', 'barton.clara@medicine.com', 'R3dcR0ss_Fndr', 'https://pixabay.com/illustrations/ai-generated-woman-nurse-caregiver-8451341/', '555 Aid Ln, V8Z 1B2, Victoria, BC', 'Emergency Medicine'),
-  ('William Osler', 'osler.william@medicine.com', 'M0d3rn_M3dic1ne', 'https://pixabay.com/illustrations/ai-generated-man-doctor-medical-8451270/', '222 Medicine Rd, B3K 3Z1, Halifax, NS', 'Internal Medicine'),
-  ('Jean-Martin Charcot', 'charcot.jean@medicine.com', 'N3ur0l0g1st', 'https://pixabay.com/illustrations/ai-generated-man-doctor-medicine-8451277/', '778 Neurology Blvd, R2M 1X8, Winnipeg, MB', 'Neurology'),
-  ('Christiaan Barnard', 'barnard.christiaan@medicine.com', 'H3art_Tr4nspl4nt', 'https://pixabay.com/illustrations/ai-generated-man-doctor-hospital-8655320/', '910 Surgery St, L2T 4Z7, St. Catharines, ON', 'Cardiothoracic Surgery'),
-  ('Dorothy Andersen', 'andersen.dorothy@medicine.com', 'CfD1agn0sis', 'https://pixabay.com/illustrations/ai-generated-doctor-health-9019517/', '800 Diagnosis St, S7K 2J9, Saskatoon, SK', 'Pathology'),
-  ('Charles Drew', 'drew.charles@medicine.com', 'B1ood_B4nk', 'https://pixabay.com/illustrations/ai-generated-doctor-male-health-9019518/', '900 Blood Bank Ave, E2L 4H8, Saint John, NB', 'Hematology');
+  ('Elizabeth Blackwell', 'blackwell.elizabeth@medicine.com', 'F1rst_D0ct0r', 'https://cdn.pixabay.com/photo/2024/02/16/21/37/ai-generated-8578393_1280.png', '123 Pioneer St, M5A 1A2, Toronto, ON', 'Gynecology'),
+  ('Harvey Cushing', 'cushing.harvey@medicine.com', 'N3ur0_Surg3on', 'https://cdn.pixabay.com/photo/2024/05/29/08/03/ai-generated-8795644_1280.jpg', '888 Brain Ln, T2P 3L8, Calgary, AB', 'Neurosurgery'),
+  ('Florence Nightingale', 'nightingale.florence@medicine.com', 'L4mp_0f_Car3', 'https://cdn.pixabay.com/photo/2024/02/16/21/37/ai-generated-8578391_1280.png', '456 Lamp St, N1K 1K9, Guelph, ON', 'Nursing'),
+  ('Joseph Lister', 'lister.joseph@medicine.com', 'Ant1_S3pt1c', 'https://cdn.pixabay.com/photo/2024/09/03/15/21/ai-generated-9019520_1280.png', '321 Hygiene Rd, H2Y 2W8, Montreal, QC', 'Surgical Sterilization'),
+  ('Clara Barton', 'barton.clara@medicine.com', 'R3dcR0ss_Fndr', 'https://cdn.pixabay.com/photo/2023/12/15/19/33/ai-generated-8451341_1280.png', '555 Aid Ln, V8Z 1B2, Victoria, BC', 'Emergency Medicine'),
+  ('William Osler', 'osler.william@medicine.com', 'M0d3rn_M3dic1ne', 'https://cdn.pixabay.com/photo/2023/12/15/18/32/ai-generated-8451270_1280.png', '222 Medicine Rd, B3K 3Z1, Halifax, NS', 'Internal Medicine'),
+  ('Jean-Martin Charcot', 'charcot.jean@medicine.com', 'N3ur0l0g1st', 'https://cdn.pixabay.com/photo/2023/12/15/18/40/ai-generated-8451277_1280.png', '778 Neurology Blvd, R2M 1X8, Winnipeg, MB', 'Neurology'),
+  ('Christiaan Barnard', 'barnard.christiaan@medicine.com', 'H3art_Tr4nspl4nt', 'https://cdn.pixabay.com/photo/2024/03/25/18/35/ai-generated-8655320_1280.png', '910 Surgery St, L2T 4Z7, St. Catharines, ON', 'Cardiothoracic Surgery'),
+  ('Dorothy Andersen', 'andersen.dorothy@medicine.com', 'CfD1agn0sis', 'https://cdn.pixabay.com/photo/2024/09/03/15/21/ai-generated-9019517_1280.png', '800 Diagnosis St, S7K 2J9, Saskatoon, SK', 'Pathology'),
+  ('Charles Drew', 'drew.charles@medicine.com', 'B1ood_B4nk', 'https://cdn.pixabay.com/photo/2024/09/03/15/21/ai-generated-9019518_1280.png', '900 Blood Bank Ave, E2L 4H8, Saint John, NB', 'Hematology');
 
 
 INSERT INTO appointments (appointment_date, appointment_time, appointment_type, status, patient_id, doctor_id) 
@@ -115,9 +115,13 @@ INSERT INTO availabilities (date, vacant, time_slot_id, doctor_id) VALUES
   ('2024-10-07', TRUE, 7, 8),
   ('2024-10-07', TRUE, 8, 8),
   ('2024-10-07', TRUE, 9, 8),
+  ('2024-10-07', TRUE, 5, 9),
+  ('2024-10-07', TRUE, 8, 9),
   ('2024-10-07', FALSE, 10, 9),
   ('2024-10-07', TRUE, 11, 9),
   ('2024-10-07', TRUE, 12, 9),
+  ('2024-10-07', TRUE, 4, 10),
+  ('2024-10-07', TRUE, 6, 10),
   ('2024-10-07', TRUE, 13, 10),
   ('2024-10-07', TRUE, 14, 10),
   ('2024-10-07', FALSE, 15, 10),
@@ -145,14 +149,18 @@ INSERT INTO availabilities (date, vacant, time_slot_id, doctor_id) VALUES
   ('2024-10-08', FALSE, 5, 7),
   ('2024-10-08', TRUE, 6, 7),
   ('2024-10-08', TRUE, 7, 8),
-  ('2024-10-08', FALSE, 8, 8),
+  ('2024-10-08', TRUE, 8, 8),
   ('2024-10-08', TRUE, 9, 8),
-  ('2024-10-08', TRUE, 10, 9),
+  ('2024-10-08', TRUE, 5, 9),
+  ('2024-10-08', TRUE, 8, 9),
+  ('2024-10-08', FALSE, 10, 9),
   ('2024-10-08', TRUE, 11, 9),
   ('2024-10-08', TRUE, 12, 9),
+  ('2024-10-08', TRUE, 4, 10),
+  ('2024-10-08', TRUE, 6, 10),
   ('2024-10-08', TRUE, 13, 10),
   ('2024-10-08', TRUE, 14, 10),
-  ('2024-10-08', TRUE, 15, 10),
+  ('2024-10-08', FALSE, 15, 10),
 
   ('2024-10-09', TRUE, 1, 1),
   ('2024-10-09', TRUE, 2, 1),
