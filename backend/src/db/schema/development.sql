@@ -26,7 +26,7 @@ VALUES
     ('2024-09-26', '10:30:00', 'Consultation', 'Completed', 2, 1),
     ('2024-09-27', '14:00:00', 'Follow-up', 'Cancelled', 3, 2),
     ('2024-09-28', '11:15:00', 'Immunization', 'Scheduled', 4, 3),
-    ('2024-09-29', '16:00:00', 'Physical Therapy', 'Pending', 5, 2)
+    ('2024-09-29', '16:00:00', 'Physical Therapy', 'Pending', 5, 2),
     ('2024-10-10', '08:00', 'Checkup', 'Pending', 1, 4),
     ('2024-10-10', '10:00', 'Consultation', 'Pending', 2, 4),
     ('2024-10-10', '14:00', 'Follow-up', 'Pending', 3, 7),
@@ -38,7 +38,7 @@ VALUES
     ('2024-10-14', '08:00', 'Consultation', 'Pending', 1, 4),
     ('2024-10-14', '15:00', 'Follow-up', 'Pending', 2, 6),
     ('2024-10-15', '10:00', 'Checkup', 'Pending', 4, 5),
-    ('2024-10-15', '14:00', 'Consultation', 'Pending', 7, 4),
+    ('2024-10-15', '14:00', 'Consultation', 'Pending', 1, 4),
     ('2024-10-16', '09:00', 'Follow-up', 'Pending', 3, 9),
     ('2024-10-17', '08:00', 'Consultation', 'Pending', 5, 4),
     ('2024-10-17', '16:00', 'Checkup', 'Pending', 3, 6);
