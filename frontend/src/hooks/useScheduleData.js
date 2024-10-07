@@ -1,6 +1,56 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
+
+export const ACTIONS = {
+  SET_TIME_SLOT_DATA: "SET_TIME_SLOT_DATA",
+  SCHEDULE_START_DATE_ADDED: "SCHEDULE_START_DATE_ADDED",
+  SCHEDULE_END_DATE_ADDED: "SCHEDULE_END_DATE_ADDED",
+  SCHEDULE_START_TIME_ADDED: "SCHEDULE_START_TIME_ADDED",
+  SCHEDULE_END_TIME_ADDED: "SCHEDULE_END_TIME_ADDED",
+  DATE_RANGE_ADDED: "DATE_RANGE_ADDED",
+  TIME_SLOT_ID_RANGE_ADDED: "TIME_SLOT_ID_RANGE_ADDED",
+  SELECTED_RANGE: "SELECTED_RANGE"
+}
+
+function reducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.SET_TIME_SLOT_DATA:
+      return {...state, doctorInfo: action.payload};
+    case ACTIONS.SCHEDULE_START_DATE_ADDED:
+      return {...state, doctorInfo: null};
+    case ACTIONS.SCHEDULE_END_DATE_ADDED:
+      return {...state, showDoc: true};
+    case ACTIONS.SCHEDULE_START_TIME_ADDED:
+      return {...state, showDoc: false};
+    case ACTIONS.SCHEDULE_END_TIME_ADDED:
+      return {...state, isVirtual: action.payload};
+    case ACTIONS.DATE_RANGE_ADDED:
+      return {...state, appointmentType: action.payload};
+    case ACTIONS.TIME_SLOT_ID_RANGE_ADDED:
+      return {...state, startDate: action.payload};
+    case ACTIONS.SELECTED_RANGE:
+      return {...state, startDate: ""};
+    default: 
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      )
+  }
+}
+
+const initialState = {
+  timeSlots: [],
+  docStartDate: null,
+  docEndDate: null,
+  docStartTime: null,
+  docEndTime: null,
+  dateRanges: [],
+  timeSlotIdRanges: [],
+  selectedRanges: []
+}
 
 const useScheduleData = () => {
+
+  const [schedulerState, dispatch] = useReducer(reducer, initialState);
+  
   const [docStartDate, setDocStartDate] = useState(null);
   const [docEndDate, setDocEndDate] = useState(null);
 
