@@ -22,26 +22,27 @@ VALUES
 
 INSERT INTO appointments (appointment_date, appointment_time, appointment_type, status, patient_id, doctor_id) 
 VALUES 
-    ('2024-09-25', '09:00:00', 'Checkup', 'Scheduled', 1, 1),
-    ('2024-09-26', '10:30:00', 'Consultation', 'Completed', 2, 1),
-    ('2024-09-27', '14:00:00', 'Follow-up', 'Cancelled', 3, 2),
-    ('2024-09-28', '11:15:00', 'Immunization', 'Scheduled', 4, 3),
-    ('2024-09-29', '16:00:00', 'Physical Therapy', 'Pending', 5, 2),
-    ('2024-10-10', '08:00', 'Checkup', 'Pending', 1, 4),
-    ('2024-10-10', '10:00', 'Consultation', 'Pending', 2, 4),
-    ('2024-10-10', '14:00', 'Follow-up', 'Pending', 3, 7),
-    ('2024-10-11', '09:00', 'Checkup', 'Pending', 1, 10),
-    ('2024-10-11', '11:00', 'Consultation', 'Pending', 4, 4),
-    ('2024-10-12', '08:00', 'Consultation', 'Pending', 3, 8),
-    ('2024-10-12', '13:00', 'Follow-up', 'Pending', 5, 4),
-    ('2024-10-13', '09:00', 'Checkup', 'Pending', 2, 6),
-    ('2024-10-14', '08:00', 'Consultation', 'Pending', 1, 4),
-    ('2024-10-14', '15:00', 'Follow-up', 'Pending', 2, 6),
-    ('2024-10-15', '10:00', 'Checkup', 'Pending', 4, 5),
-    ('2024-10-15', '14:00', 'Consultation', 'Pending', 1, 4),
-    ('2024-10-16', '09:00', 'Follow-up', 'Pending', 3, 9),
-    ('2024-10-17', '08:00', 'Consultation', 'Pending', 5, 4),
-    ('2024-10-17', '16:00', 'Checkup', 'Pending', 3, 6);
+    ('2024-09-25', '09:00:00', 'In-Person', 'Scheduled', 1, 1),
+    ('2024-09-26', '10:30:00', 'Virtual', 'Completed', 2, 1),
+    ('2024-09-27', '14:00:00', 'In-Person', 'Cancelled', 3, 2),
+    ('2024-09-28', '11:15:00', 'In-Person', 'Scheduled', 4, 3),
+    ('2024-09-29', '08:00:00', 'Virtual', 'Pending', 5, 2),
+    ('2024-10-10', '20:00:00', 'In-Person', 'Pending', 1, 4),
+    ('2024-10-10', '10:00:00', 'Virtual', 'Pending', 2, 4),
+    ('2024-10-10', '14:00:00', 'In-Person', 'Pending', 3, 7),
+    ('2024-10-11', '09:00:00', 'In-Person', 'Pending', 1, 10),
+    ('2024-10-11', '11:00:00', 'In-Person', 'Pending', 4, 4),
+    ('2024-10-12', '08:00:00', 'Virtual', 'Pending', 3, 8),
+    ('2024-10-12', '13:00:00', 'In-Person', 'Pending', 5, 4),
+    ('2024-10-13', '09:00:00', 'In-Person', 'Pending', 2, 6),
+    ('2024-10-14', '08:00:00', 'Virtual', 'Pending', 1, 4),
+    ('2024-10-14', '15:00:00', 'In-Person', 'Pending', 2, 6),
+    ('2024-10-15', '10:00:00', 'Virtual', 'Pending', 4, 5),
+    ('2024-10-15', '14:00:00', 'In-Person', 'Pending', 1, 4),
+    ('2024-10-16', '09:00:00', 'Virtual', 'Pending', 3, 9),
+    ('2024-10-17', '08:00:00', 'In-Person', 'Pending', 5, 4),
+    ('2024-10-17', '16:00:00', 'Virtual', 'Pending', 3, 6);
+
 
 INSERT INTO records (diagnosis, patient_id, doctor_id, appointment_id) 
 VALUES 
