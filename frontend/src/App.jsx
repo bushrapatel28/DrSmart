@@ -172,6 +172,12 @@ function App() {
         isPatientsOpen={docState.isPatientsOpen}
         openPatientsModal={openPatientsModal}
         closePatientsModal={closePatientsModal}
+        // Top Nav props
+        topNavState={topNavState}
+        openProfile={openProfile}
+        closeProfile={closeProfile}
+        openSettings={openSettings}
+        closeSettings={closeSettings}
       />
       {/* <DoctorDash /> */}
       {/* <RegistrationForm /> */}

@@ -24,7 +24,6 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal, openProfile }) => {
       .then(() => {
         // Close the modal and open the user profile after the fetch completes
         closeMedicalHistoryModal();
-        openProfile();
       })
       .catch((error) => {
         console.error('Error during submission:', error);

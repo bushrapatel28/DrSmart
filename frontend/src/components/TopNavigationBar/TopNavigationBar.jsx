@@ -17,8 +17,8 @@ const TopNavigationBar = ({ openProfile, openSettings, role, username }) => {
         {role === "doctor" && <h1>Dr, {username}</h1>}
       </div>
       <div className="nav-icons">
-        <UserProfile openProfile={openProfile} />
-        <Settings openSettings={openSettings} />
+        <UserProfile openProfile={openProfile} role={role} />
+        <Settings openSettings={openSettings} role={role} />
         <Logout />
 
       </div>

@@ -9,6 +9,8 @@ import SchedulerModal from '../SchedulerModal/SchedulerModal';
 import AfterVisitModal from '../AfterVisitModal/AfterVisitModal';
 import useAfterVisitSummaryForm from '../../hooks/useAfterVisitData';
 import MsgsModal from '../MsgsModal/MsgsModal';
+import ProfileModal from '../ProfileModal/ProfileModal';
+import SettingsModal from '../SettingsModal/SettingsModal';
 
 // images / icons
 import patientDataIcon from '../../assets/patientdata-icon.png';
@@ -39,13 +41,30 @@ const DoctorDash = ({
   deleteAvailability,
   isPatientsOpen,
   openPatientsModal,
-  closePatientsModal
+  closePatientsModal,
+  // Top Nav props
+  topNavState,
+  openProfile,
+  closeProfile,
+  openSettings,
+  closeSettings
 }) => {
   const { formData, handleInputChange, handleSubmit, selectDateTime, filterPassedTime, patients } = useAfterVisitSummaryForm();
-
+  const isProfileOpen = topNavState.isProfileOpen;
+  const isSettingsOpen = topNavState.isSettingsOpen;
+  const profilePatientArr = topNavState.patient;
   return (
     <div className="doctordash">
-      <TopNavigationBar role="doctor" username="Marie Curie" />
+      <TopNavigationBar
+        role="doctor"
+        username="Marie Curie"
+        openProfile={openProfile}
+        openSettings={openSettings}
+      />
+      <div>
+        {isProfileOpen && <ProfileModal closeProfile={closeProfile} profilePatientArr={profilePatientArr} role={"doctor"} />}
+        {isSettingsOpen && <SettingsModal closeSettings={closeSettings} />}
+      </div>
       <div className="functions-section">
         {state.isSchedulerOpen ? (
           <SchedulerModal
@@ -76,7 +95,7 @@ const DoctorDash = ({
 
         {state.isMsgsOpen ? (<MsgsModal msgsData={state.doctorMsgs} closeMsgsModal={closeDocMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openDocMsgsModal} />)}
         {/* <FunctionBlock icon={MsgsIcon} label="Messages" openModal={openDocMsgsModal} /> */}
-        
+
         {state.isVisitFormOpen ? (<AfterVisitModal
           isOpen={state.isVisitFormOpen}
           closeModal={closeVisitModal}

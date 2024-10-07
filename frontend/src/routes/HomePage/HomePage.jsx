@@ -83,12 +83,13 @@ const HomePage = ({
         username="Frank Navasky"
         openProfile={openProfile}
         openSettings={openSettings}
+        profilePatientArr={profilePatientArr}
       />
       <div className='slogan'>
         <h1>SMARTER CARE, ANYTIME, ANYWHERE.</h1>
       </div>
       <div>
-        {isProfileOpen && <ProfileModal closeProfile={closeProfile} profilePatientArr={profilePatientArr} />}
+        {isProfileOpen && <ProfileModal closeProfile={closeProfile} profilePatientArr={profilePatientArr} role={"patient"} />}
         {isSettingsOpen && <SettingsModal closeSettings={closeSettings} />}
       </div>
       <div className='functions-all'>

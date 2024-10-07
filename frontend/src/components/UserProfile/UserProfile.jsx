@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './UserProfile.scss';
 import ProfileIcon from '../../assets/profile-icon-new.png'
-const UserProfile = ({ openProfile }) => {
+const UserProfile = ({ openProfile, role }) => {
   // const [isOpen, setIsOpen] = useState(false);
 
   // const toggleMenu = () => {
