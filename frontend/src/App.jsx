@@ -39,14 +39,15 @@ function App() {
   } = useScheduleData();
 
   const {
-    doctor,
-    isSchedulerOpen,
+    docState,
     openSchedulerModal,
     closeSchedulerModal,
-    patients,
-    isPatientsOpen,
     openPatientsModal,
-    closePatientsModal
+    closePatientsModal,
+    openVisitModal,
+    closeVisitModal,
+    openDocMsgsModal,
+    closeDocMsgsModal
   } = useDoctorsData();
 
   const {
@@ -133,7 +134,7 @@ function App() {
         closeMedicalHistoryModal={closeMedicalHistoryModal}
         /*Appointment Props Start */
         state={state}
-        doctorData={doctor}
+        doctorData={docState.doctor}
         // startDate={startDate}
         // startTime={startTime}
         // isVirtual={isVirtual}
@@ -148,9 +149,13 @@ function App() {
         filterPassedTime={filterPassedTime}
       />
       <DoctorDash
-        isSchedulerOpen={isSchedulerOpen}
+        state={docState}
         openSchedulerModal={openSchedulerModal}
         closeSchedulerModal={closeSchedulerModal}
+        openVisitModal={openVisitModal}
+        closeVisitModal={closeVisitModal}
+        openDocMsgsModal={openDocMsgsModal}
+        closeDocMsgsModal={closeDocMsgsModal}
         docStartDate={docStartDate}
         docEndDate={docEndDate}
         docStartTime={docStartTime}
@@ -163,8 +168,8 @@ function App() {
         selectedRanges={selectedRanges}
         deleteAvailability={deleteAvailability}
         // Patients props
-        patients={patients}
-        isPatientsOpen={isPatientsOpen}
+        patients={docState.patients}
+        isPatientsOpen={docState.isPatientsOpen}
         openPatientsModal={openPatientsModal}
         closePatientsModal={closePatientsModal}
       />

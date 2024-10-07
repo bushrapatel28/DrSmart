@@ -114,7 +114,7 @@ const HomePage = ({
           ) : (<FunctionBlock icon={scheduleIcon} label="Schedule an Appointment" openModal={openAppointmentModal} />)}
           {isLabResultsOpen ? (<LabResultsModal patientLabResults={patientLabResults} closeLabResultsModal={closeLabResultsModal} />) : (<FunctionBlock icon={ResultIcon} label="Test Results" openModal={openLabResultsModal} />)}
           {isMedicationOpen ? (<MedicationModal patientMedications={patientMedications} closeMedicationsModal={closeMedicationsModal} />) : (<FunctionBlock icon={MedicineIcon} label="Medications" openModal={openMedicationsModal} />)}
-          {isMsgsOpen ? (<MsgsModal patientMsgs={patientMsgs} closeMsgsModal={closeMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openMsgsModal} />)}
+          {isMsgsOpen ? (<MsgsModal msgsData={patientMsgs} closeMsgsModal={closeMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openMsgsModal} />)}
 
           {isRecordOpen ? (
             <RecordDetailsModal
@@ -136,16 +136,6 @@ const HomePage = ({
               icon={MedicalHistoryIcon}
               label="Medical History"
               openModal={openMedicalHistoryModal}
-            />)}
-          {isMsgsOpen ? (
-            <MsgsModal
-              patientMsgs={patientMsgs}
-              closeMsgsModal={closeMsgsModal}
-            />) : (
-            <FunctionBlock
-              icon={MsgsIcon}
-              label="Messages"
-              openModal={openMsgsModal}
             />)}
         </div>
       </div>
