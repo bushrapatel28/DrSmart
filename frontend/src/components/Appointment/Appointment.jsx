@@ -34,15 +34,15 @@ const Appointment = (props) => {
           inline
           showIcon
           icon="fa fa-calendar"
-          selected={props.startDate && props.startDate}
-          onChange={(date) => props.selectDateTime(date)}
+          selected={startDate && startDate}
+          onChange={(date) => selectDateTime(date)}
           showTimeSelect
           timeIntervals={30}
           timeCaption="Time"
-          filterTime={props.filterPassedTime}
+          filterTime={filterPassedTime}
           dateFormat="hh:mm aa"          //Format for the Time side panel within the calendar
           minDate={new Date()}          // Only allow dates starting from today
-          minTime={props.startDate && props.startDate.toDateString() === new Date().toDateString()
+          minTime={startDate && startDate.toDateString() === new Date().toDateString()
             ? new Date() > setHours(setMinutes(new Date(), 0), 6) // If today, set minTime to current time or 6:00 AM
               ? new Date()
               : setHours(setMinutes(new Date(), 0), 6)

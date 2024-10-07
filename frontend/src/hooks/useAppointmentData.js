@@ -109,13 +109,12 @@ const useAppointmentData = () => {
   }
   
   function next() {
-    console.log(`Next`);
+    // console.log(`Next`, state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }), "06:30 AM");
     // console.log(`START TIME AND CONDITIONAL`,state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
+    
     if(!state.startDate || !state.startTime) {
       console.log("PLEASE SELECT AN APPOINTMENT DATE AND TIME");
       dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Appointment Date and Time cannot be empty"});
-    } else if (state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }) < "06:30 AM") {
-      dispatch({type: ACTIONS.ERROR_MSG_ADDED, payload: "Appointment Time must be between 6:30 AM and 8:30 PM"});
     } else {
       // setShowDoc(true);
       dispatch({type: ACTIONS.DISPLAY_DOCTORS_LIST});
