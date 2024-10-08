@@ -75,7 +75,7 @@ const HomePage = ({
   const isSettingsOpen = topNavState.isSettingsOpen;
   const profilePatientArr = topNavState.patient;
 
-  console.log("PATIENT LAB RESULTS FROM HomePage.jsx: ", patientLabResults);
+  // console.log("PATIENT LAB RESULTS FROM HomePage.jsx: ", patientLabResults);
   return (
     <div className="homepage">
       <TopNavigationBar

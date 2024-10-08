@@ -1,49 +1,33 @@
 const router = require("express").Router();
 
 module.exports = db => {
-  router.get("/appointments", (req, res) => {
-
+  //router for get request to fetch pending + Scheduled + completed appointments for ${doc_id}
+  router.get("/appointments/:id", (req, res) => {
+    const doctorId = req.params.id;
+  
     db.query(`
       SELECT
-      json_agg(
-        json_build_object(
-          'id', appointments.id,
-          'date', appointments.appointment_date,
-          'time', appointments.appointment_time,
-          'type', appointments.appointment_type,
-          'status', appointments.status,
-          'patient', (
-            SELECT
-              json_agg(
-                json_build_object(
-                  'patient_id', patients.id,
-                  'name', patients.name,
-                  'email', patients.email
-                )
-              )
-            FROM patients
-            WHERE patients.id = appointments.patient_id
-          ),
-          'doctor', (
-            SELECT
-              json_agg(
-                json_build_object(
-                  'doctor_id', doctors.id,
-                  'name', doctors.name,
-                  'email', doctors.email
-                )
-              )
-            FROM doctors
-            WHERE doctors.id = appointments.doctor_id
-          )
-        )
-      ) as appointment_data
+        appointments.id,
+        appointments.appointment_date AS date,
+        appointments.appointment_time AS time,
+        appointments.appointment_type AS type,
+        appointments.status,
+        patients.name AS patient_name
       FROM appointments
-    `).then(({ rows }) => {
-      res.json(rows[0].appointment_data);
-    });
+      JOIN patients ON appointments.patient_id = patients.id
+      WHERE appointments.doctor_id = $1
+      AND appointments.status NOT IN ('Cancelled', 'Rejected')
+      ORDER BY appointments.appointment_date ASC, appointments.appointment_time ASC
+    `, [doctorId])
+      .then(({ rows }) => {
+        res.json(rows); // Send all rows (appointments)
+      })
+      .catch((error) => {
+        console.error("Error executing query: ", error);
+        res.status(500).json({ error: "Database query error" });
+      });
   });
-
+  
   router.post("/appointments/new", (req, res) => {
     // Extract appointment details from request body
     const {
@@ -87,6 +71,53 @@ module.exports = db => {
     //   res.redirect(`/`);          
     // });
   });
+
+  //Update appointment type router
+  router.post("/appointments/update", (req, res) => {
+    const { appointment_id, action } = req.body;
+    console.log("Appointment Update triggered in backend");
+
+    if (!appointment_id || !action) {
+      return res.status(400).json({ error: "Appointment ID and action are required." });
+    }
+
+    let newType;
+    switch (action) {
+      case "Accept":
+        newType = "Scheduled";
+        break;
+      case "Reject":
+        newType = "Rejected";
+        break;
+      case "Cancel":
+        newType = "Cancelled";
+        break;
+      default:
+        return res.status(400).json({ error: "Invalid action." });
+    }
+
+    db.query(`
+      UPDATE appointments
+      SET status = $1
+      WHERE id = $2
+      RETURNING *
+    `, [newType, appointment_id])
+    .then(({ rows }) => {
+      if (rows.length === 0) {
+        return res.status(404).json({ error: "Appointment not found." });
+      }
+      console.log("Response from db, rows: ", rows);
+      res.json({
+        message: `Appointment ${action}ed successfully`,
+        appointment: rows[0],
+      });
+    })
+    .catch((err) => {
+      console.error("Error updating appointment:", err);
+      res.status(500).json({ error: "Internal server error" });
+    });
+  });
+
 
   return router;
 }

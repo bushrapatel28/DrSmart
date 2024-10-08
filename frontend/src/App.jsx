@@ -46,8 +46,9 @@ function App() {
     closePatientsModal,
     openVisitModal,
     closeVisitModal,
-    openDocMsgsModal,
-    closeDocMsgsModal
+    openAcceptApptModal,
+    closeAcceptApptModal,
+    handleAppt
   } = useDoctorsData();
 
   const {
@@ -92,7 +93,7 @@ function App() {
   } = usePatientData();
 
   const [currentComponent, setCurrentComponent] = useState('home');
-  console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
+  // console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
   const setMainWindow = (component) => {
     setCurrentComponent(component);
   }
@@ -154,8 +155,10 @@ function App() {
         closeSchedulerModal={closeSchedulerModal}
         openVisitModal={openVisitModal}
         closeVisitModal={closeVisitModal}
-        openDocMsgsModal={openDocMsgsModal}
-        closeDocMsgsModal={closeDocMsgsModal}
+        openAcceptApptModal={openAcceptApptModal}
+        closeAcceptApptModal={closeAcceptApptModal}
+        //Accept Appt functions
+        handleAppt={handleAppt}
         docStartDate={docStartDate}
         docEndDate={docEndDate}
         docStartTime={docStartTime}
@@ -172,6 +175,7 @@ function App() {
         isPatientsOpen={docState.isPatientsOpen}
         openPatientsModal={openPatientsModal}
         closePatientsModal={closePatientsModal}
+
       />
       {/* <DoctorDash /> */}
       {/* <RegistrationForm /> */}
