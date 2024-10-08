@@ -24,9 +24,9 @@ const schedule = require('./routes/schedule');
 const visit_form =  require('./routes/visit-form');
 const doc_messages = require('./routes/doc-messages');
 
-
 //Zoom Video Setup
-const video_call = require('./routes/video-call')
+const video_call = require('./routes/video-call');
+
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -69,7 +69,7 @@ module.exports = function application(ENV) {
   app.use('/doctors', visit_form(db));
   app.use('/doctors', doc_messages(db));
 
-  app.use('/', video_call());
+  app.use('/home', video_call());
 
   if (ENV === "development" || ENV === "test") {
     Promise.all([
