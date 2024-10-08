@@ -30,7 +30,7 @@ function App(props) {
 
   //Destructure props object
   const {
-    meetingArgs: { topic, signature, name, passWord }
+    meetingArgs: { sdkKey, topic, signature, name, passWord }
   } = props;
 
   const [loading, setIsLoading] = useState(true);
@@ -48,7 +48,7 @@ function App(props) {
 
       client.init('US-EN', 'CDN')
 
-      console.log("JOINING MEETING", props.meetingArgs);
+      console.log("JOINING MEETING", props);
       
       // console.log("CLIENT JOIN", client.join(topic, signature, name, passWord));
     
@@ -73,7 +73,7 @@ function App(props) {
       return () => {
         ZoomVideo.destroyClient();
     }
-  }, [signature, client, topic, name, passWord])
+  }, [sdkKey, signature, client, topic, name, passWord])
 
 
   const {

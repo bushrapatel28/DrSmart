@@ -32,8 +32,8 @@ app.use(express.json());
 
 app.post('/generate', middleware.generateToken, (req, res) => {
   console.log("APPLICATION REQ", req.body);
-
-  res.status(200).send(res.locals.signature);
+  console.log("APPLICATION SIGN", res.locals.signature);
+  res.status(200).json({signature: res.locals.signature});
 });
 
 

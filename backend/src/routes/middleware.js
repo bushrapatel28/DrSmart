@@ -26,8 +26,7 @@ middleware.generateToken = (req, res, next) => {
     //Destructure req body to access user creds
     const {topic, passWord, userIdentity, sessionKey, roleType} = req.body;
 
-    const sdkKey = process.env.SDK_KEY;             //Need to research
-    // const sdkKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfa2V5IjoiVGVzdDIiLCJyb2xlX3R5cGUiOjEsInRwYyI6InRlc3QgdG9waWMiLCJ2ZXJzaW9uIjoxLCJpYXQiOjE3MjgzOTM1MjEsImV4cCI6MTcyODM5NzEyMX0.vcvRiXW1hT17EakAy_gd8K_FMuKVUcP-giWAp-zjwMg;
+    const sdkKey = process.env.SDK_KEY;
     const sdkSecret = process.env.SDK_SECRET;
 
     const oPayload = {
@@ -45,8 +44,8 @@ middleware.generateToken = (req, res, next) => {
     
     const sHeader = JSON.stringify(oHeader);
     const sPayload = JSON.stringify(oPayload);
-    // signature = KJUR.jws.JWS.sign('HS256', sHeader, sPayload, sdkSecret);
-    signature = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfa2V5IjoidGVzdDEiLCJyb2xlX3R5cGUiOjEsInRwYyI6InRlc3QgdG9waWMiLCJ2ZXJzaW9uIjoxLCJpYXQiOjE3MjgzOTc5MjEsImV4cCI6MTcyODQwMTUyMX0.NLGsETXZ5Tlr6SabgCQHYoE2JFuRDkl7dqCWOSjlj1w";
+    signature = KJUR.jws.JWS.sign('HS256', sHeader, sPayload, sdkSecret);
+    console.log("SIGNATURE", signature);
     //Save signature to res.locals object
     res.locals.signature=signature;
 
