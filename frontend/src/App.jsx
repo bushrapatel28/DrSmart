@@ -26,54 +26,62 @@ import LoadingLayout from './components/LoadingLayout/LoadingLayout'
 import VideoContainer from './feature/Video/Video';
 import Home from './feature/Home/Home'
 
+import useZoomData from './hooks/useZoomData'
+import VideoCall from './components/VideoCall/VideoCall'
+
+
 function App(props) {
 
-  //Destructure props object
-  const {
-    meetingArgs: { sdkKey, topic, signature, name, passWord }
-  } = props;
+  const { meetingArgs } = useZoomData();
 
-  const [loading, setIsLoading] = useState(true);
-  const [loadingText, setLoadingText] = useState(' ');
-  const [mediaStream, setMediaStream] = useState();
-  const [status, setStatus] = useState(false);
 
-  //Use useContext hook to grab passed down value and create client variable
-  const client = useContext(ZoomContext);
 
-  useEffect(() => {
-    //Create init async function with try...catch block
-    const init = async () => {
-      console.log("CLIENT", client);
+  // //Destructure props object
+  // const {
+  //   meetingArgs: { sdkKey, topic, signature, name, passWord }
+  // } = props;
 
-      client.init('US-EN', 'CDN')
+  // const [loading, setIsLoading] = useState(true);
+  // const [loadingText, setLoadingText] = useState(' ');
+  // const [mediaStream, setMediaStream] = useState();
+  // const [status, setStatus] = useState(false);
 
-      console.log("JOINING MEETING", props);
+  // //Use useContext hook to grab passed down value and create client variable
+  // const client = useContext(ZoomContext);
+
+  // useEffect(() => {
+  //   //Create init async function with try...catch block
+  //   const init = async () => {
+  //     console.log("CLIENT", client);
+
+  //     client.init('US-EN', 'CDN')
+
+  //     console.log("JOINING MEETING", props);
       
-      // console.log("CLIENT JOIN", client.join(topic, signature, name, passWord));
+  //     // console.log("CLIENT JOIN", client.join(topic, signature, name, passWord));
     
-      try {
-        setLoadingText('Joining Session..')
-        await client.join(topic, signature, name, passWord);
-        console.log("MEDIA STREAM", client.getMediaStream());
+  //     try {
+  //       setLoadingText('Joining Session..')
+  //       await client.join(topic, signature, name, passWord);
+  //       console.log("MEDIA STREAM", client.getMediaStream());
 
-        const stream = client.getMediaStream();
+  //       const stream = client.getMediaStream();
         
-        setMediaStream(stream);
-        setIsLoading(false);
-      }
-      catch(err) {
-        console.log('Error Joining Meeting', err);
-        setIsLoading(false);
-        message.error(err.reason);
-      }
-    }
-    //Call function and create clean up functionality
-      init();
-      return () => {
-        ZoomVideo.destroyClient();
-    }
-  }, [sdkKey, signature, client, topic, name, passWord])
+  //       setMediaStream(stream);
+  //       setIsLoading(false);
+  //     }
+  //     catch(err) {
+  //       console.log('Error Joining Meeting', err);
+  //       setIsLoading(false);
+  //       message.error(err.reason);
+  //     }
+  //   }
+  //   //Call function and create clean up functionality
+  //     init();
+  //     return () => {
+  //       ZoomVideo.destroyClient();
+  //   }
+  // }, [sdkKey, signature, client, topic, name, passWord])
 
 
   const {
@@ -233,18 +241,11 @@ function App(props) {
         openPatientsModal={openPatientsModal}
         closePatientsModal={closePatientsModal}
       />
+
+      {meetingArgs.signature && 
+        <App meetingArgs = {meetingArgs} />
+      }
       
-      {loading && <LoadingLayout content = {loadingText}/>}
-      {!loading && (
-        <MediaContext.Provider value = {mediaStream}>
-          <Router>
-            <Routes>
-              <Route path = "/" element = {<Home props={props} status={status}/>}/>
-              <Route path = "/video" element = {<VideoContainer />}/>
-            </Routes>
-          </Router>
-        </MediaContext.Provider>
-      )}
     </>
   )
 }

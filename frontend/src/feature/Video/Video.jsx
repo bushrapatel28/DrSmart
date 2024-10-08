@@ -26,10 +26,10 @@ const VideoContainer = () => {
       //Check Chrome Browser and SharedArrayBuffer enabled - API used by VideoSDK for more enhanced experience
       if (!!window.chrome && !(typeof SharedArrayBuffer === 'function')) {
         setIsSAB(false);
-        await mediaStream.startVideo({videoElement: document.querySelector('#self-view-video')})
+        await mediaStream.startVideo({videoElement: document.querySelector('#self-view-video'), fullHd: true })
       } else {
         setIsSAB(true);
-        await mediaStream.startVideo();
+        await mediaStream.startVideo({ fullHd: true });
         mediaStream.renderVideo(document.querySelector('#self-view-canvas'), client.getCurrentUserInfo().userId, 1920, 1080, 0, 0, 3)       //Dimensions, X/Y axes, Video Quality value 3 = 720p
       }
       setVideoStarted(true)

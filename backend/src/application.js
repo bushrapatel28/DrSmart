@@ -26,15 +26,15 @@ const doc_messages = require('./routes/doc-messages');
 
 //Zoom Video Setup
 const video_call = require('./routes/video-call');
-const middleware = require('./routes/middleware');
+// const middleware = require('./routes/middleware');
 
-app.use(express.json());
+// app.use(express.json());
 
-app.post('/generate', middleware.generateToken, (req, res) => {
-  console.log("APPLICATION REQ", req.body);
-  console.log("APPLICATION SIGN", res.locals.signature);
-  res.status(200).json({signature: res.locals.signature});
-});
+// app.post('/generate', middleware.generateToken, (req, res) => {
+//   console.log("APPLICATION REQ", req.body);
+//   console.log("APPLICATION SIGN", res.locals.signature);
+//   res.status(200).json({signature: res.locals.signature});
+// });
 
 
 function read(file) {
@@ -78,7 +78,7 @@ module.exports = function application(ENV) {
   app.use('/doctors', visit_form(db));
   app.use('/doctors', doc_messages(db));
 
-  // app.use('/', video_call());
+  app.use('/', video_call());
 
   if (ENV === "development" || ENV === "test") {
     Promise.all([

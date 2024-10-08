@@ -48,8 +48,8 @@ middleware.generateToken = (req, res, next) => {
     console.log("SIGNATURE", signature);
     //Save signature to res.locals object
     res.locals.signature=signature;
-
     return next();
+
    }
    catch(err) {
     return next({err});
