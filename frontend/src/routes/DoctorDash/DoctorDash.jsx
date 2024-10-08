@@ -46,7 +46,10 @@ const DoctorDash = ({
   return (
     <div className="doctordash">
       <TopNavigationBar role="doctor" username="Marie Curie" />
-      <div className="functions-section">
+      <div className='slogan'>
+        <h1>SMARTER CARE, ANYTIME, ANYWHERE.</h1>
+      </div>
+      <div className="functions-section doctor-dash">
         {state.isSchedulerOpen ? (
           <SchedulerModal
             docStartDate={docStartDate}
@@ -76,7 +79,7 @@ const DoctorDash = ({
 
         {state.isMsgsOpen ? (<MsgsModal msgsData={state.doctorMsgs} closeMsgsModal={closeDocMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openDocMsgsModal} />)}
         {/* <FunctionBlock icon={MsgsIcon} label="Messages" openModal={openDocMsgsModal} /> */}
-        
+
         {state.isVisitFormOpen ? (<AfterVisitModal
           isOpen={state.isVisitFormOpen}
           closeModal={closeVisitModal}

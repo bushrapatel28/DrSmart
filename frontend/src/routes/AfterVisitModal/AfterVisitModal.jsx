@@ -1,20 +1,21 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { setHours, setMinutes } from 'date-fns';
+import "./AfterVisitModal.scss"
 
 const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, handleSubmit, selectDateTime, filterPassedTime, patients }) => {
   // if (!isOpen) return null;
   console.log("***********Patient's data in modal: ***********", patients);
   return (
     <>
-    {isOpen && (
-          <div className="modal">
+      {isOpen && (
+        <div className="modal">
           <div className="modal__content">
             <button className="modal__close-button" onClick={closeModal}>
               <span>&times;</span>
             </button>
             <h3 className="modal__heading">After Visit Summary</h3>
-    
+
             <DatePicker
               inline
               selected={formData.appointmentDateTime}
@@ -33,27 +34,25 @@ const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, hand
                 : setHours(setMinutes(new Date(), 0), 6)}
               maxTime={setHours(setMinutes(new Date(), 30), 20)}
             />
-    
-            <form onSubmit={handleSubmit}>
-              <div>
+
+            <form className="after-visit-form" onSubmit={handleSubmit}>
+              <div className="after-visit">
                 <input
-                  className="modal__appointment-date"
                   readOnly
                   name="date"
                   value={formData.appointmentDateTime ? formData.appointmentDateTime.toDateString() : ""}
                   required
                 />
                 <input
-                  className="appointment-time"
                   readOnly
                   name="time"
                   value={formData.appointmentDateTime ? formData.appointmentDateTime.toLocaleTimeString() : ""}
                   required
                 />
-    
+
                 {/* Patient Dropdown */}
                 <label htmlFor="patientId">Select Patient:</label>
-                <select
+                <select className="drop-box"
                   name="patientId"
                   value={formData.patientId}
                   onChange={handleInputChange}
@@ -68,9 +67,9 @@ const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, hand
                 </select>
                 {formData.errors.patientId && <p className="error">{formData.errors.patientId}</p>}
               </div>
-    
-              <div>
-                <label htmlFor="diagnosis">Diagnosis:</label>
+
+              <div className="after-visit">
+                <label class="label-text" htmlFor="diagnosis">Diagnosis:</label>
                 <textarea
                   id="diagnosis"
                   value={formData.diagnosis}
@@ -80,8 +79,8 @@ const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, hand
                 />
                 {formData.errors.diagnosis && <p className="error">{formData.errors.diagnosis}</p>}
               </div>
-    
-              <div>
+
+              <div className="after-visit">
                 <label htmlFor="tests">Tests:</label>
                 <textarea
                   id="tests"
@@ -90,11 +89,11 @@ const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, hand
                   name="tests"
                 />
               </div>
-    
+
               {/* Prescription fields: Medicine and Dosage */}
-              <div>
+              <div className="after-visit">
                 <label htmlFor="medicine">Medicine:</label>
-                <input
+                <textarea
                   id="medicine"
                   value={formData.medicine}
                   onChange={handleInputChange}
@@ -103,10 +102,10 @@ const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, hand
                 />
                 {formData.errors.medicine && <p className="error">{formData.errors.medicine}</p>}
               </div>
-    
-              <div>
+
+              <div className="after-visit">
                 <label htmlFor="dosage">Dosage/Notes:</label>
-                <input
+                <textarea
                   id="dosage"
                   value={formData.dosage}
                   onChange={handleInputChange}
@@ -115,12 +114,12 @@ const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, hand
                 />
                 {formData.errors.dosage && <p className="error">{formData.errors.dosage}</p>}
               </div>
-    
+
               <button type="submit">Submit Summary</button>
             </form>
           </div>
         </div>
-    )}
+      )}
     </>
 
   );

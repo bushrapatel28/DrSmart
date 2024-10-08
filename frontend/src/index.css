@@ -95,7 +95,7 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 8px;
-  background-color: #5AA7A7;
+  background-color: #76baba;
   box-shadow: 0 0px 20px -6px #222;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -126,8 +126,10 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
 
 .available-doctor .doctor-speciality {
   font-size: 0.9rem;
-  color: #BAC94A;
+  font-weight: bold;
+  color: rgb(25, 101, 122);
   margin-left: auto;
+  margin-right: 10px;
 }
 
 /* up until here */

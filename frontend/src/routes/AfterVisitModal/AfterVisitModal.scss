@@ -1,1 +1,68 @@
 @import '../../colors.scss';
+
+.after-visit {
+  input {
+    width: 70px;
+    background-color: $color-text-alpha;
+    text-align: right;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    height: 30px;
+  }
+
+  textarea {
+    font-size: large;
+    width: 100%; // Make it responsive
+    height: auto; // Let it adjust based on content
+    width: 300px;
+    max-height: 100px; // Set maximum height
+    padding: 10px; // Add some padding
+    border-radius: 8px; // Rounded corners
+    border: 1px solid #ccc; // Border styling
+    resize: none; // Disable manual resizing
+
+    // Enable scroll when content exceeds max-height
+    overflow-y: auto;
+    outline: none; // Remove default outline
+  }
+
+  .drop-box {
+    margin-left: 15px;
+    border-radius: 8px;
+    color: $color-text-dark;
+    border: 1px solid #ccc;
+    padding: 8px;
+    // appearance: none;
+    background-color: paleturquoise;
+    outline: none;
+  }
+
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .check-box {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    margin-right: 15px;
+
+    input[type="radio"] {
+      display: none; // Hide the default radio button
+    }
+  }
+}
+
+.after-visit-form {
+  margin-right: 185px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+
+  button {
+    margin-right: 80px;
+  }
+}

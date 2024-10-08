@@ -93,6 +93,17 @@ const HomePage = ({
       </div>
       <div className='functions-all'>
         <div className="functions-section">
+          {isMedicalHistoryOpen ? (
+            <MedicalHistoryModal
+              patientRecord={patientRecord}
+              closeMedicalHistoryModal={closeMedicalHistoryModal}
+              openProfile={openProfile}
+            />) : (
+            <FunctionBlock
+              icon={MedicalHistoryIcon}
+              label="Medical History"
+              openModal={openMedicalHistoryModal}
+            />)}
           {isAppointmentOpen ? (<AppointmentModal
             isAppointmentOpen={isAppointmentOpen}
             closeAppointmentModal={closeAppointmentModal}
@@ -112,8 +123,6 @@ const HomePage = ({
             filterPassedTime={filterPassedTime}
           />
           ) : (<FunctionBlock icon={scheduleIcon} label="Schedule an Appointment" openModal={openAppointmentModal} />)}
-          {isLabResultsOpen ? (<LabResultsModal patientLabResults={patientLabResults} closeLabResultsModal={closeLabResultsModal} />) : (<FunctionBlock icon={ResultIcon} label="Test Results" openModal={openLabResultsModal} />)}
-          {isMedicationOpen ? (<MedicationModal patientMedications={patientMedications} closeMedicationsModal={closeMedicationsModal} />) : (<FunctionBlock icon={MedicineIcon} label="Medications" openModal={openMedicationsModal} />)}
           {isMsgsOpen ? (<MsgsModal msgsData={patientMsgs} closeMsgsModal={closeMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openMsgsModal} />)}
 
           {isRecordOpen ? (
@@ -126,17 +135,9 @@ const HomePage = ({
               label="Visits"
               openModal={openRecordModal}
             />)}
-          {isMedicalHistoryOpen ? (
-            <MedicalHistoryModal
-              patientRecord={patientRecord}
-              closeMedicalHistoryModal={closeMedicalHistoryModal}
-              openProfile={openProfile}
-            />) : (
-            <FunctionBlock
-              icon={MedicalHistoryIcon}
-              label="Medical History"
-              openModal={openMedicalHistoryModal}
-            />)}
+          {isMedicationOpen ? (<MedicationModal patientMedications={patientMedications} closeMedicationsModal={closeMedicationsModal} />) : (<FunctionBlock icon={MedicineIcon} label="Medications" openModal={openMedicationsModal} />)}
+          {isLabResultsOpen ? (<LabResultsModal patientLabResults={patientLabResults} closeLabResultsModal={closeLabResultsModal} />) : (<FunctionBlock icon={ResultIcon} label="Test Results" openModal={openLabResultsModal} />)}
+
         </div>
       </div>
     </div>
