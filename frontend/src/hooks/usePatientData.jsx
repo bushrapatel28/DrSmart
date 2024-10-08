@@ -220,7 +220,7 @@ const usePatientData = () => {
     dispatch({ type: CLOSE_MEDICAL_HISTORY });
 
   }
-  console.log("******* Lab results alive: ", state.patientLabResults);
+  // console.log("******* Lab results alive: ", state.patientLabResults);
   return {
     isRecordOpen: state.isRecordOpen,
     patientRecord: state.patientRecord,

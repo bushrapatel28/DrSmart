@@ -62,7 +62,7 @@ const useAfterVisitData = () => {
     fetch('/api/patients')  // Adjust the endpoint to your backend route
       .then(res => res.json())
       .then(data => {
-        console.log("*****Patient's data from api: ****", data);
+        // console.log("*****Patient's data from api: ****", data);
         setPatients(data);
       })
       .catch(err => console.error('Error fetching patients:', err));
@@ -101,7 +101,7 @@ const useAfterVisitData = () => {
         },
       };
 
-      console.log('Form submitted with data:', dataToSend);
+      // console.log('Form submitted with data:', dataToSend);
       //hard coded doctors id
       fetch('/doctors/4/visit-form', {
         method: 'POST',
@@ -148,7 +148,7 @@ const useAfterVisitData = () => {
 
     return currentDate.getTime() < selectedDate.getTime();
   };
-  console.log("*****Patient's in HOOK: ****", patients);
+  // console.log("*****Patient's in HOOK: ****", patients);
   return { formData: state, handleInputChange, handleSubmit, selectDateTime, filterPassedTime, patients };
 };
 

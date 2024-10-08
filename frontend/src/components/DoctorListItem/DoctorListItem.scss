@@ -1,43 +1,44 @@
 @import '../../colors.scss';
 
 .modal {
-.available-doctor {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  background-color: $color-block-bg; // Use your predefined colors if available
-  box-shadow: $box-shadow; // Use your box-shadow variable
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .available-doctor {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: $color-block-bg; // Use your predefined colors if available
+    box-shadow: $box-shadow; // Use your box-shadow variable
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 8px -4px rgba(0, 0, 0, 0.2);
-  }
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 8px -4px rgba(0, 0, 0, 0.2);
+    }
 
-  .doctor-profile-image {
-    margin-right: 15px;
-    img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .doctor-profile-image {
+      margin-right: 15px;
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .doctor-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $color-text; // Text color variable
+    }
+
+    .doctor-speciality {
+      font-size: 0.9rem;
+      color: $color-accent-1; // Accent color for specialization
+      margin-left: auto; // Pushes specialization to the right
     }
   }
-
-  .doctor-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: $color-text; // Text color variable
-  }
-
-  .doctor-speciality {
-    font-size: 0.9rem;
-    color: $color-accent-1; // Accent color for specialization
-    margin-left: auto; // Pushes specialization to the right
-  }
-}
 }

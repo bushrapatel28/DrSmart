@@ -14,6 +14,7 @@ import usePatientData from './hooks/usePatientData';
 import DoctorDash from './routes/DoctorDash/DoctorDash'
 import useScheduleData from './hooks/useScheduleData'
 import useTopNavProfileModal from './hooks/useTopNavProfileModal'
+import useRegistrationData from './hooks/useRegistrationData'
 
 //Zoom Setup
 import { useEffect, useContext } from 'react';
@@ -114,8 +115,9 @@ function App(props) {
     closePatientsModal,
     openVisitModal,
     closeVisitModal,
-    openDocMsgsModal,
-    closeDocMsgsModal
+    openAcceptApptModal,
+    closeAcceptApptModal,
+    handleAppt
   } = useDoctorsData();
 
   const {
@@ -159,8 +161,10 @@ function App(props) {
     closeMedicalHistoryModal
   } = usePatientData();
 
+  const { formData } = useRegistrationData();
+
   const [currentComponent, setCurrentComponent] = useState('home');
-  console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
+  // console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
   const setMainWindow = (component) => {
     setCurrentComponent(component);
   }
@@ -222,8 +226,10 @@ function App(props) {
         closeSchedulerModal={closeSchedulerModal}
         openVisitModal={openVisitModal}
         closeVisitModal={closeVisitModal}
-        openDocMsgsModal={openDocMsgsModal}
-        closeDocMsgsModal={closeDocMsgsModal}
+        openAcceptApptModal={openAcceptApptModal}
+        closeAcceptApptModal={closeAcceptApptModal}
+        //Accept Appt functions
+        handleAppt={handleAppt}
         docStartDate={docStartDate}
         docEndDate={docEndDate}
         docStartTime={docStartTime}
@@ -240,6 +246,7 @@ function App(props) {
         isPatientsOpen={docState.isPatientsOpen}
         openPatientsModal={openPatientsModal}
         closePatientsModal={closePatientsModal}
+
       />
 
       {meetingArgs.signature && 

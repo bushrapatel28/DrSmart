@@ -5,7 +5,7 @@ module.exports = db => {
     // const patientId = req.params.id;
     const patientId = 4;
 
-    const { dateOfBirth, height, weight, smoker, diabetesStatus, allergies, allergyDescription, medication, medicationDescription } = req.query;
+    const { dateOfBirth, height, weight, smoker, diabetesStatus, allergies, allergyDescription, medication, medicationDescription } = req.body;
 
     db.query(
       `INSERT INTO medical_histories (patient_id, birth_date, height, weight, smoker, diabetic, allergies, allergies_description, ongoing_medication, ongoing_medication_description)

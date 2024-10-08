@@ -25,7 +25,7 @@ module.exports = db => {
       all_time_slot_ids
     } = req.body;
 
-    const doctor_id = 5;
+    const doctor_id = 4;
     // const doctor_id = req.params.id;
 
     console.log("DATE ARRAY Length", all_dates.length);

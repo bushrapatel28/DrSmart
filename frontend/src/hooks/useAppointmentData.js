@@ -146,7 +146,7 @@ const useAppointmentData = () => {
         appointment_time: state.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit',  hour12: false}),
         appointment_type: state.appointmentType,
         status: "Pending",
-        patient_id: 1,
+        patient_id: 4,
         doctor_id: state.doctorInfo
       };
   

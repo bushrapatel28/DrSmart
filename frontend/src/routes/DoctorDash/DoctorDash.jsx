@@ -9,11 +9,12 @@ import SchedulerModal from '../SchedulerModal/SchedulerModal';
 import AfterVisitModal from '../AfterVisitModal/AfterVisitModal';
 import useAfterVisitSummaryForm from '../../hooks/useAfterVisitData';
 import MsgsModal from '../MsgsModal/MsgsModal';
+import AcceptAppointments from '../AcceptAppointments/AcceptAppointments';
 
 // images / icons
 import patientDataIcon from '../../assets/patientdata-icon.png';
 import SchedulerIcon from '../../assets/calendar-icon.png';
-import MsgsIcon from '../../assets/messages-icon.png';
+import AcceptAppIcon from '../../assets/accept-app-icon.png';
 import visitSummaryIcon from '../../assets/visit-summary-icon.png';
 
 import DoctorPatientsModal from '../DoctorPatientsModal/DoctorPatientsModal';
@@ -24,8 +25,9 @@ const DoctorDash = ({
   closeSchedulerModal,
   openVisitModal,
   closeVisitModal,
-  openDocMsgsModal,
-  closeDocMsgsModal,
+  openAcceptApptModal,
+  closeAcceptApptModal,
+  handleAppt,
   docStartDate,
   docEndDate,
   docStartTime,
@@ -46,7 +48,10 @@ const DoctorDash = ({
   return (
     <div className="doctordash">
       <TopNavigationBar role="doctor" username="Marie Curie" />
-      <div className="functions-section">
+      <div className='slogan'>
+        <h1>SMARTER CARE, ANYTIME, ANYWHERE.</h1>
+      </div>
+      <div className="functions-section doctor-dash">
         {state.isSchedulerOpen ? (
           <SchedulerModal
             docStartDate={docStartDate}
@@ -74,9 +79,11 @@ const DoctorDash = ({
             openModal={openPatientsModal} />
         )}
 
-        {state.isMsgsOpen ? (<MsgsModal msgsData={state.doctorMsgs} closeMsgsModal={closeDocMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openDocMsgsModal} />)}
-        {/* <FunctionBlock icon={MsgsIcon} label="Messages" openModal={openDocMsgsModal} /> */}
-        
+        {state.isAcceptApptOpen ? (<AcceptAppointments
+          closeAcceptApptModal={closeAcceptApptModal}
+          apptData={state.apptData}
+          handleAppt={handleAppt}
+        />) : (<FunctionBlock icon={AcceptAppIcon} label="Accept Appointments" openModal={openAcceptApptModal} />)}
         {state.isVisitFormOpen ? (<AfterVisitModal
           isOpen={state.isVisitFormOpen}
           closeModal={closeVisitModal}
