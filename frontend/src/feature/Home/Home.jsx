@@ -1,16 +1,20 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
 import { Card, Button } from 'antd';
-import { IconFont } from '../../component/icon-font';
-import './home.scss';
+import { IconFont } from '../../components/icon-font';
+import './Home.scss';
 
 const { Meta } = Card;
 
 const Home = (props) => {
-  const { history, status, onLeaveOrJoinSession } = props;
+  // const { history, status, onLeaveOrJoinSession } = props;
+  const history = [];
 
   const onCardClick = (type) => {
     history.push(`/${type}${location.search}`);
+
+    console.log("CARD CLICKED", type);
+    
   };
 
   const featureList = [
@@ -46,16 +50,16 @@ const Home = (props) => {
     }
   ];
 
-  let actionText;
-  if (status === 'connected') {
-    actionText = 'Leave';
-  } else if (status === 'closed') {
-    actionText = 'Join';
-  }
+  // let actionText;
+  // if (status === 'connected') {
+  //   actionText = 'Leave';
+  // } else if (status === 'closed') {
+  //   actionText = 'Join';
+  // }
 
   return (
     <div>
-      <div className="nav">
+      {/* <div className="nav">
         <a href="/" className="navhome">
           <img src="./logo.svg" alt="Home" />
           <span>VideoSDK Demo</span>
@@ -82,7 +86,7 @@ const Home = (props) => {
             {actionText}
           </Button>
         )}
-      </div>
+      </div> */}
 
       <div className="home">
         <h1>Zoom Video SDK feature</h1>
@@ -91,7 +95,7 @@ const Home = (props) => {
             const { key, icon, title, description } = feature;
             return (
               <Card
-                cover={<IconFont style={{ fontSize: '72px' }} type={icon} />}
+                // cover={<IconFont style={{ fontSize: '72px' }} type={icon} />}
                 hoverable
                 style={{ width: 320 }}
                 className="entry-item"

@@ -1,7 +1,7 @@
 import { useState, useContext, useCallback } from "react";
 import { Button, Tooltip } from 'antd';
 import { AudioOutlined, AudioMutedOutlined, VideoCameraAddOutlined, VideoCameraOutlined, FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
-import { IconFont } from '../../components/icon-font';
+import { IconFont } from "../../components/icon-font";
 import ZoomContext from '../../context/zoom-context';
 import MediaContext from '../../context/media-context';
 import './Video.scss';

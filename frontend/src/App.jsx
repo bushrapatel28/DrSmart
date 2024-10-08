@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import './App.css'
 import Appointment from './components/Appointment/Appointment'
 import HomePage from './routes/HomePage/HomePage'
@@ -30,7 +30,7 @@ function App(props) {
 
   //Destructure props object
   const {
-    meetingArgs: { sdkKey, topic, signature, name, password }
+    meetingArgs: { topic, signature, name, passWord }
   } = props;
 
   const [loading, setIsLoading] = useState(true);
@@ -44,12 +44,21 @@ function App(props) {
   useEffect(() => {
     //Create init async function with try...catch block
     const init = async () => {
+      console.log("CLIENT", client);
+
       client.init('US-EN', 'CDN')
 
+      console.log("JOINING MEETING", props.meetingArgs);
+      
+      // console.log("CLIENT JOIN", client.join(topic, signature, name, passWord));
+    
       try {
         setLoadingText('Joining Session..')
-        await client.join(topic, name, password, signature);
+        await client.join(topic, signature, name, passWord);
+        console.log("MEDIA STREAM", client.getMediaStream());
+
         const stream = client.getMediaStream();
+        
         setMediaStream(stream);
         setIsLoading(false);
       }
@@ -64,7 +73,7 @@ function App(props) {
       return () => {
         ZoomVideo.destroyClient();
     }
-  }, [sdkKey, signature, client, topic, name, password])
+  }, [signature, client, topic, name, passWord])
 
 
   const {
@@ -230,8 +239,8 @@ function App(props) {
         <MediaContext.Provider value = {mediaStream}>
           <Router>
             <Routes>
-              <Route path = "/home" element = {<Home props={props} status={status}/>}/>
-              <Route path = "/video" element = {<VideoContainer/>}/>
+              <Route path = "/" element = {<Home props={props} status={status}/>}/>
+              <Route path = "/video" element = {<VideoContainer />}/>
             </Routes>
           </Router>
         </MediaContext.Provider>
