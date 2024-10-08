@@ -31,8 +31,6 @@ const useTopNavProfileModal = () => {
           patient: action.payload
         };
       case OPEN_SETTINGS:
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>Settings Opened");
-
         return {
           ...state,
           isSettingsOpen: true,

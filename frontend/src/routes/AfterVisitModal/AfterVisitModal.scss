@@ -1,1 +1,80 @@
 @import '../../colors.scss';
+
+.after-visit {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    margin: 5px 10px;
+    width: 140px;
+    background-color: $color-text-alpha;
+    text-align: right;
+    border-radius: 10px;
+    height: 30px;
+  }
+
+  textarea {
+    font-size: large;
+    width: 100%; // Make it responsive
+    height: auto; // Let it adjust based on content
+    margin-top: 10px;
+    margin-bottom: 25px;
+    width: 300px;
+    max-height: 100px; // Set maximum height
+    padding: 10px; // Add some padding
+    border-radius: 8px; // Rounded corners
+    border: 1px solid #ccc; // Border styling
+    resize: none; // Disable manual resizing
+
+    // Enable scroll when content exceeds max-height
+    overflow-y: auto;
+    outline: none; // Remove default outline
+  }
+
+  .drop-box {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    border-radius: 8px;
+    color: $color-text-dark;
+    border: 1px solid #ccc;
+    padding: 8px;
+    // appearance: none;
+    background-color: paleturquoise;
+    outline: none;
+  }
+
+  label {
+    color: $color-accent-3;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+  .check-box {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    margin-right: 15px;
+
+    input[type="radio"] {
+      display: none; // Hide the default radio button
+    }
+  }
+}
+
+.after-visit-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

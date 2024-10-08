@@ -14,6 +14,7 @@ import usePatientData from './hooks/usePatientData';
 import DoctorDash from './routes/DoctorDash/DoctorDash'
 import useScheduleData from './hooks/useScheduleData'
 import useTopNavProfileModal from './hooks/useTopNavProfileModal'
+import useRegistrationData from './hooks/useRegistrationData'
 
 function App() {
   const {
@@ -91,6 +92,8 @@ function App() {
     openMedicalHistoryModal,
     closeMedicalHistoryModal
   } = usePatientData();
+
+  const { formData } = useRegistrationData();
 
   const [currentComponent, setCurrentComponent] = useState('home');
   // console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
