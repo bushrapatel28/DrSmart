@@ -68,7 +68,9 @@ const HomePage = ({
   clear,
   save,
   cancel,
-  filterPassedTime
+  filterPassedTime,
+  // Medical History Data
+  formData
 }) => {
   /*TopNav State deconstruction*/
   const isProfileOpen = topNavState.isProfileOpen;
@@ -95,6 +97,7 @@ const HomePage = ({
         <div className="functions-section">
           {isMedicalHistoryOpen ? (
             <MedicalHistoryModal
+              formData={formData}
               patientRecord={patientRecord}
               closeMedicalHistoryModal={closeMedicalHistoryModal}
               openProfile={openProfile}

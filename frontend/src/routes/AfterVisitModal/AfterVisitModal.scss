@@ -1,11 +1,17 @@
 @import '../../colors.scss';
 
 .after-visit {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   input {
-    width: 70px;
+    margin: 5px 10px;
+    width: 140px;
     background-color: $color-text-alpha;
     text-align: right;
-    margin-bottom: 10px;
     border-radius: 10px;
     height: 30px;
   }
@@ -14,6 +20,8 @@
     font-size: large;
     width: 100%; // Make it responsive
     height: auto; // Let it adjust based on content
+    margin-top: 10px;
+    margin-bottom: 25px;
     width: 300px;
     max-height: 100px; // Set maximum height
     padding: 10px; // Add some padding
@@ -27,6 +35,8 @@
   }
 
   .drop-box {
+    margin-top: 10px;
+    margin-bottom: 20px;
     margin-left: 15px;
     border-radius: 8px;
     color: $color-text-dark;
@@ -35,6 +45,12 @@
     // appearance: none;
     background-color: paleturquoise;
     outline: none;
+  }
+
+  label {
+    color: $color-accent-3;
+    font-size: large;
+    font-weight: bold;
   }
 
   &:focus {
@@ -56,13 +72,9 @@
 }
 
 .after-visit-form {
-  margin-right: 185px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
-
-  button {
-    margin-right: 80px;
-  }
+  align-items: center;
 }
