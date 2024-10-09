@@ -39,8 +39,8 @@
     }
     .self-video {
       position: absolute;
-      width: 254px;
-      height: 143px;
+      width: 920px;
+      height: 518px;
       top: 50px;
       right: 30px;
       z-index: 2;
@@ -132,16 +132,9 @@
 
 video#self-view-video, video#share-video {
   width: 48%;
+  height: 40vh;
   background: gray;
   border: solid;
   margin: 10px;
-  height: 80vh;
+  padding: 10px;
 }
-
-// video#share-video {
-//   width: 50%;
-//   background: gray;
-//   border: solid;
-//   margin: 10px;
-//   height: 80vh;
-// }

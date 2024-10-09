@@ -180,7 +180,6 @@ function App() {
         isPatientsOpen={docState.isPatientsOpen}
         openPatientsModal={openPatientsModal}
         closePatientsModal={closePatientsModal}
-
       />
     </>
   )

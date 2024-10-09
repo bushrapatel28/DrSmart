@@ -19,7 +19,7 @@ const VideoCall = (props) => {
     meetingArgs: { sdkKey, topic, signature, name, passWord }
   } = props;
 
-  const [loading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [loadingText, setLoadingText] = useState(' ');
   const [mediaStream, setMediaStream] = useState();
 
@@ -30,9 +30,9 @@ const VideoCall = (props) => {
     console.log("JOINING MEETING", props.meetingArgs);
     
     setIsLoading('true');
+    setLoadingText('Joining Session..')
 
     try {
-      setLoadingText('Joining Session..')
       await client.join(topic, signature, name, passWord);
       console.log("MEDIA STREAM", client.getMediaStream());
 
@@ -40,6 +40,7 @@ const VideoCall = (props) => {
       
       setMediaStream(stream);
       setIsLoading(false);
+      setLoadingText(' ')
     }
     catch(err) {
       console.log('Error Joining Meeting', err);
@@ -56,19 +57,17 @@ const VideoCall = (props) => {
 
   return (
     <>
-      {loading ? <LoadingLayout /> :
-        mediaStream && 
-          !loading && (
-            <MediaContext.Provider value = {mediaStream}>
-              <VideoContainer props={mediaStream}/>
-              <button onClick={() => endSession()}>End Session </button> 
-            </MediaContext.Provider>
-          )
-        }
       {!mediaStream && 
         <div className='function-block'>
           <button onClick={() => joinSession()}>Join Session </button>
         </div>
+      }
+      {isLoading ? <LoadingLayout content = {loadingText}/> :
+       mediaStream && 
+        <MediaContext.Provider value = {mediaStream}>
+          <VideoContainer props={mediaStream}/>
+          <button onClick={() => endSession()}>End Session </button> 
+        </MediaContext.Provider>
       }
     </>
   )

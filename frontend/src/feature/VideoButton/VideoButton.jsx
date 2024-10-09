@@ -8,8 +8,7 @@ import ZoomContext from '../../context/zoom-context';
 
 const { Meta } = Card;
 
-const VideoButton = (props) => {
-  const { setSessionInit } = props;
+const VideoButton = () => {
 
   //Use useContext hook to grab passed down value and create client variable
   const client = useContext(ZoomContext);  
@@ -20,7 +19,6 @@ const VideoButton = (props) => {
     client.init('US-EN', 'CDN')
     .then(() => {
       console.log('Session Initialized');
-      setSessionInit(true);
       navigate('/video');
     })
     .catch((err) => {

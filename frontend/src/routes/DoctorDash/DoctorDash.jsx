@@ -57,8 +57,8 @@ const DoctorDash = ({
   //Zoom Vidoe Setup
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const { meetingArgs } = useZoomData();
+  //Create a zoom client
   const client = ZoomVideo.createClient();
-  const [sessionInit, setSessionInit] = useState(false);
  
   return (
     <div className="doctordash">
@@ -116,7 +116,7 @@ const DoctorDash = ({
             <ZoomContext.Provider value = {client}>
               <Router>
                 <Routes>
-                  <Route path = "/" element = {<VideoButton setSessionInit={setSessionInit}/>}/>
+                  <Route path = "/" element = {<VideoButton />}/>
                   <Route path = "/video" element = {<VideoCall meetingArgs = {meetingArgs}/>}/>
                 </Routes>
               </Router>
