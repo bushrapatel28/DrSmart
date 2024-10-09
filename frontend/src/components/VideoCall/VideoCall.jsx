@@ -65,9 +65,11 @@ const VideoCall = (props) => {
             </MediaContext.Provider>
           )
         }
-      <div>
-        {!mediaStream && <button onClick={() => joinSession()}>Join Session </button>}
-      </div>
+      {!mediaStream && 
+        <div className='function-block'>
+          <button onClick={() => joinSession()}>Join Session </button>
+        </div>
+      }
     </>
   )
 }
