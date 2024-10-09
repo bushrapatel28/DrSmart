@@ -7,10 +7,10 @@ import RecordDetailsModal from '../RecordDetailsModal/RecordDetailsModal';
 import MsgsModal from '../MsgsModal/MsgsModal';
 import MedicationModal from '../MedicationsModal/MedicationsModal';
 import LabResultsModal from '../LabResultsModal/LabResultsModal';
-import Appointment from '../../components/Appointment/Appointment';
+// import Appointment from '../../components/Appointment/Appointment';
 import ProfileModal from '../ProfileModal/ProfileModal';
 import SettingsModal from '../SettingsModal/SettingsModal';
-
+import ArticleSuggestions from '../../components/ArticleSuggestions/ArticleSuggestions';
 // images / icons
 import scheduleIcon from '../../assets/schedule-icon.png';
 import ResultIcon from '../../assets/result-icon.png';
@@ -79,6 +79,7 @@ const HomePage = ({
 
   // console.log("PATIENT LAB RESULTS FROM HomePage.jsx: ", patientLabResults);
   return (
+    <>
     <div className="homepage">
       <TopNavigationBar
         role="patient"
@@ -143,7 +144,16 @@ const HomePage = ({
 
         </div>
       </div>
+      
     </div>
+    <div>
+    {/* <h2>{patient.name}</h2>
+    <p>Diagnosis: {patient.diagnosis}</p> */}
+
+    {/* <ArticleSuggestions diagnosis={"diabetes"} /> */}
+
+    </div>
+  </>
   );
 };
 

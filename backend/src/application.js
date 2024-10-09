@@ -28,6 +28,9 @@ const doc_messages = require('./routes/doc-messages');
 const video_call = require('./routes/video-call');
 // const middleware = require('./routes/middleware');
 
+// article scrapping for AI suggestions
+const article_scrape = require('./routes/article-scrape');
+
 // app.use(express.json());
 
 // app.post('/generate', middleware.generateToken, (req, res) => {
@@ -79,6 +82,7 @@ module.exports = function application(ENV) {
   app.use('/doctors', doc_messages(db));
 
   app.use('/', video_call());
+  app.use('/', article_scrape(db));
 
   if (ENV === "development" || ENV === "test") {
     Promise.all([

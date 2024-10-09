@@ -23,7 +23,6 @@ const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, hand
               showTimeSelect
               timeIntervals={30}
               timeCaption="Time"
-              filterTime={filterPassedTime}
               dateFormat="Pp"  // Display both date and time
               minDate={new Date()}  // Only allow dates starting from today
               maxDate={new Date()}
