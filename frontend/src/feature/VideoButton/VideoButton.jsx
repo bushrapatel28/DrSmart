@@ -1,20 +1,24 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
+import { useState } from 'react';
 import { Card, Button } from 'antd';
 import { IconFont } from '../../components/icon-font';
-import './Home.scss';
+import './VideoButton.scss';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MediaContext from '../../context/media-context';
+import VideoContainer from '../Video/Video';
 
 const { Meta } = Card;
 
-const Home = (props) => {
+const VideoButton = (props) => {
   // const { history, status, onLeaveOrJoinSession } = props;
-  const history = [];
+  // const history = [];
 
-  const onCardClick = (type) => {
-    history.push(`/${type}${location.search}`);
 
-    console.log("CARD CLICKED", type);
-    
+  const [isClicked, setIsClicked] = useState(false);
+
+  const onCardClick = () => {
+    setIsClicked(true);
   };
 
   const featureList = [
@@ -91,25 +95,38 @@ const Home = (props) => {
       <div className="home">
         <h1>Zoom Video SDK feature</h1>
         <div className="feature-entry">
-          {featureList.map((feature) => {
-            const { key, icon, title, description } = feature;
-            return (
+          {/* {featureList.map((feature) => {
+            const { key, icon, title, description } = feature; */}
+          
+            {/* {!isClicked &&  */}
               <Card
                 // cover={<IconFont style={{ fontSize: '72px' }} type={icon} />}
                 hoverable
                 style={{ width: 320 }}
                 className="entry-item"
-                key={key}
-                onClick={() => onCardClick(key)}
+                key={'video'}
+                onClick={() => onCardClick()}
               >
-                <Meta title={title} description={description} />
+                <Meta title={'Audio, video and share'} description={'Gallery Layout, Start/Stop Audio, Mute/Unmute, Start/Stop Video, Start/Stop Screen Share'} />
               </Card>
-            );
-          })}
+            {/* }
+
+            {isClicked && 
+              <MediaContext.Provider value = {props.mediaStream}>
+                <VideoContainer />
+                <Router>
+                  <Routes>
+                    <Route path = "/video" element = {<VideoContainer />}/>
+                  </Routes>
+                </Router>
+              </MediaContext.Provider>
+            } */}
+  
+          {/* })} */}
         </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default VideoButton;

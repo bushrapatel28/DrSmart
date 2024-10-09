@@ -25,7 +25,7 @@ import ZoomContext from './context/zoom-context';
 import MediaContext from './context/media-context';
 import LoadingLayout from './components/LoadingLayout/LoadingLayout'
 import VideoContainer from './feature/Video/Video';
-import Home from './feature/Home/Home'
+import VideoButton from './feature/VideoButton/VideoButton'
 
 import useZoomData from './hooks/useZoomData'
 import VideoCall from './components/VideoCall/VideoCall'
@@ -34,6 +34,11 @@ import VideoCall from './components/VideoCall/VideoCall'
 function App(props) {
 
   const { meetingArgs } = useZoomData();
+
+  const client = ZoomVideo.createClient();
+
+  
+
 
 
 
@@ -250,7 +255,9 @@ function App(props) {
       />
 
       {meetingArgs.signature && 
-        <App meetingArgs = {meetingArgs} />
+        <ZoomContext.Provider value = {client}>
+          <VideoCall meetingArgs = {meetingArgs} />
+        </ZoomContext.Provider>
       }
       
     </>

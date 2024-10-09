@@ -1,17 +1,18 @@
 //Zoom Setup
 import ZoomContext from '../../context/zoom-context';
-import {devConfig} from './devConfig';
-import ZoomVideo from '@zoom/videosdk';
-import { useEffect, useContext } from 'react';
+import { devConfig } from '../../devConfig';
+import { useEffect, useContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { message } from 'antd';
 import ZoomVideo from '@zoom/videosdk';
-import MediaContext from './context/media-context';
-import LoadingLayout from './components/LoadingLayout/LoadingLayout'
-import VideoContainer from './feature/Video/Video';
-import Home from './feature/Home/Home'
+import MediaContext from '../../context/media-context';
+import LoadingLayout from '../LoadingLayout/LoadingLayout';
+import VideoContainer from '../../feature/Video/Video';
+import VideoButton from '../../feature/VideoButton/VideoButton';
 
 const VideoCall = (props) => {
+  //Use useContext hook to grab passed down value and create client variable
+  const client = useContext(ZoomContext);
   
   //Destructure props object
   const {
@@ -21,19 +22,16 @@ const VideoCall = (props) => {
   const [loading, setIsLoading] = useState(true);
   const [loadingText, setLoadingText] = useState(' ');
   const [mediaStream, setMediaStream] = useState();
-  const [status, setStatus] = useState(false);
 
-  //Use useContext hook to grab passed down value and create client variable
-  const client = useContext(ZoomContext);
 
   useEffect(() => {
-    //Create init async function with try...catch block
+    //Create init async function with try...catch block to get the Media Stream from Client
     const init = async () => {
       console.log("CLIENT", client);
 
       client.init('US-EN', 'CDN')
 
-      console.log("JOINING MEETING", props);
+      console.log("JOINING MEETING", props.meetingArgs);
       
       // console.log("CLIENT JOIN", client.join(topic, signature, name, passWord));
     
@@ -64,25 +62,19 @@ const VideoCall = (props) => {
   return (
     <>
       {loading && <LoadingLayout content = {loadingText}/>}
-        {!loading && (
-          <MediaContext.Provider value = {mediaStream}>
-            <Router>
-              <Routes>
-                <Route path = "/" element = {<Home props={props} status={status}/>}/>
-                <Route path = "/video" element = {<VideoContainer />}/>
-              </Routes>
-            </Router>
-          </MediaContext.Provider>
-        )}
-      
+      {!loading && (
+        <MediaContext.Provider value = {mediaStream}>
+          <Router>
+            <Routes>
+              <Route path = "/" element = {<VideoButton props={mediaStream}/>}/>
+              <Route path = "/video" element = {<VideoContainer />}/>
+            </Routes>
+          </Router>
+        </MediaContext.Provider>
+      )}
     </>
   )
 }
 
 export default VideoCall;
 
-const client = ZoomVideo.createClient();
-
-<ZoomContext.Provider value = {client}>
-  <VideoCall />
-</ZoomContext.Provider>

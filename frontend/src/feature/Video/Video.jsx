@@ -76,15 +76,17 @@ const VideoContainer = () => {
 
 
   return (
-    <div>
-      { isSAB ? 
-        <canvas id="self-view-canvas" width="1920" height="1080"></canvas>:
-        <video id="self-view-video"  width="1920" height="1080"></video>
-      }
-      { !isSupportWebCodecs() ?
-        <canvas id="share-canvas" width="1920" height="1080"></canvas>:
-        <video id="share-video"  width="1920" height="1080"></video>
-      }
+    <div className="zoom-video-screenshare-container">
+      <div className="zoom-video-screenshare">
+        { isSAB ? 
+          <canvas id="self-view-canvas"></canvas>:
+          <video id="self-view-video" ></video>
+        }
+        { !isSupportWebCodecs() ?
+          <canvas id="share-canvas"></canvas>:
+          <video id="share-video" ></video>
+        }
+      </div>
 
       <div className="video-footer">
         <Tooltip title={`${videoStarted ? 'Stop Camera' : 'Start Camera'}`}>

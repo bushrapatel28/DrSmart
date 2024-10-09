@@ -124,3 +124,24 @@
     position: absolute;
   }
 }
+
+.zoom-video-screenshare {
+  display: flex;
+  flex-direction: row;
+}
+
+video#self-view-video, video#share-video {
+  width: 48%;
+  background: gray;
+  border: solid;
+  margin: 10px;
+  height: 80vh;
+}
+
+// video#share-video {
+//   width: 50%;
+//   background: gray;
+//   border: solid;
+//   margin: 10px;
+//   height: 80vh;
+// }
