@@ -102,8 +102,14 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
 }
 
 .available-doctor:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
   box-shadow: 0 6px 8px -4px rgba(0, 0, 0, 0.2);
+}
+
+.available-doctor.selected {
+  border: 2px solid rgb(47, 120, 140);
+  background-color: rgb(75, 154, 176);
+  /* Change to the desired selected color */
 }
 
 .available-doctor .doctor-profile-image {

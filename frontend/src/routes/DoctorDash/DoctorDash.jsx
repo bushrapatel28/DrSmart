@@ -62,7 +62,7 @@ const DoctorDash = ({
  
   return (
     <div className="doctordash">
-      <TopNavigationBar role="doctor" username="Marie Curie" />
+      <TopNavigationBar role="doctor" username="Joseph Lister" />
       <div className='slogan'>
         <h1>SMARTER CARE, ANYTIME, ANYWHERE.</h1>
       </div>

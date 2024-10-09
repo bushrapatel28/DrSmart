@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import DoctorListItem from "../DoctorListItem/DoctorListItem";
 
 const DoctorList = (props) => {
-  console.log("Props.DocData in the DoctorList: ", props.doctorData);
+  const [selectedDoctorId, setSelectedDoctorId] = useState(null); // State to track selected doctor
+
+  const handleDoctorClick = (id) => {
+    setSelectedDoctorId(id); // Update selected doctor ID
+    props.saveDoctorInfo(id); // Call the provided click handler
+  };
+
   return (
     <div className="doctors">
       <ul className="doctors-list">
@@ -17,7 +23,8 @@ const DoctorList = (props) => {
               availability={doctor.availability}
               appointmentDate={props.appointmentDate}
               appointmentTime={props.appointmentTime}
-              onClick={props.saveDoctorInfo}
+              onClick={handleDoctorClick} // Pass the new click handler
+              isSelected={doctor.id === selectedDoctorId} // Pass the selected state
             />
           )
         })}
@@ -26,7 +33,6 @@ const DoctorList = (props) => {
       <button className="cancel-appointment-btn" onClick={() => props.cancel()}>CANCEL</button>
     </div>
   )
-
 }
 
 export default DoctorList;
