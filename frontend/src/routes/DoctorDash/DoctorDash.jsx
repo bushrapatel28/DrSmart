@@ -1,5 +1,5 @@
 import './DoctorDash.scss';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import TopNavigationBar from '../../components/TopNavigationBar/TopNavigationBar';
 import FunctionBlock from '../FunctionBlock/FunctionBlock';
@@ -18,6 +18,14 @@ import AcceptAppIcon from '../../assets/accept-app-icon.png';
 import visitSummaryIcon from '../../assets/visit-summary-icon.png';
 
 import DoctorPatientsModal from '../DoctorPatientsModal/DoctorPatientsModal';
+
+//Zoom Setup
+import ZoomContext from '../../context/zoom-context';
+import ZoomVideo from '@zoom/videosdk';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import useZoomData from '../../hooks/useZoomData';
+import VideoButton from '../../feature/VideoButton/VideoButton';
+import VideoCall from '../../components/VideoCall/VideoCall';
 
 const DoctorDash = ({
   state,
@@ -45,6 +53,13 @@ const DoctorDash = ({
 }) => {
   const { formData, handleInputChange, handleSubmit, selectDateTime, filterPassedTime, patients } = useAfterVisitSummaryForm();
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //Zoom Vidoe Setup
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const { meetingArgs } = useZoomData();
+  const client = ZoomVideo.createClient();
+  const [sessionInit, setSessionInit] = useState(false);
+ 
   return (
     <div className="doctordash">
       <TopNavigationBar role="doctor" username="Marie Curie" />
@@ -95,8 +110,21 @@ const DoctorDash = ({
           patients={patients}
         />) : (<FunctionBlock icon={visitSummaryIcon} label="After Visit Summary" openModal={openVisitModal} />)}
 
-
+        <div>
+          {/* Zoom Video */}
+          {meetingArgs.signature && 
+            <ZoomContext.Provider value = {client}>
+              <Router>
+                <Routes>
+                  <Route path = "/" element = {<VideoButton setSessionInit={setSessionInit}/>}/>
+                  <Route path = "/video" element = {<VideoCall meetingArgs = {meetingArgs}/>}/>
+                </Routes>
+              </Router>
+            </ZoomContext.Provider>
+          }
+        </div>
       </div>
+
 
     </div>
   );
