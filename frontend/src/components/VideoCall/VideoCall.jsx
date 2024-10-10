@@ -11,6 +11,7 @@ import VideoContainer from '../../feature/VideoContainer/VideoContainer';
 const VideoCall = (props) => {
   //Use useContext hook to grab passed down value and create client variable
   const client = useContext(ZoomContext);
+  const client2 = useContext(ZoomContext);
   
   console.log("INSIDE VIDEOCALL", props.meetingArgs[0])
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const VideoCall = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingText, setLoadingText] = useState(' ');
   const [mediaStream, setMediaStream] = useState();
+  const [mediaStream2, setMediaStream2] = useState();
   
   
   
@@ -115,10 +117,10 @@ const VideoCall = (props) => {
       setLoadingText('Maria is joining the session...');
   
       // Maria joins the session
-      await client.join(topic, signature, name, passWord);
+      await client2.join(topic, signature, name, passWord);
   
-      const stream = client.getMediaStream();
-      setMediaStream(stream);
+      const stream = client2.getMediaStream();
+      setMediaStream2(stream);
       setIsLoading(false);
     } catch (err) {
       console.log('Error Joining Meeting for Maria', err);
@@ -132,7 +134,6 @@ const VideoCall = (props) => {
       {!mediaStream &&
         <div className='function-block'>
           <button onClick={() => joinSession()}>Join Session </button>
-          <button onClick={() => joinMariaSession()}>Maria Joins Session</button>
           <button onClick={() => endSession()}>End Session </button> 
         </div>
       }
@@ -140,9 +141,27 @@ const VideoCall = (props) => {
        mediaStream && 
        <MediaContext.Provider value = {mediaStream}>
           <VideoContainer props={mediaStream}/>
-         <button onClick={() => joinSession()}>Join Session </button>
-          <button onClick={() => joinMariaSession()}>Maria Joins Session</button>
           <button onClick={() => endSession()}>End Session </button> 
+      {/* {isLoading ? <LoadingLayout content={loadingText} /> :
+        mediaStream &&
+        <MediaContext.Provider value={mediaStream}>
+          <VideoContainer props={mediaStream} />
+          <button onClick={() => endSession()}>End Session </button> */}
+        </MediaContext.Provider>
+      }
+
+      {!mediaStream2 &&
+        <div className='function-block'>
+          <button onClick={() => joinMariaSession()}>Maria Joins Session</button>
+          <button onClick={() => endSession()}>Maria End Session </button> 
+        </div>
+      }
+      {isLoading ? <LoadingLayout content = {loadingText}/> :
+       mediaStream2 && 
+       <MediaContext.Provider value = {mediaStream2}>
+          <VideoContainer props={mediaStream2}/>
+          <button onClick={() => joinMariaSession()}>Maria Joins Session </button>
+          <button onClick={() => endSession()}>Maria End Session </button> 
       {/* {isLoading ? <LoadingLayout content={loadingText} /> :
         mediaStream &&
         <MediaContext.Provider value={mediaStream}>
