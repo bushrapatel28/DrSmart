@@ -1,5 +1,5 @@
 import './DoctorDash.scss';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import TopNavigationBar from '../../components/TopNavigationBar/TopNavigationBar';
 import FunctionBlock from '../FunctionBlock/FunctionBlock';
@@ -9,14 +9,23 @@ import SchedulerModal from '../SchedulerModal/SchedulerModal';
 import AfterVisitModal from '../AfterVisitModal/AfterVisitModal';
 import useAfterVisitSummaryForm from '../../hooks/useAfterVisitData';
 import MsgsModal from '../MsgsModal/MsgsModal';
+import AcceptAppointments from '../AcceptAppointments/AcceptAppointments';
 
 // images / icons
 import patientDataIcon from '../../assets/patientdata-icon.png';
 import SchedulerIcon from '../../assets/calendar-icon.png';
-import MsgsIcon from '../../assets/messages-icon.png';
+import AcceptAppIcon from '../../assets/accept-app-icon.png';
 import visitSummaryIcon from '../../assets/visit-summary-icon.png';
 
 import DoctorPatientsModal from '../DoctorPatientsModal/DoctorPatientsModal';
+
+//Zoom Setup
+import ZoomContext from '../../context/zoom-context';
+import ZoomVideo from '@zoom/videosdk';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import useZoomData from '../../hooks/useZoomData';
+import VideoButton from '../../feature/VideoButton/VideoButton';
+import VideoCall from '../../components/VideoCall/VideoCall';
 
 const DoctorDash = ({
   state,
@@ -24,8 +33,9 @@ const DoctorDash = ({
   closeSchedulerModal,
   openVisitModal,
   closeVisitModal,
-  openDocMsgsModal,
-  closeDocMsgsModal,
+  openAcceptApptModal,
+  closeAcceptApptModal,
+  handleAppt,
   schedulerState,
   // docStartDate,
   // docEndDate,
@@ -44,10 +54,20 @@ const DoctorDash = ({
 }) => {
   const { formData, handleInputChange, handleSubmit, selectDateTime, filterPassedTime, patients } = useAfterVisitSummaryForm();
 
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //Zoom Vidoe Setup
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const { meetingArgs } = useZoomData();
+  //Create a zoom client
+  const client = ZoomVideo.createClient();
+ 
   return (
     <div className="doctordash">
-      <TopNavigationBar role="doctor" username="Marie Curie" />
-      <div className="functions-section">
+      <TopNavigationBar role="doctor" username="Joseph Lister" />
+      <div className='slogan'>
+        <h1>SMARTER CARE, ANYTIME, ANYWHERE.</h1>
+      </div>
+      <div className="functions-section doctor-dash">
         {state.isSchedulerOpen ? (
           <SchedulerModal
             schedulerState={schedulerState}
@@ -76,9 +96,11 @@ const DoctorDash = ({
             openModal={openPatientsModal} />
         )}
 
-        {state.isMsgsOpen ? (<MsgsModal msgsData={state.doctorMsgs} closeMsgsModal={closeDocMsgsModal} />) : (<FunctionBlock icon={MsgsIcon} label="Messages" openModal={openDocMsgsModal} />)}
-        {/* <FunctionBlock icon={MsgsIcon} label="Messages" openModal={openDocMsgsModal} /> */}
-        
+        {state.isAcceptApptOpen ? (<AcceptAppointments
+          closeAcceptApptModal={closeAcceptApptModal}
+          apptData={state.apptData}
+          handleAppt={handleAppt}
+        />) : (<FunctionBlock icon={AcceptAppIcon} label="Accept Appointments" openModal={openAcceptApptModal} />)}
         {state.isVisitFormOpen ? (<AfterVisitModal
           isOpen={state.isVisitFormOpen}
           closeModal={closeVisitModal}
@@ -90,8 +112,21 @@ const DoctorDash = ({
           patients={patients}
         />) : (<FunctionBlock icon={visitSummaryIcon} label="After Visit Summary" openModal={openVisitModal} />)}
 
-
+        <div>
+          {/* Zoom Video */}
+          {meetingArgs.signature && 
+            <ZoomContext.Provider value = {client}>
+              <Router>
+                <Routes>
+                  <Route path = "/" element = {<VideoButton />}/>
+                  <Route path = "/video" element = {<VideoCall meetingArgs = {meetingArgs}/>}/>
+                </Routes>
+              </Router>
+            </ZoomContext.Provider>
+          }
+        </div>
       </div>
+
 
     </div>
   );

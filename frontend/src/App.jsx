@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import './App.css'
 import Appointment from './components/Appointment/Appointment'
 import HomePage from './routes/HomePage/HomePage'
@@ -14,8 +14,11 @@ import usePatientData from './hooks/usePatientData';
 import DoctorDash from './routes/DoctorDash/DoctorDash'
 import useScheduleData from './hooks/useScheduleData'
 import useTopNavProfileModal from './hooks/useTopNavProfileModal'
+import useRegistrationData from './hooks/useRegistrationData'
+
 
 function App() {
+
   const {
     topNavState,
     openProfile,
@@ -47,8 +50,9 @@ function App() {
     closePatientsModal,
     openVisitModal,
     closeVisitModal,
-    openDocMsgsModal,
-    closeDocMsgsModal
+    openAcceptApptModal,
+    closeAcceptApptModal,
+    handleAppt
   } = useDoctorsData();
 
   const {
@@ -92,8 +96,10 @@ function App() {
     closeMedicalHistoryModal
   } = usePatientData();
 
+  const { formData } = useRegistrationData();
+
   const [currentComponent, setCurrentComponent] = useState('home');
-  console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
+  // console.log("PATIENT LAB RESULTS FROM App.jsx: ", patientLabResults);
   const setMainWindow = (component) => {
     setCurrentComponent(component);
   }
@@ -155,8 +161,10 @@ function App() {
         closeSchedulerModal={closeSchedulerModal}
         openVisitModal={openVisitModal}
         closeVisitModal={closeVisitModal}
-        openDocMsgsModal={openDocMsgsModal}
-        closeDocMsgsModal={closeDocMsgsModal}
+        openAcceptApptModal={openAcceptApptModal}
+        closeAcceptApptModal={closeAcceptApptModal}
+        //Accept Appt functions
+        handleAppt={handleAppt}
         schedulerState={schedulerState}
         // docStartDate={docStartDate}
         // docEndDate={docEndDate}
@@ -175,38 +183,6 @@ function App() {
         openPatientsModal={openPatientsModal}
         closePatientsModal={closePatientsModal}
       />
-      {/* <DoctorDash /> */}
-      {/* <RegistrationForm /> */}
-      {/* <Appointment
-        doctorData={doctor}
-        // startDate={startDate}
-        // startTime={startTime}
-        // isVirtual={isVirtual}
-        // showDoc={showDoc}
-        saveDoctorInfo={saveDoctorInfo}
-        selectDateTime={selectDateTime}
-        toggleAppointmentType={toggleAppointmentType}
-        next={next}
-        clear={clear}
-        save={save}
-        cancel={cancel}
-        filterPassedTime={filterPassedTime}
-      />
-      <Schedule
-        schedulerState={schedulerState}
-        // docStartDate={docStartDate}
-        // docEndDate={docEndDate}
-        // docStartTime={docStartTime}
-        // docEndTime={docEndTime}
-        datesOnChange={datesOnChange}
-        docStartTimeOnChange={docStartTimeOnChange}
-        docEndTimeOnChange={docEndTimeOnChange}
-        setAvailability={setAvailability}
-        saveSchedule={saveSchedule}
-        // selectedRanges={selectedRanges}
-        deleteAvailability={deleteAvailability}
-      /> */}
-
     </>
   )
 }

@@ -95,15 +95,21 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 8px;
-  background-color: #5AA7A7;
+  background-color: rgb(25, 101, 122);
   box-shadow: 0 0px 20px -6px #222;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .available-doctor:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
   box-shadow: 0 6px 8px -4px rgba(0, 0, 0, 0.2);
+}
+
+.available-doctor.selected {
+  border: 2px solid rgb(47, 120, 140);
+  background-color: rgb(75, 154, 176);
+  /* Change to the desired selected color */
 }
 
 .available-doctor .doctor-profile-image {
@@ -126,8 +132,10 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
 
 .available-doctor .doctor-speciality {
   font-size: 0.9rem;
-  color: #BAC94A;
+  font-weight: bold;
+  color: rgb(239, 255, 134);
   margin-left: auto;
+  margin-right: 20px;
 }
 
 /* up until here */

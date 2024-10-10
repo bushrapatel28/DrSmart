@@ -121,7 +121,20 @@ const useRegistrationData = () => {
       })
       .then((data) => {
         console.log('Record created:', data);
-        // Optionally reset form or show success message
+        // Sets up data so it will display the info next time the modal is open
+        // setFormData({
+        //   dateOfBirth: data.data.birth_date,
+        //   height: data.data.height,
+        //   weight: data.data.weight,
+        //   smoker: data.data.smoker,
+        //   diabetesStatus: data.data.diabetic,
+        //   allergies: data.data.allergies,
+        //   allergyDescription: data.data.allergies_description,
+        //   medication: data.data.ongoing_medication,
+        //   medicationDescription: data.data.ongoing_medication_description,
+        //   unitHeigth: 'cm',
+        //   unitWeigth: 'kg',
+        // });
       })
       .catch((error) => {
         console.error('Error creating record:', error);
