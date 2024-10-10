@@ -1,4 +1,3 @@
-
 .viewport {
   position: relative;
   padding: 5vh 0 10vh;
@@ -8,23 +7,28 @@
   background-color: #000;
   display: flex;
   overflow-x: hidden;
+
   .video-container {
     position: relative;
     width: 100%;
     height: 100%;
+
     &.video-container-attech {
       display: flex;
       align-items: center;
     }
+
     &.video-container-in-sharing {
       width: 264px;
       flex-shrink: 0;
     }
+
     &.single-video-container {
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     .single-video-wrap {
       width: 100%;
       aspect-ratio: 16/9;
@@ -37,6 +41,7 @@
       width: 100%;
       height: 100%;
     }
+
     .self-video {
       position: absolute;
       width: 920px;
@@ -45,23 +50,28 @@
       right: 30px;
       z-index: 2;
       display: none;
+
       &.single-self-video {
         width: 100%;
         height: 100%;
         top: 0;
         left: 0;
       }
+
       &.self-video-show {
         display: block;
       }
     }
+
     .ant-radio-button-wrapper {
       z-index: 1;
     }
+
     .video-container-wrap {
       flex: 1;
       height: 100%;
     }
+
     .user-list {
       display: flex;
       flex-direction: row;
@@ -75,9 +85,11 @@
         position: relative;
         flex: 1;
         margin: 12px;
+
         .change-video-resolution {
           position: absolute;
         }
+
         .video-player {
           display: block;
           position: absolute;
@@ -89,6 +101,7 @@
       }
     }
   }
+
   .avatar-list {
     position: absolute;
     top: 0;
@@ -100,11 +113,13 @@
     padding: 0;
     margin: 0;
   }
+
   .video-operations {
     position: absolute;
     left: 0;
     bottom: 0;
   }
+
   .avatar-wrap {
     position: absolute;
     pointer-events: auto;
@@ -112,13 +127,16 @@
     top: 0;
     left: 0;
   }
+
   .avatar-wrap-dragging {
     z-index: 10;
   }
+
   .single-view-avatar {
     top: 0;
     left: 0;
   }
+
   .self-video-tag {
     display: none;
     position: absolute;
@@ -128,13 +146,18 @@
 .zoom-video-screenshare {
   display: flex;
   flex-direction: row;
+  background: linear-gradient(180deg, rgb(90, 167, 167, 0) 0%, rgb(90, 167, 167) 20%, rgb(90, 167, 167) 50%, rgb(90, 167, 167, 0) 100%)
 }
 
-video#self-view-video, video#share-video {
+video#self-view-video,
+video#share-video {
   width: 48%;
   height: 40vh;
-  background: gray;
+  background: rgb(82, 145, 145);
   border: solid;
-  margin: 10px;
+  margin-top: 120px;
+  margin-bottom: 20px;
+  margin-left: 90px;
+  margin-right: 90px;
   padding: 10px;
 }

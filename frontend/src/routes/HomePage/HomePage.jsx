@@ -82,7 +82,7 @@ const HomePage = ({
     <div className="homepage">
       <TopNavigationBar
         role="patient"
-        username="Frank Navasky"
+        username="Maria Garcia"
         openProfile={openProfile}
         openSettings={openSettings}
       />

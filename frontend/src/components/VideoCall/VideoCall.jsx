@@ -14,7 +14,7 @@ const VideoCall = (props) => {
   
   console.log("INSIDE VIDEOCALL", props.meetingArgs[0])
   const navigate = useNavigate();
-  
+
   //Destructure props object
   const {
     topic, signature, name, passWord
@@ -38,7 +38,7 @@ const VideoCall = (props) => {
     console.log("CLIENT", client);
     
     console.log("JOINING MEETING", props.meetingArgs);
-    
+
     setIsLoading('true');
     setLoadingText('Joining Session..')
     
@@ -85,12 +85,12 @@ const VideoCall = (props) => {
 
       //////////////////////////////////////////////////////////////////////////
       const stream = client.getMediaStream();
-      
+
       setMediaStream(stream);
       setIsLoading(false);
       setLoadingText(' ');
     }
-    catch(err) {
+    catch (err) {
       console.log('Error Joining Meeting', err);
       setIsLoading(false);
       message.error(err.reason);
@@ -129,7 +129,7 @@ const VideoCall = (props) => {
 
   return (
     <>
-      {!mediaStream && 
+      {!mediaStream &&
         <div className='function-block'>
           <button onClick={() => joinSession()}>Join Session </button>
           <button onClick={() => joinMariaSession()}>Maria Joins Session</button>
@@ -143,6 +143,11 @@ const VideoCall = (props) => {
          <button onClick={() => joinSession()}>Join Session </button>
           <button onClick={() => joinMariaSession()}>Maria Joins Session</button>
           <button onClick={() => endSession()}>End Session </button> 
+      {/* {isLoading ? <LoadingLayout content={loadingText} /> :
+        mediaStream &&
+        <MediaContext.Provider value={mediaStream}>
+          <VideoContainer props={mediaStream} />
+          <button onClick={() => endSession()}>End Session </button> */}
         </MediaContext.Provider>
       }
     </>
