@@ -95,6 +95,7 @@ li.react-datepicker__time-list-item.react-datepicker__time-list-item--disabled {
   align-items: center;
   padding: 10px;
   margin-bottom: 15px;
+  margin-right: 30px;
   border-radius: 8px;
   background-color: rgb(25, 101, 122);
   box-shadow: 0 0px 20px -6px #222;
