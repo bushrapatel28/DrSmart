@@ -13,7 +13,7 @@ const VideoCall = (props) => {
   const client = useContext(ZoomContext);
 
   const navigate = useNavigate();
-  
+
   //Destructure props object
   const {
     meetingArgs: { sdkKey, topic, signature, name, passWord }
@@ -28,7 +28,7 @@ const VideoCall = (props) => {
     console.log("CLIENT", client);
 
     console.log("JOINING MEETING", props.meetingArgs);
-    
+
     setIsLoading('true');
     setLoadingText('Joining Session..')
 
@@ -37,12 +37,12 @@ const VideoCall = (props) => {
       console.log("MEDIA STREAM", client.getMediaStream());
 
       const stream = client.getMediaStream();
-      
+
       setMediaStream(stream);
       setIsLoading(false);
       setLoadingText(' ')
     }
-    catch(err) {
+    catch (err) {
       console.log('Error Joining Meeting', err);
       setIsLoading(false);
       message.error(err.reason);
@@ -57,16 +57,16 @@ const VideoCall = (props) => {
 
   return (
     <>
-      {!mediaStream && 
+      {!mediaStream &&
         <div className='function-block'>
           <button onClick={() => joinSession()}>Join Session </button>
         </div>
       }
-      {isLoading ? <LoadingLayout content = {loadingText}/> :
-       mediaStream && 
-        <MediaContext.Provider value = {mediaStream}>
-          <VideoContainer props={mediaStream}/>
-          <button onClick={() => endSession()}>End Session </button> 
+      {isLoading ? <LoadingLayout content={loadingText} /> :
+        mediaStream &&
+        <MediaContext.Provider value={mediaStream}>
+          <VideoContainer props={mediaStream} />
+          <button onClick={() => endSession()}>End Session </button>
         </MediaContext.Provider>
       }
     </>
