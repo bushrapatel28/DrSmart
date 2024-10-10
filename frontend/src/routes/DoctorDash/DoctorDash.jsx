@@ -57,8 +57,12 @@ const DoctorDash = ({
   //Zoom Vidoe Setup
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   const { meetingArgs } = useZoomData();
-  //Create a zoom client
+
+  console.log("NEW MEETING ARGS", meetingArgs);
+  
+  //Create a zoom client (host)
   const client = ZoomVideo.createClient();
+  
  
   return (
     <div className="doctordash">
@@ -112,7 +116,7 @@ const DoctorDash = ({
 
         <div>
           {/* Zoom Video */}
-          {meetingArgs.signature && 
+          {meetingArgs[0].signature && meetingArgs[1].signature &&
             <ZoomContext.Provider value = {client}>
               <Router>
                 <Routes>
@@ -124,8 +128,7 @@ const DoctorDash = ({
           }
         </div>
       </div>
-
-
+      
     </div>
   );
 };
