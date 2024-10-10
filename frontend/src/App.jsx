@@ -15,9 +15,19 @@ import DoctorDash from './routes/DoctorDash/DoctorDash'
 import useScheduleData from './hooks/useScheduleData'
 import useTopNavProfileModal from './hooks/useTopNavProfileModal'
 import useRegistrationData from './hooks/useRegistrationData'
+import SelectDashboard from './routes/SelectDashboard/SelectDashboard'
+import useDashboardData from './hooks/useDashboardData'
 
 
 function App() {
+
+  const {
+    dashboard,
+    setDashboard,
+    isDashboardSelected,
+    setIsDashboardSelected,
+    dashboardOnClick
+  } = useDashboardData();
 
   const {
     topNavState,
@@ -109,82 +119,90 @@ function App() {
       {/* <Appointment /> */}
       {/* <DoctorList doctorData={doctor}/>       */}
 
+      {!isDashboardSelected && 
+        <SelectDashboard dashboardOnClick={dashboardOnClick} />
+      }
 
-      <HomePage
-        /*TopNav Props*/
-        topNavState={topNavState}
-        openProfile={openProfile}
-        closeProfile={closeProfile}
-        openSettings={openSettings}
-        closeSettings={closeSettings}
-        /*TopNav Props End*/
-        isRecordOpen={isRecordOpen}
-        patientRecord={patientRecord}
-        openRecordModal={openRecordModal}
-        closeRecordModal={closeRecordModal}
-        isMsgsOpen={isMsgsOpen}
-        patientMsgs={patientMsgs}
-        openMsgsModal={openMsgsModal}
-        closeMsgsModal={closeMsgsModal}
-        isMedicationOpen={isMedicationOpen}
-        patientMedications={patientMedications}
-        openMedicationsModal={openMedicationsModal}
-        closeMedicationsModal={closeMedicationsModal}
-        isLabResultsOpen={isLabResultsOpen}
-        patientLabResults={patientLabResults}
-        openLabResultsModal={openLabResultsModal}
-        closeLabResultsModal={closeLabResultsModal}
-        isAppointmentOpen={isAppointmentOpen}
-        openAppointmentModal={openAppointmentModal}
-        closeAppointmentModal={closeAppointmentModal}
-        isMedicalHistoryOpen={isMedicalHistoryOpen}
-        openMedicalHistoryModal={openMedicalHistoryModal}
-        closeMedicalHistoryModal={closeMedicalHistoryModal}
-        /*Appointment Props Start */
-        state={state}
-        doctorData={docState.doctor}
-        // startDate={startDate}
-        // startTime={startTime}
-        // isVirtual={isVirtual}
-        // showDoc={showDoc}
-        saveDoctorInfo={saveDoctorInfo}
-        selectDateTime={selectDateTime}
-        toggleAppointmentType={toggleAppointmentType}
-        next={next}
-        clear={clear}
-        save={save}
-        cancel={cancel}
-        filterPassedTime={filterPassedTime}
-      />
-      <DoctorDash
-        state={docState}
-        openSchedulerModal={openSchedulerModal}
-        closeSchedulerModal={closeSchedulerModal}
-        openVisitModal={openVisitModal}
-        closeVisitModal={closeVisitModal}
-        openAcceptApptModal={openAcceptApptModal}
-        closeAcceptApptModal={closeAcceptApptModal}
-        //Accept Appt functions
-        handleAppt={handleAppt}
-        schedulerState={schedulerState}
-        // docStartDate={docStartDate}
-        // docEndDate={docEndDate}
-        // docStartTime={docStartTime}
-        // docEndTime={docEndTime}
-        datesOnChange={datesOnChange}
-        docStartTimeOnChange={docStartTimeOnChange}
-        docEndTimeOnChange={docEndTimeOnChange}
-        setAvailability={setAvailability}
-        saveSchedule={saveSchedule}
-        // selectedRanges={selectedRanges}
-        deleteAvailability={deleteAvailability}
-        clearSchedule={clearSchedule}
-        // Patients props
-        patients={docState.patients}
-        isPatientsOpen={docState.isPatientsOpen}
-        openPatientsModal={openPatientsModal}
-        closePatientsModal={closePatientsModal}
-      />
+      {dashboard === 'patients' &&
+        <HomePage
+          /*TopNav Props*/
+          topNavState={topNavState}
+          openProfile={openProfile}
+          closeProfile={closeProfile}
+          openSettings={openSettings}
+          closeSettings={closeSettings}
+          /*TopNav Props End*/
+          isRecordOpen={isRecordOpen}
+          patientRecord={patientRecord}
+          openRecordModal={openRecordModal}
+          closeRecordModal={closeRecordModal}
+          isMsgsOpen={isMsgsOpen}
+          patientMsgs={patientMsgs}
+          openMsgsModal={openMsgsModal}
+          closeMsgsModal={closeMsgsModal}
+          isMedicationOpen={isMedicationOpen}
+          patientMedications={patientMedications}
+          openMedicationsModal={openMedicationsModal}
+          closeMedicationsModal={closeMedicationsModal}
+          isLabResultsOpen={isLabResultsOpen}
+          patientLabResults={patientLabResults}
+          openLabResultsModal={openLabResultsModal}
+          closeLabResultsModal={closeLabResultsModal}
+          isAppointmentOpen={isAppointmentOpen}
+          openAppointmentModal={openAppointmentModal}
+          closeAppointmentModal={closeAppointmentModal}
+          isMedicalHistoryOpen={isMedicalHistoryOpen}
+          openMedicalHistoryModal={openMedicalHistoryModal}
+          closeMedicalHistoryModal={closeMedicalHistoryModal}
+          /*Appointment Props Start */
+          state={state}
+          doctorData={docState.doctor}
+          // startDate={startDate}
+          // startTime={startTime}
+          // isVirtual={isVirtual}
+          // showDoc={showDoc}
+          saveDoctorInfo={saveDoctorInfo}
+          selectDateTime={selectDateTime}
+          toggleAppointmentType={toggleAppointmentType}
+          next={next}
+          clear={clear}
+          save={save}
+          cancel={cancel}
+          filterPassedTime={filterPassedTime}
+        />
+      }
+
+      {dashboard === 'doctors' &&
+        <DoctorDash
+          state={docState}
+          openSchedulerModal={openSchedulerModal}
+          closeSchedulerModal={closeSchedulerModal}
+          openVisitModal={openVisitModal}
+          closeVisitModal={closeVisitModal}
+          openAcceptApptModal={openAcceptApptModal}
+          closeAcceptApptModal={closeAcceptApptModal}
+          //Accept Appt functions
+          handleAppt={handleAppt}
+          schedulerState={schedulerState}
+          // docStartDate={docStartDate}
+          // docEndDate={docEndDate}
+          // docStartTime={docStartTime}
+          // docEndTime={docEndTime}
+          datesOnChange={datesOnChange}
+          docStartTimeOnChange={docStartTimeOnChange}
+          docEndTimeOnChange={docEndTimeOnChange}
+          setAvailability={setAvailability}
+          saveSchedule={saveSchedule}
+          // selectedRanges={selectedRanges}
+          deleteAvailability={deleteAvailability}
+          clearSchedule={clearSchedule}
+          // Patients props
+          patients={docState.patients}
+          isPatientsOpen={docState.isPatientsOpen}
+          openPatientsModal={openPatientsModal}
+          closePatientsModal={closePatientsModal}
+        />
+      }
     </>
   )
 }
