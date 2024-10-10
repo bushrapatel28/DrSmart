@@ -25,16 +25,17 @@ function App() {
   } = useTopNavProfileModal();
 
   const {
-    docStartDate,
-    docEndDate,
-    docStartTime,
-    docEndTime,
+    schedulerState,
+    // docStartDate,
+    // docEndDate,
+    // docStartTime,
+    // docEndTime,
     datesOnChange,
     docStartTimeOnChange,
     docEndTimeOnChange,
     setAvailability,
     saveSchedule,
-    selectedRanges,
+    // selectedRanges,
     deleteAvailability
   } = useScheduleData();
 
@@ -156,16 +157,17 @@ function App() {
         closeVisitModal={closeVisitModal}
         openDocMsgsModal={openDocMsgsModal}
         closeDocMsgsModal={closeDocMsgsModal}
-        docStartDate={docStartDate}
-        docEndDate={docEndDate}
-        docStartTime={docStartTime}
-        docEndTime={docEndTime}
+        schedulerState={schedulerState}
+        // docStartDate={docStartDate}
+        // docEndDate={docEndDate}
+        // docStartTime={docStartTime}
+        // docEndTime={docEndTime}
         datesOnChange={datesOnChange}
         docStartTimeOnChange={docStartTimeOnChange}
         docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
-        selectedRanges={selectedRanges}
+        // selectedRanges={selectedRanges}
         deleteAvailability={deleteAvailability}
         // Patients props
         patients={docState.patients}
@@ -191,16 +193,17 @@ function App() {
         filterPassedTime={filterPassedTime}
       />
       <Schedule
-        docStartDate={docStartDate}
-        docEndDate={docEndDate}
-        docStartTime={docStartTime}
-        docEndTime={docEndTime}
+        schedulerState={schedulerState}
+        // docStartDate={docStartDate}
+        // docEndDate={docEndDate}
+        // docStartTime={docStartTime}
+        // docEndTime={docEndTime}
         datesOnChange={datesOnChange}
         docStartTimeOnChange={docStartTimeOnChange}
         docEndTimeOnChange={docEndTimeOnChange}
         setAvailability={setAvailability}
         saveSchedule={saveSchedule}
-        selectedRanges={selectedRanges}
+        // selectedRanges={selectedRanges}
         deleteAvailability={deleteAvailability}
       /> */}
 

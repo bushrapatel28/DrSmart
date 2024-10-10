@@ -26,16 +26,17 @@ const DoctorDash = ({
   closeVisitModal,
   openDocMsgsModal,
   closeDocMsgsModal,
-  docStartDate,
-  docEndDate,
-  docStartTime,
-  docEndTime,
+  schedulerState,
+  // docStartDate,
+  // docEndDate,
+  // docStartTime,
+  // docEndTime,
   datesOnChange,
   docStartTimeOnChange,
   docEndTimeOnChange,
   setAvailability,
   saveSchedule,
-  selectedRanges,
+  // selectedRanges,
   deleteAvailability,
   isPatientsOpen,
   openPatientsModal,
@@ -49,16 +50,17 @@ const DoctorDash = ({
       <div className="functions-section">
         {state.isSchedulerOpen ? (
           <SchedulerModal
-            docStartDate={docStartDate}
-            docEndDate={docEndDate}
-            docStartTime={docStartTime}
-            docEndTime={docEndTime}
+            schedulerState={schedulerState}
+            // docStartDate={docStartDate}
+            // docEndDate={docEndDate}
+            // docStartTime={docStartTime}
+            // docEndTime={docEndTime}
             datesOnChange={datesOnChange}
             docStartTimeOnChange={docStartTimeOnChange}
             docEndTimeOnChange={docEndTimeOnChange}
             setAvailability={setAvailability}
             saveSchedule={saveSchedule}
-            selectedRanges={selectedRanges}
+            // selectedRanges={selectedRanges}
             deleteAvailability={deleteAvailability}
             isSchedulerOpen={state.isSchedulerOpen}
             closeSchedulerModal={closeSchedulerModal}

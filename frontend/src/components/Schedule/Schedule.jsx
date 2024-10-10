@@ -6,14 +6,24 @@ import AvailabilityList from "../AvailabilityList/AvailabilityList"
 
 const Schedule = (props) => {
 
+  const {
+    schedulerState: {docStartDate, docEndDate, docStartTime, docEndTime, selectedRanges},
+    datesOnChange,
+    docStartTimeOnChange,
+    docEndTimeOnChange,
+    setAvailability,
+    saveSchedule,
+    deleteAvailability
+  } = props;
+
   return (
     <div>
       <div>
         <DatePicker
-          selected={props.docStartDate}
-          onChange={props.datesOnChange}
-          startDate={props.docStartDate}
-          endDate={props.docEndDate}
+          selected={docStartDate}
+          onChange={datesOnChange}
+          startDate={docStartDate}
+          endDate={docEndDate}
           selectsRange
           minDate={addDays(new Date(), 1)}
           maxDate={addDays(new Date(), 7)}
@@ -24,9 +34,9 @@ const Schedule = (props) => {
       <div className="selected-time-range">
         <h4>Start Time:</h4>
         <DatePicker
-          selected={props.docStartTime}
-          // onChange={(time) => props.setDocStartTime(time)}
-          onChange={props.docStartTimeOnChange}
+          selected={docStartTime}
+          // onChange={(time) => setDocStartTime(time)}
+          onChange={docStartTimeOnChange}
           showTimeSelect
           showTimeSelectOnly
           timeIntervals={60}
@@ -41,13 +51,13 @@ const Schedule = (props) => {
       <div className="selected-time-range">
         <h4>End Time:</h4>
         <DatePicker
-          selected={props.docEndTime}
-          // onChange={(time) => props.setDocEndTime(time)}
-          onChange={props.docEndTimeOnChange}
+          selected={docEndTime}
+          // onChange={(time) => setDocEndTime(time)}
+          onChange={docEndTimeOnChange}
           showTimeSelect
           showTimeSelectOnly
           timeIntervals={60}
-          minTime={setMinutes(props.docStartTime, 60)}                      //End Time range begins 1 hour after Start Time
+          minTime={setMinutes(docStartTime, 60)}                      //End Time range begins 1 hour after Start Time
           maxTime={setHours(setMinutes(new Date(), 30), 20)}                //Only allow times until 8:30 PM
           timeCaption="End Time"
           dateFormat="hh:mm aa"
@@ -56,13 +66,13 @@ const Schedule = (props) => {
       </div>
 
       <div>
-        <button onClick={props.setAvailability}>ADD</button>
-        <button onClick={props.saveSchedule}>SAVE</button>
+        <button onClick={setAvailability}>ADD</button>
+        <button onClick={saveSchedule}>SAVE</button>
       </div>
 
       <AvailabilityList
-        selectedRanges={props.selectedRanges}
-        deleteAvailability={props.deleteAvailability}
+        selectedRanges={selectedRanges}
+        deleteAvailability={deleteAvailability}
       />
 
     </div>
