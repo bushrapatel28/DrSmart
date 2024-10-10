@@ -150,7 +150,7 @@ const HomePage = ({
     {/* <h2>{patient.name}</h2>
     <p>Diagnosis: {patient.diagnosis}</p> */}
 
-    {/* <ArticleSuggestions diagnosis={"diabetes"} /> */}
+    <ArticleSuggestions diagnosis={"Diabetes"} />
 
     </div>
   </>

@@ -82,7 +82,7 @@ module.exports = function application(ENV) {
   app.use('/doctors', doc_messages(db));
 
   app.use('/', video_call());
-  app.use('/', article_scrape(db));
+  app.use('/api', article_scrape());
 
   if (ENV === "development" || ENV === "test") {
     Promise.all([

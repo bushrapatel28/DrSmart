@@ -110,40 +110,72 @@
 
 // AI SUGGESTIONS USING SCRAPING
 
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import { useState, useEffect } from 'react';
 
 // const diagnosis = "Diabetes";
-const fetchArticles = async (diagnosis) => {
-  try {
-    const response = await axios.get(`/scrape`, {
-      params: { diagnosis }
-    });
-    console.log(response.data); // Check if you're receiving the response
-  } catch (error) {
-    console.error('Error fetching articles:', error);
-  }
-};
+// const fetchArticles = async (diagnosis) => {
+//   try {
+//     const response = await axios.get(`/scrape`, {
+//       params: { diagnosis }
+//     });
+//     console.log(response.data); // Check if you're receiving the response
+//   } catch (error) {
+//     console.error('Error fetching articles:', error);
+//   }
+// };
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import './ArticleSuggestions.scss';
+import placholderImage from '../../assets/blog-placeholder-img.jpg'
 
 const ArticleSuggestions = ({ diagnosis }) => {
+  const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState([]);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
-    // if (diagnosis) {
-      fetchArticles(diagnosis).then((data) => setArticles(data));
-    // }
-  });
+    const fetchArticles = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('/api/scrape', {
+          params: { diagnosis },
+        });
+        const { articles, imageUrl } = response.data;
 
+        setArticles(articles);
+        setImage(imageUrl);   
+
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchArticles();
+  }, [diagnosis]);
+  
   return (
-    <div>
-      <h3>Suggested Articles for {diagnosis}</h3>
-      <ul>
-        {articles.map((article, index) => (
-          <li key={index}>
-            <a href={article.link}>{article.title}</a>
-          </li>
-        ))}
-      </ul>
+    <div className="articles-container">
+      <div className="articles-list">
+        <h2>Read about {diagnosis}</h2>
+        {loading ? (
+          <p>Loading articles...</p>
+        ) : articles.length > 0 ? (
+          articles.map((article, index) => (
+            <div key={index} className="article-list-item">
+              <h3><a href={article.link} target="_blank" rel="noopener noreferrer">{article.title}</a></h3>
+              <p>{article.description}</p>
+            </div>
+          ))
+        ) : (
+          <p>No articles found.</p>
+        )}
+      </div>
+      <div className="article-img">
+        <img src={image ? image : `${placholderImage}`} alt={`${diagnosis}-related`} />
+      </div>
     </div>
   );
 };

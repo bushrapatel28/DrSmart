@@ -1,77 +1,74 @@
 //Zoom Setup
 import ZoomContext from '../../context/zoom-context';
-import { devConfig } from '../../devConfig';
-import { useEffect, useContext, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { message } from 'antd';
 import ZoomVideo from '@zoom/videosdk';
 import MediaContext from '../../context/media-context';
 import LoadingLayout from '../LoadingLayout/LoadingLayout';
-import VideoContainer from '../../feature/Video/Video';
-import VideoButton from '../../feature/VideoButton/VideoButton';
+import VideoContainer from '../../feature/VideoContainer/VideoContainer';
 
 const VideoCall = (props) => {
   //Use useContext hook to grab passed down value and create client variable
   const client = useContext(ZoomContext);
+
+  const navigate = useNavigate();
   
   //Destructure props object
   const {
     meetingArgs: { sdkKey, topic, signature, name, passWord }
   } = props;
 
-  const [loading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [loadingText, setLoadingText] = useState(' ');
   const [mediaStream, setMediaStream] = useState();
 
+  //Create joinSession async function with try...catch block to get the Media Stream from Client
+  const joinSession = async () => {
+    console.log("CLIENT", client);
 
-  useEffect(() => {
-    //Create init async function with try...catch block to get the Media Stream from Client
-    const init = async () => {
-      console.log("CLIENT", client);
-
-      client.init('US-EN', 'CDN')
-
-      console.log("JOINING MEETING", props.meetingArgs);
-      
-      // console.log("CLIENT JOIN", client.join(topic, signature, name, passWord));
+    console.log("JOINING MEETING", props.meetingArgs);
     
-      try {
-        setLoadingText('Joining Session..')
-        await client.join(topic, signature, name, passWord);
-        console.log("MEDIA STREAM", client.getMediaStream());
+    setIsLoading('true');
+    setLoadingText('Joining Session..')
 
-        const stream = client.getMediaStream();
-        
-        setMediaStream(stream);
-        setIsLoading(false);
-      }
-      catch(err) {
-        console.log('Error Joining Meeting', err);
-        setIsLoading(false);
-        message.error(err.reason);
-      }
-    }
+    try {
+      await client.join(topic, signature, name, passWord);
+      console.log("MEDIA STREAM", client.getMediaStream());
 
-    //Call function and create clean up functionality
-    init();
-    return () => {
-      ZoomVideo.destroyClient();
+      const stream = client.getMediaStream();
+      
+      setMediaStream(stream);
+      setIsLoading(false);
+      setLoadingText(' ')
     }
-  }, [sdkKey, signature, client, topic, name, passWord])
+    catch(err) {
+      console.log('Error Joining Meeting', err);
+      setIsLoading(false);
+      message.error(err.reason);
+    }
+  }
+
+  const endSession = () => {
+    client.leave();
+    ZoomVideo.destroyClient();
+    navigate('/');
+  }
 
   return (
     <>
-      {loading && <LoadingLayout content = {loadingText}/>}
-      {!loading && (
+      {!mediaStream && 
+        <div className='function-block'>
+          <button onClick={() => joinSession()}>Join Session </button>
+        </div>
+      }
+      {isLoading ? <LoadingLayout content = {loadingText}/> :
+       mediaStream && 
         <MediaContext.Provider value = {mediaStream}>
-          <Router>
-            <Routes>
-              <Route path = "/" element = {<VideoButton props={mediaStream}/>}/>
-              <Route path = "/video" element = {<VideoContainer />}/>
-            </Routes>
-          </Router>
+          <VideoContainer props={mediaStream}/>
+          <button onClick={() => endSession()}>End Session </button> 
         </MediaContext.Provider>
-      )}
+      }
     </>
   )
 }

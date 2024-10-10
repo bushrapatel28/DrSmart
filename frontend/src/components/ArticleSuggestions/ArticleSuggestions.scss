@@ -1,0 +1,42 @@
+.articles-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  .articles-list {
+    margin: 50px;
+    width: 60%;
+    h2 {
+      color: rgb(104, 178, 148);
+      margin: 50px 0px;
+      font-size: 32px;
+    }
+    a {
+      color: rgb(104, 178, 148);
+    }
+    .article-list-item {
+      color: #aeaeae;
+      width: 90%;
+      text-align: left;
+      margin: 35px 10px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 4px;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+    }
+  }
+  .article-img img {
+    width: 80%;
+    min-height: 700px;
+    margin: 50px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+}
+
+// .articles-list 
+
+
+

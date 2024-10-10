@@ -4,7 +4,7 @@ import { AudioOutlined, AudioMutedOutlined, VideoCameraAddOutlined, VideoCameraO
 import { IconFont } from "../../components/icon-font";
 import ZoomContext from '../../context/zoom-context';
 import MediaContext from '../../context/media-context';
-import './Video.scss';
+import './VideoContainer.scss';
 
 const VideoContainer = () => {
   const [videoStarted, setVideoStarted] = useState(false);
