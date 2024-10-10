@@ -49,7 +49,7 @@ const initialState = {
 
 const useScheduleData = () => {
 
-  // const [schedulerState, dispatch] = useReducer(reducer, initialState);
+  const [schedulerState, dispatch] = useReducer(reducer, initialState);
   
   // const [docStartDate, setDocStartDate] = useState(null);
   // const [docEndDate, setDocEndDate] = useState(null);
@@ -183,19 +183,29 @@ const useScheduleData = () => {
       body: JSON.stringify(scheduleData)  // Convert the data to JSON format 
 
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();          // Parse the JSON response
-      })
-      .then(data => {
-        console.log("Availability added:", data);  // Handle the success response
-      })
-      .catch(error => {
-        console.error("Error:", error);  // Handle any errors that occur
-      });
-    }
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();          // Parse the JSON response
+    })
+    .then(data => {
+      console.log("Availability added:", data);  // Handle the success response
+    })
+    .catch(error => {
+      console.error("Error:", error);  // Handle any errors that occur
+    });
+  }
+
+  function clearSchedule() {
+    dispatch({type: ACTIONS.SCHEDULE_START_DATE_ADDED, payload: null});
+    dispatch({type: ACTIONS.SCHEDULE_END_DATE_ADDED, payload: null});
+    dispatch({type: ACTIONS.SCHEDULE_START_TIME_ADDED, payload: null});
+    dispatch({type: ACTIONS.SCHEDULE_END_TIME_ADDED, payload: null});
+    dispatch({type: ACTIONS.DATE_RANGE_ADDED, payload: []});
+    dispatch({type: ACTIONS.TIME_SLOT_ID_RANGE_ADDED, payload: []});
+    dispatch({type: ACTIONS.SELECTED_RANGE, payload: []});
+  }
 
   function deleteAvailability(index) {
     console.log("SR", schedulerState.selectedRanges);
@@ -229,7 +239,8 @@ const useScheduleData = () => {
     setAvailability,
     saveSchedule,
     // selectedRanges,
-    deleteAvailability
+    deleteAvailability,
+    clearSchedule
    };
 }
 

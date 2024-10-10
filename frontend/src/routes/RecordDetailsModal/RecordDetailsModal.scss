@@ -58,9 +58,9 @@
       font-size: 1rem;
       color: $color-text; // Changed to white from $color-text
 
-      strong {
-        color: $color-accent-1; // Accent color for bold text
-      }
     }
+  }
+  strong {
+    color: $color-accent-1; // Accent color for bold text
   }
 }

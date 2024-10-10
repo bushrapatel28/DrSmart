@@ -60,6 +60,7 @@ const VideoCall = (props) => {
       {!mediaStream &&
         <div className='function-block'>
           <button onClick={() => joinSession()}>Join Session </button>
+          <button onClick={() => endSession()}>Exit </button>
         </div>
       }
       {isLoading ? <LoadingLayout content={loadingText} /> :

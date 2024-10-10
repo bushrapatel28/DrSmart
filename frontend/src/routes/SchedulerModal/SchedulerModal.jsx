@@ -16,7 +16,8 @@ const SchedulerModal = ({
   setAvailability,
   saveSchedule,
   // selectedRanges,
-  deleteAvailability
+  deleteAvailability,
+  clearSchedule
 }) => {
 
   return (
@@ -24,7 +25,7 @@ const SchedulerModal = ({
       {isSchedulerOpen && (
         <div  className="modal">
           <div className="modal__content">
-          <button className="modal__close-button" onClick={() => closeSchedulerModal()}>
+          <button className="modal__close-button" onClick={() => {closeSchedulerModal(); clearSchedule();}}>
             <span>&times;</span>
           </button>
           <h3 className="modal__heading">Select Your Next Week's Schedule</h3>

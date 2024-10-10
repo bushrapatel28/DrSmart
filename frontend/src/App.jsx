@@ -39,7 +39,8 @@ function App() {
     setAvailability,
     saveSchedule,
     // selectedRanges,
-    deleteAvailability
+    deleteAvailability,
+    clearSchedule
   } = useScheduleData();
 
   const {
@@ -177,6 +178,7 @@ function App() {
         saveSchedule={saveSchedule}
         // selectedRanges={selectedRanges}
         deleteAvailability={deleteAvailability}
+        clearSchedule={clearSchedule}
         // Patients props
         patients={docState.patients}
         isPatientsOpen={docState.isPatientsOpen}

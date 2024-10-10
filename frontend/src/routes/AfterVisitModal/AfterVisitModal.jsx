@@ -73,7 +73,7 @@ const AfterVisitModal = ({ isOpen, closeModal, formData, handleInputChange, hand
               </div>
               <div>
                 <div className="after-visit">
-                  <label class="label-text" htmlFor="diagnosis">Diagnosis:</label>
+                  <label className="label-text" htmlFor="diagnosis">Diagnosis:</label>
                   <textarea
                     id="diagnosis"
                     value={formData.diagnosis}

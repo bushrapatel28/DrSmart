@@ -100,7 +100,7 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal, openProfile }) => {
                     checked={formData.smoker === 'Yes'}
                     onChange={handleChange}
                   />
-                  <span class="radio-mark"></span>
+                  <span className="radio-mark"></span>
                   Yes
                 </label>
                 <label className="check-box">
@@ -111,7 +111,7 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal, openProfile }) => {
                     checked={formData.smoker === 'No'}
                     onChange={handleChange}
                   />
-                  <span class="radio-mark"></span>
+                  <span className="radio-mark"></span>
                   No
                 </label>
               </div>
@@ -141,7 +141,7 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal, openProfile }) => {
                     checked={formData.allergies === 'Yes'}
                     onChange={() => handleAllergyChange('Yes')}
                   />
-                  <span class="radio-mark"></span>
+                  <span className="radio-mark"></span>
                   Yes
                 </label>
                 <label className="check-box">
@@ -152,7 +152,7 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal, openProfile }) => {
                     checked={formData.allergies === 'No'}
                     onChange={() => handleAllergyChange('No')}
                   />
-                  <span class="radio-mark"></span>
+                  <span className="radio-mark"></span>
                   No
                 </label>
               </div>
@@ -182,7 +182,7 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal, openProfile }) => {
                     checked={formData.medication === 'Yes'}
                     onChange={() => handleMedicationChange('Yes')}
                   />
-                  <span class="radio-mark"></span>
+                  <span className="radio-mark"></span>
                   Yes
                 </label>
                 <label className="check-box">
@@ -193,7 +193,7 @@ const MedicalHistoryModal = ({ closeMedicalHistoryModal, openProfile }) => {
                     checked={formData.medication === 'No'}
                     onChange={() => handleMedicationChange('No')}
                   />
-                  <span class="radio-mark"></span>
+                  <span className="radio-mark"></span>
                   No
                 </label>
               </div>

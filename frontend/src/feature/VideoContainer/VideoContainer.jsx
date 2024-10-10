@@ -1,7 +1,7 @@
 import { useState, useContext, useCallback } from "react";
 import { Button, Tooltip } from 'antd';
 import { AudioOutlined, AudioMutedOutlined, VideoCameraAddOutlined, VideoCameraOutlined, FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
-import { IconFont } from "../../components/icon-font";
+import IconHeadset from "../../assets/icon-headset.svg";
 import ZoomContext from '../../context/zoom-context';
 import MediaContext from '../../context/media-context';
 import './VideoContainer.scss';
@@ -110,7 +110,7 @@ const VideoContainer = () => {
         <Tooltip title={`${audioStarted ? isMuted ? 'unmute' : 'mute' : 'Start Audio'}`}>
           <Button 
             className='camera-button'
-            icon={audioStarted ? isMuted ? <AudioMutedOutlined /> : <AudioOutlined /> : <IconFont type="icon-headset" />}
+            icon={ audioStarted ? isMuted ? <AudioMutedOutlined /> : <AudioOutlined /> : <img src={IconHeadset}/>}
             shape='circle'
             size='large'
             onClick={startAudioButton}
