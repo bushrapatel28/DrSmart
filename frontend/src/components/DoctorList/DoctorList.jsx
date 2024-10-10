@@ -4,15 +4,25 @@ import DoctorListItem from "../DoctorListItem/DoctorListItem";
 const DoctorList = (props) => {
   const [selectedDoctorId, setSelectedDoctorId] = useState(null); // State to track selected doctor
 
+  const {
+    doctorData,
+    appointmentDate,
+    appointmentTime,
+    saveDoctorInfo,
+    save,
+    cancel,
+    errorMsg
+  } = props;
+
   const handleDoctorClick = (id) => {
     setSelectedDoctorId(id); // Update selected doctor ID
-    props.saveDoctorInfo(id); // Call the provided click handler
+    saveDoctorInfo(id); // Call the provided click handler
   };
 
   return (
     <div className="doctors">
       <ul className="doctors-list">
-        {props.doctorData.map((doctor) => {
+        {doctorData.map((doctor) => {
           return (
             <DoctorListItem
               key={doctor.id}
@@ -20,17 +30,17 @@ const DoctorList = (props) => {
               doctorName={doctor.name}
               profile={doctor.profile_img}
               specialization={doctor.specialization}
-              availability={doctor.availability}
-              appointmentDate={props.appointmentDate}
-              appointmentTime={props.appointmentTime}
+              availabilities={doctor.availability}
+              appointmentDate={appointmentDate}
+              appointmentTime={appointmentTime}
               onClick={handleDoctorClick} // Pass the new click handler
               isSelected={doctor.id === selectedDoctorId} // Pass the selected state
             />
           )
         })}
       </ul>
-      <button className="book-appointment-btn" onClick={() => props.save()}>BOOK</button>
-      <button className="cancel-appointment-btn" onClick={() => props.cancel()}>CANCEL</button>
+      <button className="book-appointment-btn" onClick={() => save()}>BOOK</button>
+      <button className="cancel-appointment-btn" onClick={() => cancel()}>CANCEL</button>
     </div>
   )
 }
